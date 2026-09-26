@@ -1,0 +1,8 @@
+{
+  "id": "AD-02",
+  "title": "Activity: Xử lý đơn, giao nhiều kiện và COD",
+  "caption": "Hủy trước xuất kho không làm tăng on_hand. Vòng lặp giao hàng tiếp tục cho tới khi đủ các kiện, hoặc chuyển sang xử lý ngoại lệ được mô tả trong đặc tả. Phân làn giao nhận là trách nhiệm nghiệp vụ, không hàm ý API hãng vận chuyển.",
+  "reference": "PDF nguồn: tr. 83–89; NÉT: workflow trạng thái đơn và fulfillment",
+  "width": 1100,
+  "height": 650
+}

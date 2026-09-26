@@ -1,0 +1,9 @@
+{
+  "id": "AD-06",
+  "uc": "UC03",
+  "title": "Activity: UC03 Đăng nhập và nhận phiên truy cập",
+  "caption": "Người dùng gửi email và mật khẩu; hệ thống kiểm tra dữ liệu, giới hạn yêu cầu rồi đối chiếu thông tin đăng nhập. Chỉ tài khoản đã xác minh, đang hoạt động hoặc có khóa tạm đã hết hạn mới được cấp phiên; các trạng thái không hợp lệ bị từ chối. Khi thành công, hệ thống cập nhật lần đăng nhập và hiển thị chức năng theo vai trò.",
+  "reference": "UC03 và bảng 4.2 của báo cáo; auth/AuthController.java, AuthService.java; docs/ba/03-business-rules.md, BR-AUTH-06/08.",
+  "width": 1300,
+  "height": 901.0
+}

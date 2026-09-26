@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="650" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 650" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="650"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-650)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="650" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="327.2265625" y="615.0" style="font-family: ArialB; font-size: 20px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1230) scale(1,-1)">MINH HỌA FORK / JOIN - CHUẨN BỊ MỘT KIỆN</text>
+			<circle cx="550" cy="570" r="8" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 550,562 L 550,537 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="546.0853 545.104, 550 537, 553.9147 545.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="405" y="481" width="290" height="56" rx="17" ry="17" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="449.03125" y="504.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1008) scale(1,-1)">Nhận kiện đủ điều kiện xử lý</text>
+			<path d="M 550,481 L 550,442 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="546.0853 450.104, 550 442, 553.9147 450.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="250" y="434" width="600" height="8" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 320,434 L 320,385 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="316.0853 393.104, 320 385, 323.9147 393.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 780,434 L 780,385 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="776.0853 393.104, 780 385, 783.9147 393.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="170" y="315" width="300" height="70" rx="18" ry="18" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="245.81591796875" y="355.25" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,710) scale(1,-1)">Kho: lấy đúng SKU,</text>
+			<text x="236.8427734375" y="334.0" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">kiểm đếm và đóng gói</text>
+			<rect x="630" y="315" width="300" height="70" rx="18" ry="18" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="704.865478515625" y="355.25" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,710) scale(1,-1)">Nhân viên: chuẩn bị</text>
+			<text x="705.927978515625" y="334.0" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,668) scale(1,-1)">carrier, mã vận đơn</text>
+			<path d="M 320,315 L 320,261 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="316.0853 269.104, 320 261, 323.9147 269.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 780,315 L 780,261 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="776.0853 269.104, 780 261, 783.9147 269.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="250" y="253" width="600" height="8" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 550,253 L 550,212 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="546.0853 220.104, 550 212, 553.9147 220.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="370" y="147" width="360" height="65" rx="18" ry="18" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="449.45263671875" y="184.75" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,369) scale(1,-1)">Đối chiếu kiện và vận đơn;</text>
+			<text x="480.526611328125" y="163.5" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,327) scale(1,-1)">sẵn sàng bàn giao</text>
+			<path d="M 550,147 L 550,110 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="546.0853 118.104, 550 110, 553.9147 118.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<circle cx="550" cy="98" r="11" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="550" cy="98" r="7" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<text x="86.83056640625" y="426.0" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,852) scale(1,-1)">fork</text>
+			<text x="87.7685546875" y="245.0" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,490) scale(1,-1)">join</text>
+			<text x="324.078125" y="41.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,82) scale(1,-1)">Mô hình nghiệp vụ đề xuất: hai công việc có thể làm song song.</text>
+			<text x="269.41796875" y="21.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,42) scale(1,-1)">Join đợi cả hai hoàn tất; không khẳng định ứng dụng đang chạy hai tác vụ nền.</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,8 @@
+{
+  "id": "SQ-02B",
+  "title": "Sequence: UC06 Điều kiện lỗi và giao dịch",
+  "caption": "Sơ đồ bổ sung kiểm soát gửi lặp, cạnh tranh tồn và hoàn tác khi đặt hàng. Với khóa yêu cầu mới, hệ thống chỉ giữ tồn và tạo đơn khi dữ liệu hợp lệ, mỗi SKU được một kho cấp đủ; thiếu hàng, voucher lỗi hoặc ghi thất bại đều rollback toàn bộ. Khóa đã xử lý trả lại đơn cũ, bảo đảm không tạo đơn trùng hay phần giữ hàng mồ côi.",
+  "reference": "PDF nguồn: tr. 57–58; NÉT: tài liệu transaction và checkout service",
+  "width": 1100,
+  "height": 650
+}

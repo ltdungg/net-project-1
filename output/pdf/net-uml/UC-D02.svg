@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="650" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 650" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="650"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-650)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="650" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="205" y="25" width="870" height="605" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="452.713623046875" y="599.0" style="font-family: ArialB; font-size: 19px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1198) scale(1,-1)">WEBSITE NÉT - CHỨC NĂNG CỬA HÀNG</text>
+			<circle cx="83" cy="367" r="9" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 83,358 L 83,328 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 63,346 L 103,346 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 83,328 L 65,309 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 83,328 L 101,309 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="46.9765625" y="285.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,570) scale(1,-1)">Nhân viên</text>
+			<text x="49.17578125" y="265.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,530) scale(1,-1)">cửa hàng</text>
+			<path d="M 104,345 L 240,533 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="372.5" cy="532.0" rx="132.5" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="352.046875" y="537.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1074) scale(1,-1)">UC08</text>
+			<text x="288.453125" y="517.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1034) scale(1,-1)">Sản phẩm / khuyến mãi</text>
+			<path d="M 104,345 L 240,423 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="372.5" cy="422.0" rx="132.5" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="352.046875" y="427.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,854) scale(1,-1)">UC09</text>
+			<text x="316.46484375" y="407.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,814) scale(1,-1)">Quản lý tồn kho</text>
+			<path d="M 104,345 L 240,313 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="372.5" cy="312.0" rx="132.5" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="352.046875" y="317.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,634) scale(1,-1)">UC10</text>
+			<text x="317.421875" y="297.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,594) scale(1,-1)">Xử lý đơn hàng</text>
+			<path d="M 104,345 L 240,203 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="372.5" cy="202.0" rx="132.5" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="352.046875" y="207.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,414) scale(1,-1)">UC11</text>
+			<text x="321.88671875" y="187.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,374) scale(1,-1)">Hủy đơn hàng</text>
+			<path d="M 104,345 L 240,93 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="372.5" cy="92.0" rx="132.5" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="352.046875" y="97.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,194) scale(1,-1)">UC12</text>
+			<text x="307.5625" y="77.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,154) scale(1,-1)">Quản lý giao hàng</text>
+			<path d="M 104,345 L 165,345 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 165,345 L 165,585 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 165,585 L 620,585 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 620,585 L 620,107 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 620,498 L 755,498 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="895.0" cy="497.0" rx="140.0" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="874.546875" y="502.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1004) scale(1,-1)">UC13</text>
+			<text x="814.06640625" y="482.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,964) scale(1,-1)">Ghi nhận kết quả COD</text>
+			<path d="M 620,368 L 755,368 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="895.0" cy="367.0" rx="140.0" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="874.546875" y="372.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,744) scale(1,-1)">UC14</text>
+			<text x="823.83984375" y="352.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,704) scale(1,-1)">Quản lý khách hàng</text>
+			<path d="M 620,238 L 755,238 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="895.0" cy="237.0" rx="140.0" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="874.546875" y="242.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,484) scale(1,-1)">UC15</text>
+			<text x="847.859375" y="222.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,444) scale(1,-1)">Xem báo cáo</text>
+			<path d="M 620,108 L 755,108 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<ellipse cx="895.0" cy="107.0" rx="140.0" ry="38.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="874.546875" y="112.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,224) scale(1,-1)">UC16</text>
+			<text x="797.16015625" y="92.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,184) scale(1,-1)">Quản lý trạng thái tài khoản</text>
+			<text x="425.39697265625" y="2.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,4) scale(1,-1)">Mỗi chức năng chỉ khả dụng khi người dùng có quyền tương ứng.</text>
+		</g>
+	</g>
+</svg>

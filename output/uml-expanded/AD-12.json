@@ -1,0 +1,9 @@
+{
+  "id": "AD-12",
+  "uc": "UC10",
+  "title": "Activity: UC10 Chuyển đơn sang xử lý và sẵn sàng giao",
+  "caption": "Nhân viên có quyền đưa đơn từ confirmed sang processing, sau đó sang ready_to_ship theo từng lần cập nhật. Hệ thống khóa đơn và các phiếu giao, kiểm tra thanh toán paid hoặc cod_pending cùng trạng thái tương ứng trước khi đồng bộ. Mỗi thay đổi được ghi lịch sử và nhật ký; việc xuất kho, giao thành công hay hoàn hàng phải thực hiện qua nghiệp vụ vận chuyển.",
+  "reference": "UC10 của báo cáo; docs/ba/03-business-rules.md BR-ORD-04; adminorder/AdminOrderController.java; adminorder/AdminOrderService.java; adminorder/AdminOrderStateMachine.java",
+  "width": 1300,
+  "height": 772.0
+}

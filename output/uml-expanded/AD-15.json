@@ -1,0 +1,9 @@
+{
+  "id": "AD-15",
+  "uc": "UC16",
+  "title": "Activity: UC16 Bật hoặc vô hiệu hóa tài khoản khách hàng",
+  "caption": "Chỉ Admin được bật hoặc vô hiệu hóa tài khoản khách hàng bằng trạng thái active hoặc disabled. Yêu cầu vô hiệu hóa cần lý do, không được áp dụng cho chính người thao tác và không được sửa tài khoản đã xóa. Hệ thống lưu disabled thành blocked, thu hồi refresh token khi vô hiệu hóa và ghi nhật ký; yêu cầu giữ nguyên trạng thái không tạo thay đổi mới.",
+  "reference": "UC16 của báo cáo; admincustomer/AdminCustomerController.java; admincustomer/AdminCustomerPolicy.java; admincustomer/AdminCustomerService.java",
+  "width": 1300,
+  "height": 898.0
+}

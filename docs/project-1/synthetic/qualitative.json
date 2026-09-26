@@ -1,0 +1,2656 @@
+{
+  "metadata": {
+    "datasetId": "SYN-P1-QUAL-2026.1",
+    "version": "1.0",
+    "evidenceType": "SYN",
+    "artifactDate": "2026-09-03",
+    "title": "Bộ phỏng vấn và hồ sơ nghiệp vụ mô phỏng — NÉT Commerce / Project 1",
+    "disclaimer": "Toàn bộ nhân vật, phát hiện, lời trích, giao dịch, SKU, kho, carrier, tracking và số dư trong bộ này do tác giả tạo giả lập cho học tập. Không có phỏng vấn thực địa, đơn thật, thu/hoàn tiền thật, ghi âm, chữ ký hoặc consent của người thật. Chỉ minh họa quy trình phân tích yêu cầu; không suy ra tỷ lệ thực tế.",
+    "sourceBaseline": "docs/project-1/bao-cao-khao-sat-va-mo-hinh-he-thong.md; docs/ba/01-brd-srs.md; AdminFulfillmentService.reconcileOrder; InventoryService; mốc đối chiếu workspace 03/09/2026.",
+    "snapshotPolicy": "Mỗi đơn/chứng từ là một snapshot kịch bản độc lập, không phải chuỗi inventory ledger liên tục. Các dòng trong cùng đơn/chứng từ nhất quán nội bộ. Reference receipt hàng hoàn chỉ minh họa truy vết, không nối toàn bộ số dư giữa các mẫu.",
+    "dayPolicy": "N4–N7 chỉ là mốc mô phỏng trong kế hoạch; không phải ngày phỏng vấn/quan sát thực địa.",
+    "consentPolicy": "Không áp dụng cho dữ liệu giả lập: không có người thật, không tự tạo consent hay chữ ký đã ký.",
+    "moneyPolicy": "Tiền là số nguyên VND, không phải schema price_cents; subtotal = tổng quantity × unitPriceVnd; total = subtotal - discount + shipping. Coupon/ship giả định riêng cho bộ mẫu. Tổng tiền các mẫu không phải doanh thu.",
+    "systemFitLegend": {
+      "CURRENT": "Kỳ vọng được baseline mô tả/hiện thực, không đồng nghĩa nghiệm thu người dùng.",
+      "PROPOSED": "Mong muốn hoặc mở rộng chưa được xác nhận là có.",
+      "KNOWN_DEFECT": "Kỳ vọng chưa đầy đủ do sai lệch code đã biết, nguồn SYS được nêu riêng."
+    },
+    "counts": {
+      "interviews": 12,
+      "buyerInterviews": 8,
+      "operationInterviews": 4,
+      "findings": 48,
+      "orders": 20,
+      "inventoryDocuments": 10,
+      "inventoryMovements": 13
+    },
+    "sampling": "Lấy mẫu có chủ đích để bao phủ tình huống; không phải mẫu xác suất. 20 đơn gồm 10 COD/10 online, 10 một kho/10 hai kho; 10 chứng từ gồm 3 receipt/3 transfer/2 stocktake/2 adjustment.",
+    "knownDefects": [
+      "KD-GUEST-01",
+      "KD-PAY-01",
+      "KD-INV-01",
+      "KD-INV-02"
+    ]
+  },
+  "interviews": [
+    {
+      "id": "SYN-PV-KH-01",
+      "day": "N4",
+      "role": "Khách mua thường xuyên",
+      "profile": "Nhân vật giả định 18–24 tuổi; mua 2–3 lần/tháng bằng điện thoại, ngân sách thường 300.000–499.000đ.",
+      "scenario": "Tìm áo thun đen size M, so sánh số đo và thử mã giảm trước khi đặt đơn COD một kho.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-01-F1",
+          "theme": "SIZE_INFO",
+          "observation": "Nhãn M chưa đủ để nhân vật quyết định; cần số đo, chất liệu và phom được đặt gần bộ chọn biến thể.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi muốn xem số đo áo ngay khi chọn size, vì chữ M mỗi mẫu có thể khác nhau.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-02"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-01-F2",
+          "theme": "VARIANT_AVAILABILITY",
+          "observation": "Nhân vật giả định đổi màu để tìm size còn hàng; trạng thái hết hàng phải gắn đúng tổ hợp màu–size.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu màu đen hết size M thì hãy báo ở đúng ô đó, đừng chỉ ghi sản phẩm còn hàng.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-02",
+            "P1-FR-12"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-01-F3",
+          "theme": "FILTER_CONTEXT",
+          "observation": "Bộ lọc giá, danh mục và sắp xếp giúp thu hẹp lựa chọn; kết quả rỗng cần cho biết bộ lọc đang áp dụng.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi cần thấy mình đang lọc gì để bỏ bớt điều kiện khi không tìm thấy áo.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-01"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-01-F4",
+          "theme": "VOUCHER_THRESHOLD",
+          "observation": "Nhân vật có thể hiểu nhầm giá sau mã với giá niêm yết; giao diện cần nêu ngưỡng và tổng được tính lại.",
+          "hypotheticalQuote": "Lời giả định SYN: “Mã chưa đủ mức mua thì hãy cho biết còn thiếu bao nhiêu, đừng chỉ ghi không dùng được.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-05",
+            "P1-FR-06"
+          ],
+          "systemFit": "PROPOSED"
+        }
+      ],
+      "summary": "Ưu tiên thông tin SKU và giải thích giá; gợi ý số tiền còn thiếu cho voucher là cải tiến UX cần xác nhận, không khẳng định đã có."
+    },
+    {
+      "id": "SYN-PV-KH-02",
+      "day": "N4",
+      "role": "Khách mua thường xuyên",
+      "profile": "Nhân vật giả định 25–34 tuổi; mua từ hai lần/tháng, quen COD, thường mua cả bộ.",
+      "scenario": "Đặt áo và quần được phân bổ từ hai kho; một kiện đã giao trong khi kiện còn lại đang vận chuyển.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-02-F1",
+          "theme": "PARCEL_VISIBILITY",
+          "observation": "Nhân vật cần danh sách hàng bên trong từng kiện và trạng thái riêng để không tưởng đơn bị thiếu.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi đã nhận áo nhưng chưa có quần; trang đơn cần cho biết quần thuộc kiện nào.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-10",
+            "P1-FR-17",
+            "P1-FR-18"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-02-F2",
+          "theme": "AGGREGATE_LABEL",
+          "observation": "Một kiện delivered không làm toàn đơn thành delivered; thông báo cần phân biệt hoàn tất từng kiện và toàn đơn.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nhận một kiện chưa có nghĩa tôi đã nhận đủ đơn.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-17",
+            "P1-FR-18"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-02-F3",
+          "theme": "COD_SCOPE",
+          "observation": "Nhân vật hỏi số tiền thu theo từng kiện. Code chỉ ghi COD paid khi mọi kiện delivered, chưa có sổ thu tiền phân bổ từng kiện.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu giao hai lần thì ai thu bao nhiêu ở mỗi lần? Tôi muốn biết trước khi nhận.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-08",
+            "P1-FR-18",
+            "P1-FR-23"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-KH-02-F4",
+          "theme": "SPLIT_SHIPPING_COST",
+          "observation": "Nhân vật mong giá cuối không tự phát sinh phí khi hệ thống chia kho; cần giữ snapshot đã xác nhận và giải thích chính sách.",
+          "hypotheticalQuote": "Lời giả định SYN: “Shop chia hai kho thì đừng làm tổng tiền đã chốt tự tăng lên.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-05",
+            "P1-FR-07"
+          ],
+          "systemFit": "CURRENT"
+        }
+      ],
+      "summary": "Theo dõi đa kiện thuộc phạm vi hiện tại; thu COD chi tiết theo từng kiện là yêu cầu mở rộng, không mô tả như chức năng đang có."
+    },
+    {
+      "id": "SYN-PV-KH-03",
+      "day": "N5",
+      "role": "Khách mua thường xuyên",
+      "profile": "Nhân vật giả định 25–34 tuổi; mua hằng tuần, ưu tiên tài khoản và thanh toán trước mô phỏng.",
+      "scenario": "Đăng nhập thành viên, chọn địa chỉ đã lưu, xem wishlist và đặt lại một mẫu từ lịch sử bằng thao tác tìm sản phẩm.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-03-F1",
+          "theme": "ACCOUNT_VALUE",
+          "observation": "Nhân vật thấy tài khoản hữu ích khi có địa chỉ, wishlist và lịch sử; lời mời đăng ký nên nêu lợi ích cụ thể.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi đăng ký để khỏi nhập lại địa chỉ và xem các đơn trước, không chỉ để nhận quảng cáo.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-03",
+            "P1-FR-04"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-03-F2",
+          "theme": "OWNERSHIP",
+          "observation": "Dữ liệu tài khoản và đơn cần giới hạn chủ sở hữu; đổi tài khoản không được tiếp tục thấy đơn của phiên trước.",
+          "hypotheticalQuote": "Lời giả định SYN: “Khi tôi đăng xuất, người tiếp theo dùng máy không được xem đơn của tôi.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-03",
+            "P1-FR-04",
+            "P1-FR-10"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-03-F3",
+          "theme": "SAVED_ADDRESS_REVIEW",
+          "observation": "Địa chỉ lưu sẵn vẫn cần bước kiểm tra; snapshot đơn không thay đổi theo việc sửa hồ sơ sau đó.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi sửa sổ địa chỉ sau khi mua thì đơn cũ vẫn phải giữ nơi giao đã chốt.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-04",
+            "P1-FR-07"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-03-F4",
+          "theme": "REORDER_BOUNDARY",
+          "observation": "Nhân vật mong nút mua lại nhưng giá/tồn phải kiểm tra lại. Nút mua lại một chạm chưa được xác nhận trong baseline.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu mua lại, hãy báo giá và size còn hiện tại, đừng tự chép giá của đơn cũ.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-01",
+            "P1-FR-04",
+            "P1-FR-05"
+          ],
+          "systemFit": "PROPOSED"
+        }
+      ],
+      "summary": "Tài khoản hỗ trợ phục vụ khách quay lại; một chạm mua lại là ứng viên phát triển, không thuộc kết luận đã hiện thực."
+    },
+    {
+      "id": "SYN-PV-KH-04",
+      "day": "N5",
+      "role": "Khách mua tần suất trung bình",
+      "profile": "Nhân vật giả định 25–34 tuổi; khoảng một đơn/tháng, thường mua guest.",
+      "scenario": "Giỏ có hai SKU; mã SYN-GIAM50 yêu cầu subtotal từ 500.000đ, một lần thử chưa đạt ngưỡng rồi bổ sung hàng.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-04-F1",
+          "theme": "TRANSPARENT_TOTAL",
+          "observation": "Nhân vật phân biệt subtotal, giảm giá và phí giao khi chúng nằm cùng một khối trước nút đặt.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi cần biết số phải trả, không muốn tự cộng tiền hàng rồi đoán phí ship.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-05",
+            "P1-FR-06",
+            "P1-FR-07"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-04-F2",
+          "theme": "VOUCHER_RECHECK",
+          "observation": "Nhân vật xóa một dòng sau khi áp mã; tổng phải tính lại và nêu mã không còn hợp lệ.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi bỏ bớt hàng thì đừng giữ mức giảm cũ nếu đơn không còn đủ điều kiện.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-05",
+            "P1-FR-06"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-04-F3",
+          "theme": "GUEST_CHOICE",
+          "observation": "Nhân vật muốn hoàn tất đơn trước khi quyết định có tạo tài khoản; guest vẫn cần cách tra cứu an toàn.",
+          "hypotheticalQuote": "Lời giả định SYN: “Lần đầu tôi muốn mua thử, nhưng vẫn cần đường xem lại đơn của mình.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-07",
+            "P1-FR-10"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-04-F4",
+          "theme": "ACTIONABLE_ERRORS",
+          "observation": "Thông báo lỗi cần nêu trường cần sửa và giữ dữ liệu hợp lệ, tránh khiến người dùng nhập lại toàn bộ.",
+          "hypotheticalQuote": "Lời giả định SYN: “Sai số điện thoại thì chỉ giúp tôi sửa chỗ đó, đừng xóa cả giỏ và địa chỉ.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-05",
+            "P1-FR-07"
+          ],
+          "systemFit": "PROPOSED"
+        }
+      ],
+      "summary": "Minh bạch tổng tiền và guest checkout là ưu tiên; các chi tiết wording/giữ form cần usability test chứ chưa phải nghiệm thu."
+    },
+    {
+      "id": "SYN-PV-KH-05",
+      "day": "N5",
+      "role": "Khách mua tần suất trung bình",
+      "profile": "Nhân vật giả định 35–44 tuổi; mua mỗi tháng, thận trọng với thanh toán trước.",
+      "scenario": "Đăng ký tài khoản test, thử quên mật khẩu rồi xem luồng online payment mô phỏng cho một đơn guest khác.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-05-F1",
+          "theme": "PAYMENT_TRUTH",
+          "observation": "Nhân vật cần phân biệt màn hình quay lại website với thanh toán được backend xác nhận; không coi redirect là đã trả tiền.",
+          "hypotheticalQuote": "Lời giả định SYN: “Quay về trang shop chưa đủ, tôi cần trạng thái thanh toán được xác nhận rõ.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-08",
+            "P1-FR-09"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-05-F2",
+          "theme": "MOCK_DISCLOSURE",
+          "observation": "Trong đồ án, nút thanh toán phải được giải thích là mô phỏng và không thu tiền thật.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu đây là bản thử thì hãy nói rõ, tôi không muốn nhập thông tin ngân hàng thật.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-08"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-05-F3",
+          "theme": "AUTH_RECOVERY",
+          "observation": "Nhân vật cần thông báo hợp lý khi token reset hết hạn và thao tác yêu cầu lại, không lộ có hay không một email.",
+          "hypotheticalQuote": "Lời giả định SYN: “Liên kết hết hạn thì hướng dẫn tôi xin liên kết mới thay vì báo lỗi khó hiểu.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-03"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-05-F4",
+          "theme": "GUEST_HEADER_CONTRACT",
+          "observation": "Trang payment guest hiện lệch contract token query/header theo KD-GUEST-01; đây là sai lệch code, không phải lỗi được người thật quan sát.",
+          "hypotheticalQuote": "Lời giả định SYN: “Với tình huống giả định này, tôi mong chỉ xem được đơn được cấp quyền mà không thấy mã bảo mật trên URL.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-10"
+          ],
+          "systemFit": "KNOWN_DEFECT"
+        }
+      ],
+      "summary": "Biên bản dùng kỳ vọng giả định để giải thích yêu cầu; KD-GUEST-01 được lấy từ đối chiếu code và không gán thành phát hiện thực địa."
+    },
+    {
+      "id": "SYN-PV-KH-06",
+      "day": "N6",
+      "role": "Khách mua tần suất trung bình",
+      "profile": "Nhân vật giả định 18–24 tuổi; khoảng một đơn/tháng, ngân sách dưới 500.000đ, thường dùng màn hình nhỏ.",
+      "scenario": "Lọc quần theo giá, chuyển màu/size và kiểm tra tổng tiền trên màn hình rộng 360 px.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-06-F1",
+          "theme": "MOBILE_SELECTION",
+          "observation": "Bộ chọn size, số lượng và nút thêm giỏ cần nhìn được trên màn hình hẹp; lỗi không nằm ngoài vùng thấy.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi muốn chọn size mà không phải kéo ngang hoặc đoán nút đang chọn.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-01",
+            "P1-FR-02",
+            "P1-FR-05"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-KH-06-F2",
+          "theme": "IMAGE_DETAIL",
+          "observation": "Nhân vật cần ảnh đủ rõ để xem chất liệu và màu; ảnh là thông tin mô tả chứ không cam kết màu tuyệt đối.",
+          "hypotheticalQuote": "Lời giả định SYN: “Có ảnh cận chất vải thì tôi dễ quyết định hơn một ảnh chụp xa.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-02"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-06-F3",
+          "theme": "NO_STOCK_PROMISE",
+          "observation": "Giỏ chưa giữ tồn; nhân vật cần được báo khi SKU hết hàng lúc checkout và có hướng chọn khác.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi hiểu giỏ chưa chắc giữ hàng, nhưng lúc hết size phải báo rõ để tôi đổi.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-02",
+            "P1-FR-07",
+            "P1-FR-13"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-06-F4",
+          "theme": "SHIPPING_DISCOUNT_LABEL",
+          "observation": "Nếu có ưu đãi vận chuyển, nhãn giảm phí và giảm hàng cần tách để giải thích tổng; thử nghiệm diễn giải cần xác nhận.",
+          "hypotheticalQuote": "Lời giả định SYN: “Miễn phí ship khác giảm tiền hàng, tôi muốn thấy từng khoản rõ ràng.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-05",
+            "P1-FR-06"
+          ],
+          "systemFit": "CURRENT"
+        }
+      ],
+      "summary": "Tính dễ dùng trên mobile là mục tiêu cần kiểm chứng; không dùng tình huống SYN để khẳng định đã đạt WCAG hoặc task success."
+    },
+    {
+      "id": "SYN-PV-KH-07",
+      "day": "N6",
+      "role": "Khách mua ít/từng bỏ mua",
+      "profile": "Nhân vật giả định 35–44 tuổi; một đơn mỗi 2–3 tháng, từng lo ngại đổi size.",
+      "scenario": "Xem điều kiện đổi trả trước mua, sau đó diễn tập một đơn COD đã xuất kho bị hoàn toàn bộ.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-07-F1",
+          "theme": "RETURN_POLICY",
+          "observation": "Nhân vật cần biết điều kiện, thời hạn và kênh liên hệ trước khi mua; nội dung policy không đồng nghĩa có workflow tự động.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi muốn đọc điều kiện đổi size trước khi trả tiền, không phải chờ có vấn đề mới hỏi.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-02",
+            "P1-FR-19"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-KH-07-F2",
+          "theme": "RETURN_NOT_REFUND",
+          "observation": "Nhân vật dễ hiểu returned là đã hoàn tiền; hệ thống cần tách trạng thái giao nhận và thanh toán.",
+          "hypotheticalQuote": "Lời giả định SYN: “Hàng đã quay lại shop không tự có nghĩa tiền đã được trả lại cho tôi.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-09",
+            "P1-FR-19",
+            "P1-FR-23"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-07-F3",
+          "theme": "INSPECTION_SEPARATE",
+          "observation": "Trong kịch bản, hàng hoàn cần kiểm định trước khi nhập lại tồn; tài liệu kiểm định hiện quản lý ngoài hệ thống.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi muốn shop xác nhận đã nhận hàng và đang kiểm tra, thay vì chỉ ghi đơn đóng.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-14",
+            "P1-FR-19"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-KH-07-F4",
+          "theme": "NO_SELF_SERVICE_REFUND",
+          "observation": "Nhân vật mong gửi yêu cầu hoàn tiền trực tuyến; baseline chưa có refund command hoặc bảng refunds.",
+          "hypotheticalQuote": "Lời giả định SYN: “Có nơi gửi yêu cầu và theo dõi hoàn tiền sẽ dễ hơn việc phải nhắn nhiều lần.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-19",
+            "P1-FR-23"
+          ],
+          "systemFit": "PROPOSED"
+        }
+      ],
+      "summary": "Nhu cầu đổi/hoàn được giữ như phát hiện SYN, nhưng return case, kiểm định và hoàn tiền tự phục vụ là ngoài phạm vi hiện tại."
+    },
+    {
+      "id": "SYN-PV-KH-08",
+      "day": "N6",
+      "role": "Khách mua ít/từng bỏ mua",
+      "profile": "Nhân vật giả định 25–34 tuổi; mua ít hơn mỗi tháng, từng dừng khi kết nối không ổn định.",
+      "scenario": "Gửi lại yêu cầu checkout sau timeout mô phỏng, rồi xem lý do một kiện giao thất bại.",
+      "findings": [
+        {
+          "id": "SYN-PV-KH-08-F1",
+          "theme": "RETRY_SAFETY",
+          "observation": "Nhân vật bấm lại khi không thấy phản hồi; cùng idempotency key phải nhận lại đơn cũ, không tạo đơn thứ hai.",
+          "hypotheticalQuote": "Lời giả định SYN: “Mạng chậm thì tôi có thể bấm lại; tôi không muốn nhận hai đơn giống nhau.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-07"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-08-F2",
+          "theme": "STABLE_FEEDBACK",
+          "observation": "Trạng thái đang xử lý cần rõ; chỉ có phản hồi server mới kết luận đã tạo đơn. Việc hiển thị cụ thể cần kiểm tra UX.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu chưa biết thành công hay chưa, hãy cho tôi cách kiểm tra thay vì bắt đoán.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-07",
+            "P1-FR-10"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-KH-08-F3",
+          "theme": "DELIVERY_FAILURE_REASON",
+          "observation": "Giao thất bại phải có lý do và hướng liên hệ; số lần giao là dữ liệu mô phỏng/thao tác nhân viên, chưa đồng bộ hãng thật.",
+          "hypotheticalQuote": "Lời giả định SYN: “Đơn giao không thành công cần nói vì sao và tôi nên làm gì tiếp theo.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-18",
+            "P1-FR-19"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-KH-08-F4",
+          "theme": "MINIMUM_DISCLOSURE",
+          "observation": "Tra cứu/CS chỉ nên hiển thị dữ liệu cần thiết và không lộ đơn người khác khi nhập sai mã.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi muốn tra đúng đơn của mình mà không nhìn thấy thông tin của khách khác.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-10",
+            "P1-FR-20"
+          ],
+          "systemFit": "CURRENT"
+        }
+      ],
+      "summary": "Chống lặp và tra cứu có quyền là yêu cầu kỹ thuật hiện tại; biên bản không khẳng định đã quan sát lỗi mạng hay giao lỗi thực tế."
+    },
+    {
+      "id": "SYN-PV-VH-01",
+      "day": "N4",
+      "role": "Quản lý cửa hàng giả định",
+      "profile": "Vai trò vận hành mô phỏng do PM dùng để khai thác yêu cầu; không đại diện doanh nghiệp cụ thể.",
+      "scenario": "Đọc dashboard, xem khách theo sáu phân khúc, hỏi Copilot về tồn thấp và thử lập quyết định khuyến mãi.",
+      "findings": [
+        {
+          "id": "SYN-PV-VH-01-F1",
+          "theme": "SEGMENT_EXPLANATION",
+          "observation": "Quản lý cần giải thích ruleVersion và thứ tự phân khúc; không tự gán nhóm từ tuổi/giới tính hoặc sửa nhãn tay.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi muốn biết vì sao khách ở nhóm có nguy cơ rời bỏ, không chỉ nhìn một màu nhãn.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-20",
+            "P1-FR-21"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-01-F2",
+          "theme": "COPILOT_READ_ONLY",
+          "observation": "Copilot hiện theo luật đọc snapshot; quản lý cần nhìn thời điểm và số liệu gốc, tự quyết định thao tác ở màn hình có quyền.",
+          "hypotheticalQuote": "Lời giả định SYN: “Trợ lý nên giúp tôi đọc số liệu, còn quyết định đổi tồn hoặc giảm giá phải do người có quyền làm.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-23",
+            "P1-FR-24"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-01-F3",
+          "theme": "CATALOG_CRUD_GAP",
+          "observation": "Nhu cầu quản lý gồm sửa/ngừng bán, trong khi FR-22 hiện chỉ một phần xem/tạo/media; không đánh dấu đủ CRUD.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi còn cần sửa thông tin và ngừng bán mẫu cũ, không chỉ thêm sản phẩm mới.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-22"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-VH-01-F4",
+          "theme": "AUDIT_ACCOUNT_ACTION",
+          "observation": "Khóa khách cần đúng quyền Admin, lý do và audit; Manager không được mặc nhiên thay trạng thái tài khoản.",
+          "hypotheticalQuote": "Lời giả định SYN: “Ai khóa tài khoản và vì sao phải tra lại được, không chỉ thấy nút biến mất.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-20"
+          ],
+          "systemFit": "CURRENT"
+        }
+      ],
+      "summary": "Các gợi ý hỗ trợ quyết định không tự thay dữ liệu. Nhu cầu CRUD catalog hoàn chỉnh là khoảng trống, không phải bằng chứng đã triển khai."
+    },
+    {
+      "id": "SYN-PV-VH-02",
+      "day": "N5",
+      "role": "Nhân viên kho giả định",
+      "profile": "Vai trò vận hành mô phỏng khảo sát bởi Backend 2; thao tác bằng hồ sơ và số dư giả lập.",
+      "scenario": "Nhận hàng, chuyển một SKU giữa hai kho, kiểm kê lệch và đối chiếu giữ chỗ của một đơn đa kho.",
+      "findings": [
+        {
+          "id": "SYN-PV-VH-02-F1",
+          "theme": "BALANCE_MEANING",
+          "observation": "Kho cần thấy on-hand, reserved, available và ATP; checkout dùng available chứ chưa dùng safety stock làm ngưỡng chặn bán.",
+          "hypotheticalQuote": "Lời giả định SYN: “Có 10 chiếc nhưng 7 chiếc đã giữ cho đơn thì tôi chỉ còn 3 chiếc tự do.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-12",
+            "P1-FR-13"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-02-F2",
+          "theme": "TRANSFER_ATOMIC",
+          "observation": "Chuyển kho phải ghi đủ cặp transfer_out/in cùng reference và không làm nguồn thấp hơn reserved.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu đã trừ kho nguồn mà cộng kho đích lỗi, tôi cần cả hai cùng quay lại.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-15"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-02-F3",
+          "theme": "SINGLE_LINE_POSTED",
+          "observation": "Chứng từ hiện một dòng mỗi command và posted ngay; quy trình nháp–phê duyệt nhiều dòng là yêu cầu mở rộng.",
+          "hypotheticalQuote": "Lời giả định SYN: “Một phiếu nhiều SKU và bước duyệt sẽ tiện, nhưng tôi hiểu bản này đang ghi từng dòng.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-14",
+            "P1-FR-16"
+          ],
+          "systemFit": "PROPOSED"
+        },
+        {
+          "id": "SYN-PV-VH-02-F4",
+          "theme": "RESERVATION_EXPIRY",
+          "observation": "Kho muốn reservation quá hạn được xử lý và payment khớp order; KD-INV-01/02 đang khiến kỳ vọng này chưa đầy đủ.",
+          "hypotheticalQuote": "Lời giả định SYN: “Đơn không còn hiệu lực thì hàng giữ chỗ phải được giải thích rõ để kho biết có thể bán hay chưa.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-13"
+          ],
+          "systemFit": "KNOWN_DEFECT"
+        }
+      ],
+      "summary": "Điểm mấu chốt là bất biến on_hand≥reserved và chứng từ nguyên tử. Chưa có approval workflow; expiry còn hai known defects."
+    },
+    {
+      "id": "SYN-PV-VH-03",
+      "day": "N6",
+      "role": "Nhân viên xử lý đơn/CS giả định",
+      "profile": "Vai trò vận hành mô phỏng khảo sát bởi Backend 1/2; không có nhà vận chuyển thực tham gia.",
+      "scenario": "Gán carrier/tracking giả, chuyển kiện sang shipped, xử lý failed và nhận returned sau xuất kho.",
+      "findings": [
+        {
+          "id": "SYN-PV-VH-03-F1",
+          "theme": "WAREHOUSE_FULFILLMENT",
+          "observation": "Một đơn nhiều kho có một fulfillment mỗi kho; nhân viên cần đúng danh sách item và reservation của kiện đang xử lý.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi bàn giao kiện kho Hà Nội thì chỉ hàng ở kiện đó được xuất, không phải cả đơn.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-13",
+            "P1-FR-17",
+            "P1-FR-18"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-03-F2",
+          "theme": "TRACKING_VERSION",
+          "observation": "Trước shipped phải có carrier/tracking; expectedVersion phát hiện hai người cập nhật đồng thời.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu đồng nghiệp vừa sửa mã vận đơn, thao tác của tôi cần báo xung đột chứ không đè mất.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-18"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-03-F3",
+          "theme": "RETURN_INSPECTION",
+          "observation": "Returned sau ship giữ reservation consumed và không tự cộng tồn. Kho kiểm định ngoài hệ thống rồi lập receipt có reference.",
+          "hypotheticalQuote": "Lời giả định SYN: “Hàng quay lại chưa chắc bán được ngay; phải kiểm tra rồi mới nhập lại tồn.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-14",
+            "P1-FR-19"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-03-F4",
+          "theme": "MIXED_OUTCOME_LIMIT",
+          "observation": "Baseline chặn kết quả delivered/returned trộn giữa sibling; xử lý giao một phần–hoàn một phần cần thiết kế đối soát riêng.",
+          "hypotheticalQuote": "Lời giả định SYN: “Nếu một kiện khách giữ còn kiện khác trả, tôi cần quy trình rõ thay vì tự sửa trạng thái.”",
+          "priority": "Should",
+          "requirements": [
+            "P1-FR-18",
+            "P1-FR-19",
+            "P1-FR-23"
+          ],
+          "systemFit": "PROPOSED"
+        }
+      ],
+      "summary": "Carrier/tracking được nhập tay, không phải API ship. Không mô tả tình huống delivered/returned hỗn hợp như luồng được hỗ trợ."
+    },
+    {
+      "id": "SYN-PV-VH-04",
+      "day": "N7",
+      "role": "Người phụ trách thanh toán giả định",
+      "profile": "Vai trò vận hành mô phỏng khảo sát bởi Backend 1; tất cả payment là giả lập, không thu tiền thật.",
+      "scenario": "Đối chiếu order/payment, nhận webhook trùng và muộn, xem COD hai kiện và một khoản refund mô phỏng.",
+      "findings": [
+        {
+          "id": "SYN-PV-VH-04-F1",
+          "theme": "PAYMENT_EVENT_IDEMPOTENT",
+          "observation": "Webhook cần chữ ký hợp lệ, event identity chống lặp và cùng transaction cập nhật payment/order.",
+          "hypotheticalQuote": "Lời giả định SYN: “Một thông báo gửi hai lần không được làm số thu tăng hai lần.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-09",
+            "P1-FR-23"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-04-F2",
+          "theme": "LATE_SUCCESS_RECONCILE",
+          "observation": "KD-PAY-01 cho phép success muộn làm paid/succeeded trên order đã cancelled; cần chính sách từ chối hoặc đối soát rõ.",
+          "hypotheticalQuote": "Lời giả định SYN: “Đơn đã hủy mà tiền báo về sau thì phải vào bước xử lý ngoại lệ, không tự coi đơn vẫn bình thường.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-09",
+            "P1-FR-11",
+            "P1-FR-23"
+          ],
+          "systemFit": "KNOWN_DEFECT"
+        },
+        {
+          "id": "SYN-PV-VH-04-F3",
+          "theme": "COD_AGGREGATE",
+          "observation": "COD chỉ paid khi tất cả kiện delivered; nếu tất cả returned thì cancelled. Chưa có ledger thu tiền theo kiện hay đối soát hãng thật.",
+          "hypotheticalQuote": "Lời giả định SYN: “Tôi chỉ chốt COD toàn đơn khi đủ điều kiện; số thu thực ở từng kiện cần một sổ khác nếu triển khai thật.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-08",
+            "P1-FR-18",
+            "P1-FR-23"
+          ],
+          "systemFit": "CURRENT"
+        },
+        {
+          "id": "SYN-PV-VH-04-F4",
+          "theme": "REFUND_BOUNDARY",
+          "observation": "Webhook mô phỏng có thể ghi full refund; chưa có command refund trong admin. Hủy paid cần hoàn tiền trước, không sửa cột trực tiếp.",
+          "hypotheticalQuote": "Lời giả định SYN: “Đổi trạng thái thành hoàn tiền không tự chuyển tiền; cần chứng cứ và quy trình được phép.”",
+          "priority": "Must",
+          "requirements": [
+            "P1-FR-09",
+            "P1-FR-11",
+            "P1-FR-19",
+            "P1-FR-23"
+          ],
+          "systemFit": "CURRENT"
+        }
+      ],
+      "summary": "Không có thanh toán hoặc đối soát tiền thật. Kịch bản mong muốn xử lý late success phải ghi như đề xuất chưa được code bảo đảm."
+    }
+  ],
+  "orders": [
+    {
+      "id": "SYN-HS-DH-01",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "sampleReason": "Luồng COD một kho hoàn tất; hai chiếc cùng SKU chỉ có một dòng.",
+      "paymentMethod": "cod",
+      "orderStatus": "delivered",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "fulfilled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-01-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 2,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 500000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 500000,
+        "discount": 0,
+        "shipping": 30000,
+        "total": 530000
+      },
+      "couponSnapshot": null,
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-01-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-01-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 2,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Mọi kiện delivered nên COD được ghi succeeded/paid.",
+      "requirements": [
+        "P1-FR-07",
+        "P1-FR-08",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-02",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "sampleReason": "Thanh toán trước mô phỏng, áp mã cố định và giao đủ.",
+      "paymentMethod": "online",
+      "orderStatus": "delivered",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "fulfilled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-02-L1",
+          "sku": "SYN-DRESS-BLU-S",
+          "description": "Váy midi · xanh · S",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 650000,
+          "lineTotalVnd": 650000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 650000,
+        "discount": 50000,
+        "shipping": 30000,
+        "total": 630000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-02-F1",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-02-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-DRESS-BLU-S",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Webhook success giả lập đã xử lý trước khi xuất; không có thanh toán thật.",
+      "requirements": [
+        "P1-FR-06",
+        "P1-FR-09",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-03",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "sampleReason": "COD hai kho, cả hai kiện giao thành công.",
+      "paymentMethod": "cod",
+      "orderStatus": "delivered",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "fulfilled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-03-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 250000
+        },
+        {
+          "lineId": "SYN-HS-DH-03-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 700000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 690000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-03-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-03-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-03-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-03-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Chỉ lần chuyển kiện cuối sang delivered mới chốt COD toàn đơn; chưa có sổ thu COD theo kiện.",
+      "requirements": [
+        "P1-FR-08",
+        "P1-FR-17",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-04",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "sampleReason": "Online hai kho, hai kiện hoàn tất và vẫn một snapshot tổng tiền.",
+      "paymentMethod": "online",
+      "orderStatus": "delivered",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "fulfilled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-04-L1",
+          "sku": "SYN-SHIRT-WHT-L",
+          "description": "Áo sơ mi · trắng · L",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 400000,
+          "lineTotalVnd": 400000
+        },
+        {
+          "lineId": "SYN-HS-DH-04-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 850000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 840000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-04-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-04-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-SHIRT-WHT-L",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-04-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-04-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Payment đã succeeded trước dispatch; giao đủ không ghi nhận thêm payment.",
+      "requirements": [
+        "P1-FR-07",
+        "P1-FR-09",
+        "P1-FR-17"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-05",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "sampleReason": "COD vừa đặt, chưa đóng gói; tồn chỉ đang giữ chỗ.",
+      "paymentMethod": "cod",
+      "orderStatus": "confirmed",
+      "orderPaymentStatus": "cod_pending",
+      "paymentRowStatus": "pending",
+      "fulfillmentStatus": "reserved",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-05-L1",
+          "sku": "SYN-POLO-NAV-M",
+          "description": "Áo polo · navy · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 320000,
+          "lineTotalVnd": 320000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 320000,
+        "discount": 0,
+        "shipping": 30000,
+        "total": 350000
+      },
+      "couponSnapshot": null,
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-05-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "pending",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-POLO-NAV-M",
+              "quantity": 1,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Chưa giảm on_hand. TTL COD 30 ngày tồn tại nhưng xử lý expiry còn KD-INV-02.",
+      "requirements": [
+        "P1-FR-07",
+        "P1-FR-12",
+        "P1-FR-13"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-06",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "sampleReason": "Online chờ thanh toán, snapshot trước hạn giữ chỗ hai giờ.",
+      "paymentMethod": "online",
+      "orderStatus": "pending_payment",
+      "orderPaymentStatus": "pending",
+      "paymentRowStatus": "pending",
+      "fulfillmentStatus": "reserved",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-06-L1",
+          "sku": "SYN-DRESS-BLU-S",
+          "description": "Váy midi · xanh · S",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 650000,
+          "lineTotalVnd": 650000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 650000,
+        "discount": 50000,
+        "shipping": 30000,
+        "total": 630000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-06-F1",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "pending",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-DRESS-BLU-S",
+              "quantity": 1,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Chưa đủ điều kiện xử lý giao. Hết hạn cần đồng bộ payment; KD-INV-01 còn mở.",
+      "requirements": [
+        "P1-FR-08",
+        "P1-FR-09",
+        "P1-FR-13"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-07",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "sampleReason": "Hai kho đang soạn; chưa kiện nào xuất.",
+      "paymentMethod": "cod",
+      "orderStatus": "processing",
+      "orderPaymentStatus": "cod_pending",
+      "paymentRowStatus": "pending",
+      "fulfillmentStatus": "reserved",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-07-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 2,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 500000
+        },
+        {
+          "lineId": "SYN-HS-DH-07-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 950000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 940000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-07-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "processing",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 2,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-07-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "processing",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Mỗi kho có fulfillment riêng; reserve còn active cho cả hai, payment COD chưa thu.",
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-13",
+        "P1-FR-17"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-08",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "sampleReason": "Đã thanh toán, mọi kiện sẵn sàng bàn giao.",
+      "paymentMethod": "online",
+      "orderStatus": "ready_to_ship",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "reserved",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-08-L1",
+          "sku": "SYN-SHIRT-WHT-L",
+          "description": "Áo sơ mi · trắng · L",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 400000,
+          "lineTotalVnd": 400000
+        },
+        {
+          "lineId": "SYN-HS-DH-08-L2",
+          "sku": "SYN-DRESS-BLU-S",
+          "description": "Váy midi · xanh · S",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 650000,
+          "lineTotalVnd": 650000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 1050000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 1040000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-08-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "ready_to_ship",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-08-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-SHIRT-WHT-L",
+              "quantity": 1,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-08-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "ready_to_ship",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-08-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-DRESS-BLU-S",
+              "quantity": 1,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Carrier/tracking giả đã được nhập tay nhưng chưa đồng nghĩa hãng đã nhận; tồn chưa consume.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-13",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-09",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "sampleReason": "COD đã xuất một kiện, kiện khác còn soạn.",
+      "paymentMethod": "cod",
+      "orderStatus": "shipped",
+      "orderPaymentStatus": "cod_pending",
+      "paymentRowStatus": "pending",
+      "fulfillmentStatus": "partially_fulfilled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-09-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 250000
+        },
+        {
+          "lineId": "SYN-HS-DH-09-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 700000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 690000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-09-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "shipped",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-09-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-09-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "processing",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "active"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Chỉ SKU của kiện shipped bị giảm on_hand/reserved; trạng thái tổng hợp là partially_fulfilled.",
+      "requirements": [
+        "P1-FR-13",
+        "P1-FR-17",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-10",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "sampleReason": "COD nhận một kiện; kiện thứ hai còn vận chuyển.",
+      "paymentMethod": "cod",
+      "orderStatus": "shipped",
+      "orderPaymentStatus": "cod_pending",
+      "paymentRowStatus": "pending",
+      "fulfillmentStatus": "shipped",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-10-L1",
+          "sku": "SYN-SHIRT-WHT-L",
+          "description": "Áo sơ mi · trắng · L",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 400000,
+          "lineTotalVnd": 400000
+        },
+        {
+          "lineId": "SYN-HS-DH-10-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 850000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 840000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-10-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "delivered",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-10-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-SHIRT-WHT-L",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-10-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "shipped",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-10-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Không ghi paid cho toàn đơn khi mới một kiện delivered; sổ thu thực tế theo kiện ngoài phạm vi.",
+      "requirements": [
+        "P1-FR-08",
+        "P1-FR-17",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-11",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "sampleReason": "Online hai kiện đã xuất, chưa xác nhận giao.",
+      "paymentMethod": "online",
+      "orderStatus": "shipped",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "shipped",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-11-L1",
+          "sku": "SYN-POLO-NAV-M",
+          "description": "Áo polo · navy · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 320000,
+          "lineTotalVnd": 320000
+        },
+        {
+          "lineId": "SYN-HS-DH-11-L2",
+          "sku": "SYN-JACKET-GRY-L",
+          "description": "Áo khoác · xám · L",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 780000,
+          "lineTotalVnd": 780000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 1100000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 1090000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-11-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "shipped",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-11-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-POLO-NAV-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        },
+        {
+          "id": "SYN-HS-DH-11-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "shipped",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-11-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-JACKET-GRY-L",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": null
+        }
+      ],
+      "interpretation": "Cả hai reservation consumed; shipment chưa delivered không làm thay trạng thái payment đã paid.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-13",
+        "P1-FR-18"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-12",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "sampleReason": "Hủy COD trước xuất kho theo whole-order workflow.",
+      "paymentMethod": "cod",
+      "orderStatus": "cancelled",
+      "orderPaymentStatus": "cancelled",
+      "paymentRowStatus": "cancelled",
+      "fulfillmentStatus": "cancelled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-12-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 250000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 250000,
+        "discount": 0,
+        "shipping": 30000,
+        "total": 280000
+      },
+      "couponSnapshot": null,
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-12-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "cancelled",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 1,
+              "status": "released"
+            }
+          ],
+          "reason": "Khách giả định đổi nhu cầu trước đóng gói."
+        }
+      ],
+      "interpretation": "Chỉ nhả reserved, không giảm on_hand; snapshot tiền vẫn lưu lịch sử, không phải số phải thu.",
+      "requirements": [
+        "P1-FR-11",
+        "P1-FR-13",
+        "P1-FR-19"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-13",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "sampleReason": "Hủy online chưa paid bằng lệnh hủy hợp lệ, không phải expiry job.",
+      "paymentMethod": "online",
+      "orderStatus": "cancelled",
+      "orderPaymentStatus": "cancelled",
+      "paymentRowStatus": "cancelled",
+      "fulfillmentStatus": "cancelled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-13-L1",
+          "sku": "SYN-DRESS-BLU-S",
+          "description": "Váy midi · xanh · S",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 650000,
+          "lineTotalVnd": 650000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 650000,
+        "discount": 50000,
+        "shipping": 30000,
+        "total": 630000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-13-F1",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "cancelled",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-DRESS-BLU-S",
+              "quantity": 1,
+              "status": "released"
+            }
+          ],
+          "reason": "Khách giả định yêu cầu hủy trước thanh toán và trước xuất kho."
+        }
+      ],
+      "interpretation": "Cả order payment_status và payments.status cancelled; cố ý không dùng nhánh KD-INV-01 để giả vờ defect đã sửa.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-11",
+        "P1-FR-13"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-14",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "sampleReason": "Đã paid online; nhận full refund webhook mô phỏng trước khi hủy cả hai kiện.",
+      "paymentMethod": "online",
+      "orderStatus": "cancelled",
+      "orderPaymentStatus": "refunded",
+      "paymentRowStatus": "refunded",
+      "fulfillmentStatus": "cancelled",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-14-L1",
+          "sku": "SYN-SHIRT-WHT-L",
+          "description": "Áo sơ mi · trắng · L",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 400000,
+          "lineTotalVnd": 400000
+        },
+        {
+          "lineId": "SYN-HS-DH-14-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 850000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 840000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-14-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "cancelled",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-SHIRT-WHT-L",
+              "quantity": 1,
+              "status": "released"
+            }
+          ],
+          "reason": "Full refund mô phỏng đã ghi nhận; khách yêu cầu hủy toàn đơn trước dispatch."
+        },
+        {
+          "id": "SYN-HS-DH-14-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "cancelled",
+          "carrier": null,
+          "tracking": null,
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "released"
+            }
+          ],
+          "reason": "Full refund mô phỏng đã ghi nhận; khách yêu cầu hủy toàn đơn trước dispatch."
+        }
+      ],
+      "interpretation": "Không hủy trực tiếp paid/authorized. Refund command trong admin chưa có; đây là webhook giả lập, không hoàn tiền ngân hàng.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-11",
+        "P1-FR-19"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-15",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "sampleReason": "COD giao lỗi sau shipped, đang điều phối lại.",
+      "paymentMethod": "cod",
+      "orderStatus": "processing",
+      "orderPaymentStatus": "cod_pending",
+      "paymentRowStatus": "pending",
+      "fulfillmentStatus": "reserved",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-15-L1",
+          "sku": "SYN-POLO-NAV-M",
+          "description": "Áo polo · navy · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 320000,
+          "lineTotalVnd": 320000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 320000,
+        "discount": 0,
+        "shipping": 30000,
+        "total": 350000
+      },
+      "couponSnapshot": null,
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-15-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "failed",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-15-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-POLO-NAV-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Không liên hệ được người nhận giả định trong lần giao thử."
+        }
+      ],
+      "interpretation": "Theo reconcileOrder hiện tại, kiện failed đơn lẻ tổng hợp order=processing/fulfillment_status=reserved; reservation thật vẫn consumed vì đã xuất. Nhãn tổng hợp không được dùng thay trạng thái tồn.",
+      "requirements": [
+        "P1-FR-13",
+        "P1-FR-18",
+        "P1-FR-19"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-16",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "sampleReason": "Online đã paid, giao lỗi sau xuất kho.",
+      "paymentMethod": "online",
+      "orderStatus": "processing",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "reserved",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-16-L1",
+          "sku": "SYN-JACKET-GRY-L",
+          "description": "Áo khoác · xám · L",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 780000,
+          "lineTotalVnd": 780000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 780000,
+        "discount": 50000,
+        "shipping": 30000,
+        "total": 760000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-16-F1",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "failed",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-16-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-JACKET-GRY-L",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Điểm giao giả định tạm thời không tiếp nhận, chờ hẹn lại."
+        }
+      ],
+      "interpretation": "Code tổng hợp failed thành processing/reserved dù hàng đã consume. Cần đọc reservation và event; giao lỗi không tự refund.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-13",
+        "P1-FR-18",
+        "P1-FR-19"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-17",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "sampleReason": "COD hoàn toàn bộ sau dispatch, chưa thu tiền.",
+      "paymentMethod": "cod",
+      "orderStatus": "returned",
+      "orderPaymentStatus": "cancelled",
+      "paymentRowStatus": "cancelled",
+      "fulfillmentStatus": "returned",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-17-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 250000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 250000,
+        "discount": 0,
+        "shipping": 30000,
+        "total": 280000
+      },
+      "couponSnapshot": null,
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-17-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "returned",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-17-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Người nhận giả định từ chối nhận; hàng quay về sau dispatch."
+        }
+      ],
+      "interpretation": "Reservation vẫn consumed; receipt SYN-HS-KHO-03 minh họa nhập lại một chiếc sau kiểm định giả định độc lập.",
+      "requirements": [
+        "P1-FR-13",
+        "P1-FR-14",
+        "P1-FR-19"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-18",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "sampleReason": "Online hàng hoàn và full refund mô phỏng đã hoàn tất.",
+      "paymentMethod": "online",
+      "orderStatus": "returned",
+      "orderPaymentStatus": "refunded",
+      "paymentRowStatus": "refunded",
+      "fulfillmentStatus": "returned",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-18-L1",
+          "sku": "SYN-DRESS-BLU-S",
+          "description": "Váy midi · xanh · S",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 650000,
+          "lineTotalVnd": 650000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 650000,
+        "discount": 50000,
+        "shipping": 30000,
+        "total": 630000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-18-F1",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "returned",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-18-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-DRESS-BLU-S",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Hoàn toàn bộ sau giao trong kịch bản; full refund webhook mô phỏng đã xử lý."
+        }
+      ],
+      "interpretation": "Returned và refunded là hai luồng riêng. Hàng chưa được chứng từ kho nhập lại; không tự restock.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-19",
+        "P1-FR-23"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-19",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "sampleReason": "COD hai kiện đều returned; không trộn sibling delivered/returned.",
+      "paymentMethod": "cod",
+      "orderStatus": "returned",
+      "orderPaymentStatus": "cancelled",
+      "paymentRowStatus": "cancelled",
+      "fulfillmentStatus": "returned",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-19-L1",
+          "sku": "SYN-SHIRT-WHT-L",
+          "description": "Áo sơ mi · trắng · L",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 1,
+          "unitPriceVnd": 400000,
+          "lineTotalVnd": 400000
+        },
+        {
+          "lineId": "SYN-HS-DH-19-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 850000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 840000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-19-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "returned",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-19-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-SHIRT-WHT-L",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Người nhận giả định từ chối toàn bộ đơn."
+        },
+        {
+          "id": "SYN-HS-DH-19-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "returned",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-19-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Người nhận giả định từ chối toàn bộ đơn."
+        }
+      ],
+      "interpretation": "Toàn bộ terminal returned nên payment cancelled. Không tự cộng lại tồn của cả hai kho.",
+      "requirements": [
+        "P1-FR-08",
+        "P1-FR-13",
+        "P1-FR-19"
+      ]
+    },
+    {
+      "id": "SYN-HS-DH-20",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "sampleReason": "Online hai kiện returned nhưng chưa có refund event.",
+      "paymentMethod": "online",
+      "orderStatus": "returned",
+      "orderPaymentStatus": "paid",
+      "paymentRowStatus": "succeeded",
+      "fulfillmentStatus": "returned",
+      "items": [
+        {
+          "lineId": "SYN-HS-DH-20-L1",
+          "sku": "SYN-TEE-BLK-M",
+          "description": "Áo thun cơ bản · đen · M",
+          "warehouse": "SYN-KHO-HN",
+          "quantity": 2,
+          "unitPriceVnd": 250000,
+          "lineTotalVnd": 500000
+        },
+        {
+          "lineId": "SYN-HS-DH-20-L2",
+          "sku": "SYN-PANTS-BEI-M",
+          "description": "Quần dài · be · M",
+          "warehouse": "SYN-KHO-HCM",
+          "quantity": 1,
+          "unitPriceVnd": 450000,
+          "lineTotalVnd": 450000
+        }
+      ],
+      "amountVnd": {
+        "subtotal": 950000,
+        "discount": 50000,
+        "shipping": 40000,
+        "total": 940000
+      },
+      "couponSnapshot": {
+        "code": "SYN-GIAM50",
+        "type": "fixed",
+        "minSubtotalVnd": 500000,
+        "discountVnd": 50000,
+        "label": "Mã giả định để minh họa snapshot, không phải coupon trong seed."
+      },
+      "fulfillments": [
+        {
+          "id": "SYN-HS-DH-20-F1",
+          "warehouse": "SYN-KHO-HN",
+          "status": "returned",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-20-TRACK1",
+          "reservations": [
+            {
+              "sku": "SYN-TEE-BLK-M",
+              "quantity": 2,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Toàn bộ hàng hoàn, chờ quyết định hoàn tiền theo quy trình ngoài hệ thống."
+        },
+        {
+          "id": "SYN-HS-DH-20-F2",
+          "warehouse": "SYN-KHO-HCM",
+          "status": "returned",
+          "carrier": "SYN-CARRIER",
+          "tracking": "SYN-HS-DH-20-TRACK2",
+          "reservations": [
+            {
+              "sku": "SYN-PANTS-BEI-M",
+              "quantity": 1,
+              "status": "consumed"
+            }
+          ],
+          "reason": "Toàn bộ hàng hoàn, chờ quyết định hoàn tiền theo quy trình ngoài hệ thống."
+        }
+      ],
+      "interpretation": "Order returned/payment paid là hợp lệ khi chưa refund; không được gắn nhãn đã hoàn tiền. Chưa có command tự phục vụ trong baseline.",
+      "requirements": [
+        "P1-FR-09",
+        "P1-FR-19",
+        "P1-FR-23"
+      ]
+    }
+  ],
+  "inventoryDocuments": [
+    {
+      "id": "SYN-HS-KHO-01",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "type": "receipt",
+      "sku": "SYN-TEE-BLK-M",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Nhập 30 chiếc từ lô nhà cung cấp giả định.",
+      "reference": "SYN-NCC-001",
+      "quantity": 30,
+      "quantityMeaning": "quantity (số lượng dương)",
+      "idempotencyKey": "syn-p1-01-receipt",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "receipt",
+          "quantityDelta": 30,
+          "onHandBefore": 20,
+          "onHandAfter": 50,
+          "reservedBefore": 5,
+          "reservedAfter": 5,
+          "availableAfter": 45,
+          "safetyStock": 3,
+          "atpAfter": 42
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-14"
+      ],
+      "interpretation": "Một command một SKU; posted ngay. On-hand 20→50, reserved giữ 5; không có phê duyệt draft."
+    },
+    {
+      "id": "SYN-HS-KHO-02",
+      "evidenceType": "SYN",
+      "day": "N4",
+      "type": "receipt",
+      "sku": "SYN-DRESS-BLU-S",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Nhập bổ sung 12 chiếc cho kho HCM.",
+      "reference": "SYN-NCC-002",
+      "quantity": 12,
+      "quantityMeaning": "quantity (số lượng dương)",
+      "idempotencyKey": "syn-p1-02-receipt",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HCM",
+          "type": "receipt",
+          "quantityDelta": 12,
+          "onHandBefore": 8,
+          "onHandAfter": 20,
+          "reservedBefore": 3,
+          "reservedAfter": 3,
+          "availableAfter": 17,
+          "safetyStock": 2,
+          "atpAfter": 15
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-14"
+      ],
+      "interpretation": "Movement receipt +12 và audit cùng transaction; retry cùng idempotency không tăng thêm lần hai."
+    },
+    {
+      "id": "SYN-HS-KHO-03",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "type": "receipt",
+      "sku": "SYN-TEE-BLK-M",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Nhập lại một chiếc hoàn từ SYN-HS-DH-17 sau kiểm định giả định đạt.",
+      "reference": "SYN-HS-DH-17-F1",
+      "quantity": 1,
+      "quantityMeaning": "quantity (số lượng dương)",
+      "idempotencyKey": "syn-p1-03-receipt",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "receipt",
+          "quantityDelta": 1,
+          "onHandBefore": 8,
+          "onHandAfter": 9,
+          "reservedBefore": 2,
+          "reservedAfter": 2,
+          "availableAfter": 7,
+          "safetyStock": 1,
+          "atpAfter": 6
+        }
+      ],
+      "requirements": [
+        "P1-FR-14",
+        "P1-FR-19"
+      ],
+      "interpretation": "Kiểm định SYN bên ngoài hệ thống, không có chữ ký/chứng cứ thật. Returned không tự restock; receipt là lệnh riêng và lưu reference tới kiện."
+    },
+    {
+      "id": "SYN-HS-KHO-04",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "type": "transfer",
+      "sku": "SYN-SHIRT-WHT-L",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Điều chuyển 6 chiếc để cân bằng nhu cầu giả định giữa hai kho.",
+      "reference": "SYN-DIEUCHUYEN-001",
+      "quantity": 6,
+      "quantityMeaning": "quantity (số lượng dương)",
+      "idempotencyKey": "syn-p1-04-transfer",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "transfer_out",
+          "quantityDelta": -6,
+          "onHandBefore": 30,
+          "onHandAfter": 24,
+          "reservedBefore": 8,
+          "reservedAfter": 8,
+          "availableAfter": 16,
+          "safetyStock": 4,
+          "atpAfter": 12
+        },
+        {
+          "warehouse": "SYN-KHO-HCM",
+          "type": "transfer_in",
+          "quantityDelta": 6,
+          "onHandBefore": 10,
+          "onHandAfter": 16,
+          "reservedBefore": 2,
+          "reservedAfter": 2,
+          "availableAfter": 14,
+          "safetyStock": 2,
+          "atpAfter": 12
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-15"
+      ],
+      "interpretation": "Nguồn available 22 đủ chuyển 6; cặp movement chung reference. Tổng on-hand hai kho 40→40."
+    },
+    {
+      "id": "SYN-HS-KHO-05",
+      "evidenceType": "SYN",
+      "day": "N5",
+      "type": "transfer",
+      "sku": "SYN-PANTS-BEI-M",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Chuyển 4 chiếc từ HCM về HN cho kế hoạch trưng bày giả định.",
+      "reference": "SYN-DIEUCHUYEN-002",
+      "quantity": 4,
+      "quantityMeaning": "quantity (số lượng dương)",
+      "idempotencyKey": "syn-p1-05-transfer",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HCM",
+          "type": "transfer_out",
+          "quantityDelta": -4,
+          "onHandBefore": 18,
+          "onHandAfter": 14,
+          "reservedBefore": 7,
+          "reservedAfter": 7,
+          "availableAfter": 7,
+          "safetyStock": 3,
+          "atpAfter": 4
+        },
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "transfer_in",
+          "quantityDelta": 4,
+          "onHandBefore": 6,
+          "onHandAfter": 10,
+          "reservedBefore": 1,
+          "reservedAfter": 1,
+          "availableAfter": 9,
+          "safetyStock": 1,
+          "atpAfter": 8
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-15"
+      ],
+      "interpretation": "Cộng đích và trừ nguồn nguyên tử; nếu một bước lỗi phải rollback cả hai. Tổng on-hand 24 không đổi."
+    },
+    {
+      "id": "SYN-HS-KHO-06",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "type": "transfer",
+      "sku": "SYN-POLO-NAV-M",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Chuyển 3 chiếc bằng đúng available kho nguồn.",
+      "reference": "SYN-DIEUCHUYEN-003",
+      "quantity": 3,
+      "quantityMeaning": "quantity (số lượng dương)",
+      "idempotencyKey": "syn-p1-06-transfer",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "transfer_out",
+          "quantityDelta": -3,
+          "onHandBefore": 10,
+          "onHandAfter": 7,
+          "reservedBefore": 7,
+          "reservedAfter": 7,
+          "availableAfter": 0,
+          "safetyStock": 2,
+          "atpAfter": 0
+        },
+        {
+          "warehouse": "SYN-KHO-HCM",
+          "type": "transfer_in",
+          "quantityDelta": 3,
+          "onHandBefore": 4,
+          "onHandAfter": 7,
+          "reservedBefore": 0,
+          "reservedAfter": 0,
+          "availableAfter": 7,
+          "safetyStock": 1,
+          "atpAfter": 6
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-15"
+      ],
+      "interpretation": "Nguồn sau chuyển on-hand=reserved=7, available=0, ATP=0. Safety stock hiện không là ngưỡng chặn lệnh; không mô tả như có protection tự động."
+    },
+    {
+      "id": "SYN-HS-KHO-07",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "type": "stocktake",
+      "sku": "SYN-TEE-BLK-M",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Kiểm kê giả định đếm 48 so với sổ 50; chênh lệch thiếu 2.",
+      "reference": "SYN-KIEMKE-001",
+      "quantity": 48,
+      "quantityMeaning": "actualQuantity (số đếm giả định)",
+      "idempotencyKey": "syn-p1-07-stocktake",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "stocktake",
+          "quantityDelta": -2,
+          "onHandBefore": 50,
+          "onHandAfter": 48,
+          "reservedBefore": 12,
+          "reservedAfter": 12,
+          "availableAfter": 36,
+          "safetyStock": 4,
+          "atpAfter": 32
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-16"
+      ],
+      "interpretation": "actualQuantity=48 vẫn ≥reserved=12. quantity là số đếm thực giả định, không phải số giảm; movement delta=-2."
+    },
+    {
+      "id": "SYN-HS-KHO-08",
+      "evidenceType": "SYN",
+      "day": "N6",
+      "type": "stocktake",
+      "sku": "SYN-DRESS-BLU-S",
+      "status": "posted",
+      "actorRole": "staff",
+      "reason": "Kiểm kê giả định đếm 22 so với sổ 20; phát hiện ghi nhận thiếu 2.",
+      "reference": "SYN-KIEMKE-002",
+      "quantity": 22,
+      "quantityMeaning": "actualQuantity (số đếm giả định)",
+      "idempotencyKey": "syn-p1-08-stocktake",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HCM",
+          "type": "stocktake",
+          "quantityDelta": 2,
+          "onHandBefore": 20,
+          "onHandAfter": 22,
+          "reservedBefore": 6,
+          "reservedAfter": 6,
+          "availableAfter": 16,
+          "safetyStock": 2,
+          "atpAfter": 14
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-16"
+      ],
+      "interpretation": "actualQuantity=22; movement delta=+2. Lý do bắt buộc; chưa có expectedVersion phía client cho chứng từ kho."
+    },
+    {
+      "id": "SYN-HS-KHO-09",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "type": "adjustment",
+      "sku": "SYN-JACKET-GRY-L",
+      "status": "posted",
+      "actorRole": "manager",
+      "reason": "Loại hai chiếc hỏng khỏi tồn bán được trong tình huống giả định.",
+      "reference": "SYN-DIEUCHINH-001",
+      "quantity": -2,
+      "quantityMeaning": "quantityDelta (chênh lệch có dấu)",
+      "idempotencyKey": "syn-p1-09-adjustment",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HCM",
+          "type": "manual_adjustment",
+          "quantityDelta": -2,
+          "onHandBefore": 12,
+          "onHandAfter": 10,
+          "reservedBefore": 3,
+          "reservedAfter": 3,
+          "availableAfter": 7,
+          "safetyStock": 2,
+          "atpAfter": 5
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-16"
+      ],
+      "interpretation": "Manager/Admin mới được direct adjustment. On-hand 10 sau chỉnh vẫn ≥reserved=3; không tự ghi một kho cách ly vì schema chưa có."
+    },
+    {
+      "id": "SYN-HS-KHO-10",
+      "evidenceType": "SYN",
+      "day": "N7",
+      "type": "adjustment",
+      "sku": "SYN-POLO-NAV-M",
+      "status": "posted",
+      "actorRole": "manager",
+      "reason": "Sửa chênh lệch nhập liệu được phát hiện trong đối chiếu giả định.",
+      "reference": "SYN-DIEUCHINH-002",
+      "quantity": 1,
+      "quantityMeaning": "quantityDelta (chênh lệch có dấu)",
+      "idempotencyKey": "syn-p1-10-adjustment",
+      "movements": [
+        {
+          "warehouse": "SYN-KHO-HN",
+          "type": "manual_adjustment",
+          "quantityDelta": 1,
+          "onHandBefore": 18,
+          "onHandAfter": 19,
+          "reservedBefore": 4,
+          "reservedAfter": 4,
+          "availableAfter": 15,
+          "safetyStock": 3,
+          "atpAfter": 12
+        }
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-16"
+      ],
+      "interpretation": "Điều chỉnh +1 có reason, idempotency và audit. Không gọi việc sinh hồ sơ SYN là người quản lý đã phê duyệt."
+    }
+  ],
+  "synthesis": [
+    {
+      "domain": "D1 — Khám phá sản phẩm và tài khoản",
+      "interviewIds": [
+        "SYN-PV-KH-01",
+        "SYN-PV-KH-03",
+        "SYN-PV-KH-05",
+        "SYN-PV-KH-06"
+      ],
+      "sampleIds": [
+        "SYN-HS-DH-01",
+        "SYN-HS-DH-02",
+        "SYN-HS-DH-05"
+      ],
+      "findings": [
+        "Thông tin size/màu, tồn theo SKU và mô tả chất liệu cần nằm gần thao tác chọn hàng.",
+        "Tài khoản hỗ trợ địa chỉ, wishlist và lịch sử; bảo vệ ownership và recovery là yêu cầu nền.",
+        "UX mobile và nút mua lại một chạm là nhu cầu cần kiểm thử/ưu tiên, không phải kết quả đã nghiệm thu."
+      ],
+      "requirements": [
+        "P1-FR-01",
+        "P1-FR-02",
+        "P1-FR-03",
+        "P1-FR-04"
+      ],
+      "priority": "Must/Should theo FR",
+      "limitations": "Không có người dùng thật hoặc đo task success; KD-GUEST-01 vẫn là sai lệch từ SYS, không được biên bản SYN xác nhận như thực địa."
+    },
+    {
+      "domain": "D2 — Giỏ, voucher và đặt đơn",
+      "interviewIds": [
+        "SYN-PV-KH-01",
+        "SYN-PV-KH-04",
+        "SYN-PV-KH-06",
+        "SYN-PV-KH-08"
+      ],
+      "sampleIds": [
+        "SYN-HS-DH-02",
+        "SYN-HS-DH-06",
+        "SYN-HS-DH-12",
+        "SYN-HS-DH-13"
+      ],
+      "findings": [
+        "Hiển thị rõ subtotal, discount, shipping và grand total; kiểm tra lại voucher khi giỏ hoặc checkout thay đổi.",
+        "Checkout retry không tạo bản sao; giỏ không đồng nghĩa giữ tồn.",
+        "Mã SYN-GIAM50 và các mức phí chỉ là tham số minh họa, không khẳng định chính sách cửa hàng hay coupon seed."
+      ],
+      "requirements": [
+        "P1-FR-05",
+        "P1-FR-06",
+        "P1-FR-07",
+        "P1-FR-10",
+        "P1-FR-11"
+      ],
+      "priority": "Must",
+      "limitations": "Các snapshot không đo abandonment hoặc conversion; hủy online trong mẫu13 dùng command hợp lệ, không minh họa expiry như đã sửa."
+    },
+    {
+      "domain": "D3 — Thanh toán và đối soát",
+      "interviewIds": [
+        "SYN-PV-KH-02",
+        "SYN-PV-KH-05",
+        "SYN-PV-KH-07",
+        "SYN-PV-VH-04"
+      ],
+      "sampleIds": [
+        "SYN-HS-DH-03",
+        "SYN-HS-DH-10",
+        "SYN-HS-DH-14",
+        "SYN-HS-DH-18",
+        "SYN-HS-DH-20"
+      ],
+      "findings": [
+        "Online paid chỉ từ event hợp lệ; COD paid khi tất cả kiện delivered, không suy từ một kiện.",
+        "Returned không tự đồng nghĩa refunded; full refund trong mẫu là webhook mô phỏng, chưa có command admin.",
+        "Late success cần policy đối soát do KD-PAY-01; chưa có sổ thu COD theo kiện hoặc đối soát tiền thật."
+      ],
+      "requirements": [
+        "P1-FR-08",
+        "P1-FR-09",
+        "P1-FR-11",
+        "P1-FR-19",
+        "P1-FR-23"
+      ],
+      "priority": "Must",
+      "limitations": "Không có chuyển tiền thật, tài khoản ngân hàng, refund đã thực hiện hoặc đại diện tài chính phê duyệt."
+    },
+    {
+      "domain": "D4 — Tồn kho và chứng từ",
+      "interviewIds": [
+        "SYN-PV-KH-06",
+        "SYN-PV-VH-02",
+        "SYN-PV-VH-03"
+      ],
+      "sampleIds": [
+        "SYN-HS-DH-09",
+        "SYN-HS-DH-17",
+        "SYN-HS-KHO-01",
+        "SYN-HS-KHO-03",
+        "SYN-HS-KHO-04",
+        "SYN-HS-KHO-06",
+        "SYN-HS-KHO-07",
+        "SYN-HS-KHO-09"
+      ],
+      "findings": [
+        "On-hand, reserved, available và ATP có ý nghĩa khác nhau; safety stock chưa là ngưỡng chặn bán.",
+        "Chuyển kho cần cặp movement nguyên tử; receipt/stocktake/adjustment hiện một dòng, posted ngay.",
+        "Hàng returned không tự restock; chỉ receipt riêng sau kiểm định giả định. Expiry còn KD-INV-01/02."
+      ],
+      "requirements": [
+        "P1-FR-12",
+        "P1-FR-13",
+        "P1-FR-14",
+        "P1-FR-15",
+        "P1-FR-16"
+      ],
+      "priority": "Must",
+      "limitations": "Mười chứng từ là snapshot độc lập, không cộng dồn thành một sổ tồn xuyên mẫu. Không có người kiểm kê thật, chữ ký hoặc kho doanh nghiệp."
+    },
+    {
+      "domain": "D5 — Giao hàng và ngoại lệ",
+      "interviewIds": [
+        "SYN-PV-KH-02",
+        "SYN-PV-KH-07",
+        "SYN-PV-KH-08",
+        "SYN-PV-VH-03"
+      ],
+      "sampleIds": [
+        "SYN-HS-DH-07",
+        "SYN-HS-DH-09",
+        "SYN-HS-DH-10",
+        "SYN-HS-DH-15",
+        "SYN-HS-DH-16",
+        "SYN-HS-DH-19",
+        "SYN-HS-DH-20"
+      ],
+      "findings": [
+        "Tạo một fulfillment mỗi kho, tracking nhập tay, shipped chỉ consume tồn kiện tương ứng.",
+        "Giao lỗi cần reason và lịch sử; trạng thái aggregate failed có cách diễn giải đặc thù hiện tại.",
+        "Delivered/returned hỗn hợp giữa sibling bị chặn; mẫu chỉ dùng kết quả supported, mở rộng cần quy trình đối soát riêng."
+      ],
+      "requirements": [
+        "P1-FR-10",
+        "P1-FR-17",
+        "P1-FR-18",
+        "P1-FR-19"
+      ],
+      "priority": "Must",
+      "limitations": "SYN-CARRIER và mọi tracking là mã giả, không tra cứu được. Không có tích hợp hãng ship, ETA thật hoặc tỷ lệ giao thành công thực tế."
+    },
+    {
+      "domain": "D6 — Quản trị, khách hàng và hỗ trợ quyết định",
+      "interviewIds": [
+        "SYN-PV-VH-01",
+        "SYN-PV-VH-04"
+      ],
+      "sampleIds": [
+        "SYN-HS-DH-04",
+        "SYN-HS-DH-14",
+        "SYN-HS-DH-20",
+        "SYN-HS-KHO-09",
+        "SYN-HS-KHO-10"
+      ],
+      "findings": [
+        "Phân khúc tính theo rule và giao dịch hợp lệ; không dùng nhân khẩu học SYN để gán nhóm vận hành.",
+        "Copilot đọc snapshot và không tự ghi dữ liệu; thông tin nguồn/thời điểm phải rõ.",
+        "Quyền quản trị, audit và khoảng trống CRUD catalog cần nêu minh bạch; tổng giá trị snapshot không phải doanh thu."
+      ],
+      "requirements": [
+        "P1-FR-20",
+        "P1-FR-21",
+        "P1-FR-22",
+        "P1-FR-23",
+        "P1-FR-24"
+      ],
+      "priority": "Must/Should theo FR",
+      "limitations": "Không chứng minh tăng doanh thu, giữ chân khách hoặc chất lượng quyết định; không có stakeholder thật ký duyệt."
+    }
+  ]
+}

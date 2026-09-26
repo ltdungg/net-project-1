@@ -1,0 +1,8 @@
+{
+  "id": "DP-01",
+  "title": "Biểu đồ triển khai local bằng Docker Compose",
+  "caption": "Máy khách là device, trình duyệt là executionEnvironment. Hai khung Docker local biểu diễn các nhóm triển khai theo stack trên cùng một máy phát triển; Compose là công cụ tổ chức container. Runtime Node.js/JVM là executionEnvironment chứa artifact Web build/JAR. Đường nối ghi giao thức/cổng: frontend 8787, API 8080, PostgreSQL 5432 và Redis 6379. BFF gọi API qua host.docker.internal:8080. Cấu hình hiện tại là topology local/demo; không vẽ cloud, CDN, cluster hay disaster recovery chưa có.",
+  "reference": "PDF gốc tr. 27-32 (các loại biểu đồ, góc nhìn triển khai), tr. 90. Đối chiếu platform/docker-compose.yml, platform/backend/docker-compose.yml và platform/README.md.",
+  "width": 1100,
+  "height": 720
+}

@@ -1,0 +1,8 @@
+{
+  "id": "AD-01",
+  "title": "Activity: Mua hàng và đặt hàng COD",
+  "caption": "Người mua chọn biến thể, số lượng, nhập thông tin nhận hàng và xác nhận đặt COD; hệ thống kiểm dữ liệu rồi tính lại tổng tiền. Thông tin sai quay về bước nhập, thiếu hàng dẫn đến rollback và quay lại lựa chọn hàng, còn đủ điều kiện thì giữ tồn và lưu đơn, thanh toán, các kiện. Sau commit, người mua nhận mã đơn cùng thông tin tra cứu để theo dõi giao dịch.",
+  "reference": "PDF nguồn: tr. 83–89",
+  "width": 1100,
+  "height": 650
+}

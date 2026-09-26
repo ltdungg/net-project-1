@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="650" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 650" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="650"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-650)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="650" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 15,638 L 15,36 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 360,638 L 360,36 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 735,638 L 735,36 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 1085,638 L 1085,36 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 15,599 L 1085,599 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="105.74365234375" y="615.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1230) scale(1,-1)">Nhân viên cửa hàng</text>
+			<text x="490.81201171875" y="615.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1230) scale(1,-1)">Hệ thống NÉT</text>
+			<text x="846.254150390625" y="615.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1230) scale(1,-1)">Kho / giao nhận</text>
+			<circle cx="187" cy="572" r="8" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 187,564 L 187,542 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="183.0853 550.104, 187 542, 190.9147 550.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="57" y="492" width="260" height="50" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="84.5341796875" y="512.375" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1024) scale(1,-1)">Tiếp nhận đơn COD confirmed</text>
+			<path d="M 187,492 L 187,466 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="183.0853 474.104, 187 466, 190.9147 474.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<polygon points="187 465, 214.5 443, 187 421, 159.5 443" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="249.751953125" y="453.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,906) scale(1,-1)">Xử lý?</text>
+			<path d="M 159,443 L 41,443 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 41,443 L 41,357 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 41,357 L 69,357 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="60.89598 353.0853, 69 357, 60.89598 360.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<text x="78.82421875" y="427.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,854) scale(1,-1)">[hủy]</text>
+			<rect x="69" y="331" width="248" height="51" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="119.702880859375" y="351.875" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,703) scale(1,-1)">Nhập lý do hủy hợp lệ</text>
+			<path d="M 317,357 L 421,357 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="412.896 353.0853, 421 357, 412.896 360.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="421" y="327" width="253" height="60" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="477.42919921875" y="361.75" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,723) scale(1,-1)">Giải phóng giữ hàng;</text>
+			<text x="500.467529296875" y="343.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,686) scale(1,-1)">đơn cancelled</text>
+			<path d="M 547,327 L 547,303 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="543.0853 311.104, 547 303, 550.9147 311.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<circle cx="547" cy="291" r="11" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="547" cy="291" r="7" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<path d="M 215,443 L 708,443 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 708,443 L 708,496 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 708,496 L 899,496 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="890.896 492.0853, 899 496, 890.896 499.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="475.3623046875" y="449.5" width="91.275390625" height="19.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="479.3623046875" y="453.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,906) scale(1,-1)">[tiếp tục giao]</text>
+			<polygon points="910 507, 921 496, 910 485, 899 496" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<path d="M 910,485 L 910,474 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="906.0853 482.104, 910 474, 913.9147 482.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="770" y="412" width="275" height="62" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="847.46337890625" y="447.75" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,895) scale(1,-1)">Chọn kiện có sẵn;</text>
+			<text x="827.427978515625" y="429.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,858) scale(1,-1)">xử lý, đóng gói theo kho</text>
+			<path d="M 910,412 L 910,380 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="906.0853 388.104, 910 380, 913.9147 388.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="770" y="321" width="275" height="59" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="835.36376953125" y="355.25" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,710) scale(1,-1)">Bàn giao vận chuyển;</text>
+			<text x="839.117431640625" y="336.5" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,673) scale(1,-1)">chuyển kiện shipped</text>
+			<path d="M 770,340 L 708,340 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 708,340 L 708,288 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 708,288 L 650,288 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 650,288 L 650,270 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="646.0853 278.104, 650 270, 653.9147 278.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="421" y="213" width="253" height="57" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="462.850341796875" y="246.25" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,492) scale(1,-1)">Trừ on_hand và reserved</text>
+			<text x="504.136962890625" y="227.5" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,455) scale(1,-1)">đúng một lần</text>
+			<path d="M 674,242 L 770,242 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="761.896 238.0853, 770 242, 761.896 245.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="770" y="213" width="275" height="57" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="844.541015625" y="246.25" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,492) scale(1,-1)">Ghi nhận delivered</text>
+			<text x="852.8759765625" y="227.5" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,455) scale(1,-1)">cho kiện đã giao</text>
+			<path d="M 910,213 L 910,187 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="906.0853 195.104, 910 187, 913.9147 195.104" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<polygon points="910 187, 937.5 165, 910 143, 882.5 165" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="970.937744140625" y="185.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,370) scale(1,-1)">Tất cả</text>
+			<text x="964.06005859375" y="168.75" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,337) scale(1,-1)">đã giao?</text>
+			<path d="M 938,165 L 1065,165 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 1065,165 L 1065,496 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 1065,496 L 921,496 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="929.104 499.9147, 921 496, 929.104 492.0853" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<text x="992.13818359375" y="121.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,242) scale(1,-1)">[chưa]</text>
+			<path d="M 882,165 L 708,165 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 708,165 L 708,96 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 708,96 L 674,96 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="682.104 99.91469, 674 96, 682.104 92.08531" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="774.3310546875" y="170.5" width="31.337890625" height="19.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="778.3310546875" y="174.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,348) scale(1,-1)">[rồi]</text>
+			<rect x="421" y="66" width="253" height="59" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="498.39111328125" y="100.25" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,200) scale(1,-1)">Đơn delivered;</text>
+			<text x="488.302001953125" y="81.5" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,163) scale(1,-1)">COD chuyển paid</text>
+			<path d="M 421,96 L 317,96 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="325.104 99.91469, 317 96, 325.104 92.08531" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="69" y="66" width="248" height="59" rx="15" ry="15" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="121.702392578125" y="90.875" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,181) scale(1,-1)">Xem kết quả hoàn tất</text>
+			<path d="M 187,66 L 187,50 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="183.0853 58.10402, 187 50, 190.9147 58.10402" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<circle cx="187" cy="40" r="11" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="187" cy="40" r="7" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<text x="259.439208984375" y="6.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,12) scale(1,-1)">Luồng chuẩn COD. Giao thất bại/hoàn hàng cần nghiệp vụ xử lý riêng; không tự coi là đã thu đủ tiền.</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,8 @@
+{
+  "id": "CP-01",
+  "title": "Biểu đồ thành phần của NÉT Commerce",
+  "caption": "Các hình chữ nhật có biểu tượng component thể hiện thành phần và các dependency qua giao diện đã ghi trên đường nối. Storefront/Backoffice gọi BFF cùng origin; BFF gọi API Java; API truy cập PostgreSQL, Redis và volume media. Vinext Server Components còn có đường gọi trực tiếp API phía server, được lược để tập trung luồng trình duyệt. Không giả định có cổng thanh toán hay API hãng vận chuyển thương mại thật.",
+  "reference": "PDF gốc tr. 27-32 (các loại biểu đồ, góc nhìn UML), tr. 90 (component/deployment/package). Kiến trúc thực tế: platform/ARCHITECTURE.md.",
+  "width": 1100,
+  "height": 690
+}

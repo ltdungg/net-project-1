@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: net-commerce-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/net_commerce}
+    username: ${DATABASE_USER:net}
+    password: ${DATABASE_PASSWORD:net_local_password}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+      minimum-idle: 2
+      connection-timeout: 5000
+      validation-timeout: 2000
+  flyway:
+    enabled: true
+    validate-migration-naming: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2s
+  cache:
+    type: redis
+    redis:
+      time-to-live: 5m
+  jackson:
+    default-property-inclusion: non_null
+  mvc:
+    problemdetails:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 8MB
+      max-request-size: 9MB
+
+server:
+  port: ${SERVER_PORT:8080}
+  forward-headers-strategy: framework
+  shutdown: graceful
+  error:
+    include-message: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    redis:
+      enabled: true
+
+app:
+  environment: ${APP_ENV:local}
+  public-origin: ${PUBLIC_ORIGIN:http://localhost:8787}
+  jwt-secret: ${JWT_SECRET:local-only-change-this-secret-before-production-0123456789}
+  access-token-ttl: ${ACCESS_TOKEN_TTL:15m}
+  refresh-token-ttl: ${REFRESH_TOKEN_TTL:30d}
+  local-auth-bypass: ${LOCAL_AUTH_BYPASS:false}
+  local-auth-email: ${LOCAL_AUTH_EMAIL:owner@example.com}
+  admin-emails: ${ADMIN_EMAILS:owner@example.com}
+  manager-emails: ${MANAGER_EMAILS:manager@example.com}
+  payment-webhook-secret: ${PAYMENT_WEBHOOK_SECRET:replace-with-provider-webhook-secret}
+  upload-dir: ${UPLOAD_DIR:./data/uploads}
+  openai-api-key: ${OPENAI_API_KEY:}
+  openai-model: ${OPENAI_MODEL:gpt-5.4-mini}
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{correlationId:-}]"
+  level:
+    org.springframework.security: INFO
+    vn.netfashion.commerce: INFO

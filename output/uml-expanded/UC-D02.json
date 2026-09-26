@@ -1,0 +1,8 @@
+{
+  "id": "UC-D02",
+  "title": "Use case phía cửa hàng",
+  "caption": "Sơ đồ mô tả chín chức năng nội bộ từ quản lý sản phẩm, tồn kho và xử lý đơn đến giao hàng, COD, khách hàng, báo cáo và trạng thái tài khoản. Tác nhân Nhân viên cửa hàng đại diện chung, còn từng chức năng vẫn giới hạn theo quyền Staff, Manager hoặc Admin. COD được ghi nhận trong lần cập nhật giao thành công cuối cùng; đổi trạng thái tài khoản chỉ dành cho Admin.",
+  "reference": "PDF nguồn: tr. 35–45; NÉT: docs/ba/02-use-cases.md và OrderController",
+  "width": 1100,
+  "height": 650
+}

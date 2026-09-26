@@ -1,0 +1,8 @@
+{
+  "id": "UC-D03",
+  "title": "Use case chi tiết: Đặt hàng và áp mã",
+  "caption": "Giỏ hàng đã có ít nhất một dòng hàng là tiền điều kiện. Khách có thể đặt hàng không dùng voucher; khi có mã, hệ thống phải kiểm tra hiệu lực, điều kiện và giới hạn sử dụng.",
+  "reference": "PDF nguồn: tr. 42–45; áp dụng cho UC05, UC06 của NÉT",
+  "width": 1100,
+  "height": 650
+}

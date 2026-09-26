@@ -1,0 +1,8 @@
+{
+  "id": "CL-03",
+  "title": "Biểu đồ lớp thiết kế theo boundary - control - entity",
+  "caption": "Sơ đồ phân công trách nhiệm thành boundary tiếp nhận tương tác, control điều phối ca sử dụng và entity biểu diễn dữ liệu nghiệp vụ. Đăng nhập sử dụng tài khoản, checkout đọc giỏ và tạo đơn, còn các lệnh vận hành điều phối thay đổi trạng thái đơn. Các đường phụ thuộc giúp theo dõi yêu cầu từ giao diện tới nghiệp vụ; đây là mô hình thiết kế, còn mã hiện tại dùng Controller, Service và JdbcClient.",
+  "reference": "PDF gốc tr. 53-56 (boundary/control/entity), tr. 58-59 (đối tượng tương tác), tr. 60-63 (lớp), tr. 73-82 (xác định lớp), tr. 90.",
+  "width": 1100,
+  "height": 790
+}

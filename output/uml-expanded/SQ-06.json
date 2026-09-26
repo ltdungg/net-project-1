@@ -1,0 +1,9 @@
+{
+  "id": "SQ-06",
+  "uc": "UC02",
+  "title": "Sequence: UC02 Đăng ký và xác minh tài khoản",
+  "caption": "Khách đăng ký bằng thông tin hợp lệ và email chưa được sử dụng, sau đó xác minh bằng token có thời hạn 24 giờ. Token chỉ dùng một lần; xác minh thành công kích hoạt tài khoản và cấp phiên đăng nhập. Bản local cung cấp token để minh họa, còn việc ghi outbox chưa đồng nghĩa đã gửi email thật; lỗi đăng ký hoặc token đều được phản hồi. Đăng ký và xác minh là hai lần gọi độc lập.",
+  "reference": "UC02; AuthService.register/verifyEmail/consumeActionToken; AuthController; docs/ba/02-use-cases.md mục đăng ký/xác minh. Hai lần gọi độc lập; lần xác minh chỉ thực hiện khi đã có token.",
+  "width": 1300,
+  "height": 850
+}

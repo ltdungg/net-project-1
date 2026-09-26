@@ -1,0 +1,8 @@
+{
+  "id": "DP-01",
+  "title": "Biểu đồ triển khai local bằng Docker Compose",
+  "caption": "Sơ đồ thể hiện môi trường local gồm máy khách và hai stack Docker trên cùng máy phát triển: giao diện Node.js cùng API Java, PostgreSQL và Redis. Trình duyệt truy cập cổng 8787, BFF gọi API qua cổng 8080, còn API kết nối cơ sở dữ liệu, cache và volume uploads. Các volume giữ dữ liệu ngoài container; đây là cấu hình demo, chưa mô tả triển khai cloud hay dự phòng.",
+  "reference": "PDF gốc tr. 27-32 (các loại biểu đồ, góc nhìn triển khai), tr. 90. Đối chiếu platform/docker-compose.yml, platform/backend/docker-compose.yml và platform/README.md.",
+  "width": 1100,
+  "height": 720
+}

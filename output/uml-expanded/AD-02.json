@@ -1,0 +1,8 @@
+{
+  "id": "AD-02",
+  "title": "Activity: Xử lý đơn, giao nhiều kiện và COD",
+  "caption": "Quy trình bắt đầu từ đơn COD đã confirmed và tách thành hủy đủ điều kiện hoặc tiếp tục giao hàng. Nhánh giao xử lý lần lượt các kiện, trừ đúng phần giữ khi xuất và ghi nhận kết quả delivered; nhánh hủy giải phóng reserved mà không tăng on_hand. Toàn đơn chỉ delivered và COD paid khi mọi kiện đã giao; giao lỗi hoặc hoàn hàng cần quy trình ngoại lệ riêng.",
+  "reference": "PDF nguồn: tr. 83–89; NÉT: workflow trạng thái đơn và fulfillment",
+  "width": 1100,
+  "height": 650
+}

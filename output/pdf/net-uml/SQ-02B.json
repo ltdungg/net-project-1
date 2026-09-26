@@ -1,0 +1,8 @@
+{
+  "id": "SQ-02B",
+  "title": "Sequence: UC06 Điều kiện lỗi và giao dịch",
+  "caption": "Một dòng SKU phải được đáp ứng tại một kho đủ hàng; nhiều SKU có thể lấy từ các kho khác nhau. Đọc còn hàng trước đó không bảo đảm đặt được hàng: điều kiện phải được kiểm tra lại trong giao dịch.",
+  "reference": "PDF nguồn: tr. 57–58; NÉT: tài liệu transaction và checkout service",
+  "width": 1100,
+  "height": 650
+}

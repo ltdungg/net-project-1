@@ -1,0 +1,8 @@
+{
+  "id": "UC-D01",
+  "title": "Use case phía người mua",
+  "caption": "Sơ đồ tập hợp các mục tiêu của người mua: xem sản phẩm, đăng ký hoặc đăng nhập, quản lý giỏ, đặt hàng và tra cứu đơn. Thành viên kế thừa các chức năng chung và có thêm lịch sử đơn gắn với tài khoản. Khách vãng lai vẫn được đặt hàng, sau đó tra cứu bằng token của đúng đơn; chức năng hủy đơn thuộc phía cửa hàng trong phạm vi hiện tại.",
+  "reference": "PDF nguồn: tr. 35–48; bối cảnh NÉT: README, docs/ba/02-use-cases.md",
+  "width": 1100,
+  "height": 650
+}

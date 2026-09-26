@@ -1,0 +1,8 @@
+{
+  "id": "UC-D02",
+  "title": "Use case phía cửa hàng",
+  "caption": "Actor đại diện nhóm người dùng nội bộ, không phải một quyền mới. Staff/Manager/Admin được kiểm soát theo chức năng; quản lý trạng thái tài khoản dành cho Admin. UC13 được thực hiện trong quy trình cập nhật giao hàng.",
+  "reference": "PDF nguồn: tr. 35–45; NÉT: docs/ba/02-use-cases.md và OrderController",
+  "width": 1100,
+  "height": 650
+}

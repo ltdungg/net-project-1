@@ -1,0 +1,9 @@
+{
+  "id": "SQ-13",
+  "uc": "UC14",
+  "title": "Sequence: UC14 Xem hồ sơ và phân khúc khách hàng",
+  "caption": "Staff, Manager hoặc Admin tìm khách theo thông tin nhận diện, trạng thái và phân khúc rồi mở hồ sơ chi tiết. Phân khúc được tính động từ view theo thứ tự luật RFM-2026.1, không phải nhãn nhập tay. Hồ sơ gồm thông tin, địa chỉ, thống kê và tối đa 50 đơn gần nhất; mỗi yêu cầu đều kiểm quyền, còn khách không tồn tại trả lỗi.",
+  "reference": "UC14; AdminCustomerService.list/segments/detail; AdminCustomerController; CustomerSegmentPolicy; docs/ba/03-business-rules.md BR-SEG-01..04.",
+  "width": 1300,
+  "height": 760
+}

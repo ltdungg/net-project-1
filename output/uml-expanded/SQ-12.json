@@ -1,0 +1,9 @@
+{
+  "id": "SQ-12",
+  "uc": "UC10",
+  "title": "Sequence: UC10 Xử lý trạng thái đơn trước xuất kho",
+  "caption": "Nhân sự có quyền chuyển đơn qua các trạng thái xử lý trước xuất kho. Hệ thống khóa đơn và phiếu giao, kiểm điều kiện thanh toán cùng trạng thái liên quan rồi cập nhật đồng bộ và ghi lịch sử, audit, outbox trong giao dịch. Các trạng thái shipped, delivered và returned phải đi qua phiếu giao; hủy toàn đơn được trình bày riêng tại SQ-03.",
+  "reference": "UC10; AdminOrderService.changeStatus/validateShipmentProjection/synchronizeShipments; AdminOrderStateMachine; docs/ba/03-business-rules.md BR-ORD-04. Sơ đồ tập trung confirmed/processing/ready_to_ship.",
+  "width": 1300,
+  "height": 722
+}

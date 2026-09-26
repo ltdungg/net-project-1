@@ -1,0 +1,9 @@
+{
+  "id": "AD-13",
+  "uc": "UC14",
+  "title": "Activity: UC14 Tra cứu hồ sơ và phân khúc khách hàng",
+  "caption": "Staff, Manager hoặc Admin tìm khách hàng bằng từ khóa, trạng thái và phân khúc rồi mở hồ sơ để xem lịch sử mua hàng. Phân khúc được tính động từ view theo thứ tự ưu tiên, dựa trên đơn đã thanh toán và loại các đơn hủy, hoàn hoặc hoàn tiền. Chức năng này chỉ tra cứu; người dùng không gán hay sửa thủ công phân khúc khách hàng.",
+  "reference": "UC14 của báo cáo; docs/ba/03-business-rules.md mục 8; admincustomer/AdminCustomerController.java; admincustomer/AdminCustomerService.java; admincustomer/CustomerSegmentPolicy.java",
+  "width": 1300,
+  "height": 810.0
+}

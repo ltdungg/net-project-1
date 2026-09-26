@@ -1,0 +1,8 @@
+{
+  "id": "CL-01",
+  "title": "Biểu đồ lớp: danh mục, tài khoản và giỏ hàng",
+  "caption": "Mô hình lớp nghiệp vụ rút gọn. Hình thoi đặc biểu diễn quan hệ toàn thể - bộ phận; số ở hai đầu là bội số. Tài khoản là tùy chọn với giỏ của khách vãng lai. Thuộc tính và thao tác là thiết kế khái niệm, không khẳng định có lớp Java trùng tên.",
+  "reference": "PDF gốc tr. 60-77 (lớp, thuộc tính, phương thức, quan hệ), tr. 79-82 (ví dụ), tr. 90 (bài tập).",
+  "width": 1100,
+  "height": 660
+}

@@ -1,0 +1,8 @@
+{
+  "id": "SQ-01",
+  "title": "Sequence: UC03 Đăng nhập",
+  "caption": "Thứ tự trái sang phải và các biểu tượng boundary/control/entity bám ví dụ trang 59. Các tên lớp ở đây là mô hình phân tích; việc kiểm tra hash và tạo phiên được triển khai qua lớp dịch vụ.",
+  "reference": "PDF nguồn: tr. 53–59",
+  "width": 1100,
+  "height": 650
+}

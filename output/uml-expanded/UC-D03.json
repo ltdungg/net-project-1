@@ -1,0 +1,8 @@
+{
+  "id": "UC-D03",
+  "title": "Use case chi tiết: Đặt hàng và áp mã",
+  "caption": "Ca đặt hàng bắt buộc kiểm tra thông tin nhận hàng, tính lại giá và tổng tiền phía máy chủ, đồng thời kiểm tra và giữ hàng khả dụng. Áp mã giảm giá mở rộng ca đặt hàng khi người mua nhập mã, vì đơn vẫn có thể hoàn tất mà không dùng ưu đãi. Các liên kết xác định trách nhiệm bắt buộc và tùy chọn; thứ tự xử lý được trình bày trong sơ đồ trình tự.",
+  "reference": "PDF nguồn: tr. 42–45; áp dụng cho UC05, UC06 của NÉT",
+  "width": 1100,
+  "height": 650
+}

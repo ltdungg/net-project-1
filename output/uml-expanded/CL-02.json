@@ -1,0 +1,8 @@
+{
+  "id": "CL-02",
+  "title": "Biểu đồ lớp: đơn hàng, tồn kho và vận chuyển",
+  "caption": "Sơ đồ nối đơn và dòng đơn với thanh toán, kho, tồn kho, phần giữ hàng cùng phiếu giao và dòng kiện. Một đơn có thể được giao từ nhiều kho; dòng kiện liên kết hàng đã mua với phần tồn dành cho nó, còn snapshot giữ thông tin lịch sử. Cấu trúc này giải thích vì sao checkout tăng reserved, xuất kiện giảm tồn đúng phần giữ và hủy trước xuất chỉ giải phóng reserved.",
+  "reference": "PDF gốc tr. 64-77 (liên kết, bội số, kết nhập/hợp thành), tr. 79-82 (lớp thực thể), tr. 90. Đối chiếu docs/ba/05-data-model.md và Flyway V1/V7.",
+  "width": 1180,
+  "height": 920
+}

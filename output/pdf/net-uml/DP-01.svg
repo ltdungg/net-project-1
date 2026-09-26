@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="720" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="720"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-720)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="720" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polygon points="25 500, 38 513, 253 513, 240 500" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polygon points="240 500, 253 513, 253 368, 240 355" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="25" y="355" width="215" height="145" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="96.58251953125" y="473.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,946) scale(1,-1)">«device»</text>
+			<text x="89.037109375" y="451.75" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,903) scale(1,-1)">Máy khách</text>
+			<rect x="33" y="374" width="199" height="62" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="49.94873046875" y="409.75" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,819) scale(1,-1)">«executionEnvironment»</text>
+			<text x="94.564208984375" y="391.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,782) scale(1,-1)">Trình duyệt</text>
+			<polygon points="320 575, 333 588, 578 588, 565 575" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polygon points="565 575, 578 588, 578 223, 565 210" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="320" y="210" width="245" height="365" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="412.74169921875" y="548.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1096) scale(1,-1)">«node»</text>
+			<text x="391.9482421875" y="526.75" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1053) scale(1,-1)">Docker local</text>
+			<text x="360.293212890625" y="505.5" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1011) scale(1,-1)">stack net-commerce</text>
+			<rect x="335" y="318" width="215" height="157" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="352.809326171875" y="453.0" style="font-family: ArialB; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,906) scale(1,-1)">«executionEnvironment»</text>
+			<text x="383.212158203125" y="434.25" style="font-family: ArialB; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,868) scale(1,-1)">commerce :8787</text>
+			<text x="404.4853515625" y="415.5" style="font-family: ArialB; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,831) scale(1,-1)">Node.js 22</text>
+			<rect x="350" y="329" width="185" height="65" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="411.650390625" y="375.625" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,751) scale(1,-1)">«artifact»</text>
+			<text x="409.149169921875" y="356.875" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,713) scale(1,-1)">Web build</text>
+			<text x="375.3955078125" y="338.125" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,676) scale(1,-1)">Vinext / React / BFF</text>
+			<rect x="348" y="225" width="190" height="60" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="408.3125" y="260.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,520) scale(1,-1)">«volume»</text>
+			<text x="383.8671875" y="240.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,480) scale(1,-1)">commerce_state</text>
+			<polygon points="655 675, 668 688, 1078 688, 1065 675" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polygon points="1065 675, 1078 688, 1078 98, 1065 85" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="655" y="85" width="410" height="590" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="777.328369140625" y="648.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1296) scale(1,-1)">«node» Docker local</text>
+			<text x="758.419189453125" y="626.75" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1253) scale(1,-1)">stack net-commerce-java</text>
+			<rect x="705" y="462" width="310" height="126" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="770.809326171875" y="566.0" style="font-family: ArialB; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1132) scale(1,-1)">«executionEnvironment»</text>
+			<text x="777.03125" y="547.25" style="font-family: ArialB; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1094) scale(1,-1)">api :8080 / JVM Java 21</text>
+			<rect x="722" y="474" width="276" height="54" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="829.150390625" y="505.75" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1011) scale(1,-1)">«artifact»</text>
+			<text x="755.79833984375" y="487.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,974) scale(1,-1)">commerce-api.jar (Spring Boot)</text>
+			<polygon points="690 355, 703 368, 858 368, 845 355" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polygon points="845 355, 858 368, 858 235, 845 222" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="690" y="222" width="155" height="133" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="719.787109375" y="328.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,656) scale(1,-1)">«container»</text>
+			<text x="706.56396484375" y="306.75" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,613) scale(1,-1)">PostgreSQL 17</text>
+			<text x="746.98046875" y="271.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,542) scale(1,-1)">:5432</text>
+			<text x="716.296875" y="251.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,502) scale(1,-1)">postgres_data</text>
+			<polygon points="884 355, 897 368, 1052 368, 1039 355" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polygon points="1039 355, 1052 368, 1052 235, 1039 222" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="884" y="222" width="155" height="133" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="913.787109375" y="328.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,656) scale(1,-1)">«container»</text>
+			<text x="924.175537109375" y="306.75" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,613) scale(1,-1)">Redis 7.4</text>
+			<text x="940.98046875" y="271.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,542) scale(1,-1)">:6379</text>
+			<text x="923.640625" y="251.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,502) scale(1,-1)">redis_data</text>
+			<rect x="705" y="114" width="315" height="56" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="777.546875" y="147.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,294) scale(1,-1)">«volume» uploads_data</text>
+			<text x="798.890625" y="127.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,254) scale(1,-1)">/app/data/uploads</text>
+			<path d="M 240,412 L 320,412 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="254.11328125" y="418.0" width="49.7734375" height="42.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="258.11328125" y="442.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,884) scale(1,-1)">HTTP</text>
+			<text x="258.98046875" y="422.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,844) scale(1,-1)">:8787</text>
+			<path d="M 565,413 L 612,413 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 612,413 L 612,537 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 612,537 L 705,537 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="372.9765625" y="611.0" width="184.046875" height="42.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="376.9765625" y="635.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1270) scale(1,-1)">BFF → API: HTTP :8080</text>
+			<text x="395.18359375" y="615.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1230) scale(1,-1)">host.docker.internal</text>
+			<path d="M 795,462 L 795,420 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 795,420 L 767,420 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 767,420 L 767,355 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="741.109375" y="430.0" width="49.78125" height="22.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="745.109375" y="434.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,868) scale(1,-1)">JDBC</text>
+			<path d="M 950,462 L 950,420 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 950,420 L 961,420 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 961,420 L 961,355 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="944.0" y="430.0" width="40.0" height="22.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="948.0" y="434.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,868) scale(1,-1)">TCP</text>
+			<path d="M 705,519 L 675,519 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 675,519 L 675,143 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 675,143 L 705,143 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="660.998779296875" y="186.25" width="28.00244140625" height="20.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="664.998779296875" y="190.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,380) scale(1,-1)">I/O</text>
+			<path d="M 443,318 L 443,285 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="30" y="14" width="1035" height="55" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="211.453857421875" y="46.25" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,92) scale(1,-1)">Hai stack Docker chạy trên cùng máy phát triển. Compose tổ chức container; các volume giữ dữ liệu.</text>
+			<text x="296.092529296875" y="27.5" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,55) scale(1,-1)">Đây là topology local/demo trong repository, chưa phải kiến trúc production.</text>
+		</g>
+	</g>
+</svg>

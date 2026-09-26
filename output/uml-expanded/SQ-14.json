@@ -1,0 +1,9 @@
+{
+  "id": "SQ-14",
+  "uc": "UC15",
+  "title": "Sequence: UC15 Xem báo cáo vận hành và tài chính",
+  "caption": "Manager hoặc Admin chọn kỳ để xem báo cáo vận hành hay tài chính. Hệ thống kiểm khoảng ngày tối đa 366 ngày, sử dụng múi giờ Việt Nam và đọc dữ liệu nhất quán để trả chỉ số, chuỗi ngày hoặc sổ thanh toán. Doanh thu vận hành chỉ tính đơn đã trả tiền và loại đơn hủy, hoàn hàng, hoàn tiền; dữ liệu báo cáo rỗng vẫn là kết quả hợp lệ.",
+  "reference": "UC15; AdminReportController; AdminReportService.overview/finance; ReportDateRangePolicy. Chỉ số tài chính được tính riêng từ payments, không đồng nhất mọi số tiền đã ghi nhận với doanh thu thuần.",
+  "width": 1300,
+  "height": 646
+}

@@ -1,0 +1,9 @@
+{
+  "id": "AD-08",
+  "uc": "UC05",
+  "title": "Activity: UC05 Kiểm tra và áp mã giảm giá",
+  "caption": "Hệ thống kiểm tra giỏ, chuẩn hóa mã rồi đánh giá trạng thái, thời hạn, lượt sử dụng và giá trị tối thiểu của ưu đãi. Mã hợp lệ thay thế mã đang có vì mỗi giỏ chỉ lưu một mã, sau đó máy chủ tính lại tổng tiền. Kết quả ở giỏ là tạm tính; checkout kiểm tra lại điều kiện và giới hạn sử dụng theo khách.",
+  "reference": "UC05 của báo cáo; cart/CartService.java, applyVoucher/evaluate/validateCustomerUsage; docs/ba/03-business-rules.md, BR-PRO-01/02.",
+  "width": 1300,
+  "height": 857.0
+}

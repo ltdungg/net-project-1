@@ -1,0 +1,8 @@
+{
+  "id": "PK-01",
+  "title": "Biểu đồ gói: mô hình phân tích và các package mã nguồn",
+  "caption": "Hai khung được phân biệt rõ: gói Boundary/Control/Entity là cách tổ chức mô hình giảng dạy; bên phải là tập con namespace Java đã có. Mũi tên đứt thể hiện sử dụng/import. OrderService dùng CartService; CartService dùng CatalogService; OrderService dùng AccountService. Không dựng chuỗi import giả order → inventory → fulfillment: các service hiện dùng JdbcClient truy cập SQL trực tiếp.",
+  "reference": "PDF gốc tr. 27-32 (tổ chức các góc nhìn), tr. 90 (package diagram). Đối chiếu platform/backend/src/main/java/vn/netfashion/commerce và platform/ARCHITECTURE.md.",
+  "width": 1100,
+  "height": 690
+}

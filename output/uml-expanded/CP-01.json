@@ -1,0 +1,8 @@
+{
+  "id": "CP-01",
+  "title": "Biểu đồ thành phần của NÉT Commerce",
+  "caption": "Sơ đồ mô tả Storefront và Backoffice cùng sử dụng BFF để gọi API nghiệp vụ Spring Boot. API tập hợp các mô-đun nghiệp vụ trong một ứng dụng, truy cập PostgreSQL để lưu dữ liệu, Redis cho cache hoặc giới hạn tần suất, và volume media cho tệp. Các đường phụ thuộc làm rõ trách nhiệm thành phần; thanh toán và vận chuyển chưa được hiểu là tích hợp thương mại tự động.",
+  "reference": "PDF gốc tr. 27-32 (các loại biểu đồ, góc nhìn UML), tr. 90 (component/deployment/package). Kiến trúc thực tế: platform/ARCHITECTURE.md.",
+  "width": 1100,
+  "height": 690
+}

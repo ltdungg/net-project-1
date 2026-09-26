@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="690" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 690" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="690"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-690)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="690" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="30" y="345" width="640" height="300" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="164.51123046874997" y="614.0" style="font-family: ArialB; font-size: 18px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1228) scale(1,-1)">«component» Ứng dụng web Vinext / React</text>
+			<rect x="65" y="490" width="240" height="80" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="145.47998046875" y="524.25" style="font-family: Arial; font-size: 18px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1048) scale(1,-1)">Storefront</text>
+			<rect x="274" y="539" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="269" y="552" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="269" y="541" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="65" y="365" width="240" height="70" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="143.48046875" y="394.25" style="font-family: Arial; font-size: 18px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,788) scale(1,-1)">Backoffice</text>
+			<rect x="274" y="404" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="269" y="417" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="269" y="406" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="415" y="405" width="220" height="90" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="508.9462890625" y="455.25" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,910) scale(1,-1)">BFF</text>
+			<text x="460.282958984375" y="434.0" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,868) scale(1,-1)">/api/commerce/**</text>
+			<rect x="604" y="464" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="599" y="477" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="599" y="466" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="780" y="365" width="280" height="220" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="867.07421875" y="522.75" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1045) scale(1,-1)">API nghiệp vụ</text>
+			<text x="875.58251953125" y="501.5" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1003) scale(1,-1)">Spring Boot</text>
+			<text x="920.0" y="480.25" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,960) scale(1,-1)"></text>
+			<text x="842.051513671875" y="459.0" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,918) scale(1,-1)">Auth · Catalog · Cart</text>
+			<text x="857.175537109375" y="437.75" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,875) scale(1,-1)">Order · Payment</text>
+			<text x="838.751953125" y="416.5" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,833) scale(1,-1)">Inventory · Fulfillment</text>
+			<rect x="1029" y="554" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="1024" y="567" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="1024" y="556" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 305,530 L 358,530 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 358,530 L 358,465 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 358,465 L 415,465 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 406.895976,461.08531 L 415,465 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 415,465 L 406.895976,468.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 305,400 L 358,400 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 358,400 L 358,430 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 358,430 L 415,430 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 406.895976,426.08531 L 415,430 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 415,430 L 406.895976,433.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="318.309326171875" y="468.25" width="81.38134765625" height="20.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="322.309326171875" y="472.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,944) scale(1,-1)">cùng origin</text>
+			<path d="M 635,450 L 780,450 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 771.895976,446.08531 L 780,450 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 780,450 L 771.895976,453.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="674.743896484375" y="466.25" width="100.51220703125" height="20.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="678.743896484375" y="470.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,940) scale(1,-1)">REST / JSON</text>
+			<rect x="60" y="100" width="250" height="95" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="126.882080078125" y="152.75" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,305) scale(1,-1)">PostgreSQL 17</text>
+			<text x="118.35302734375" y="131.5" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,263) scale(1,-1)">Dữ liệu nghiệp vụ</text>
+			<rect x="279" y="164" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="274" y="177" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="274" y="166" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="420" y="100" width="250" height="95" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="516.1796875" y="152.75" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,305) scale(1,-1)">Redis 7</text>
+			<text x="481.229248046875" y="131.5" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,263) scale(1,-1)">Cache / rate limit</text>
+			<rect x="639" y="164" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="634" y="177" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="634" y="166" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="780" y="100" width="250" height="95" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="851.13623046875" y="152.75" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,305) scale(1,-1)">Media storage</text>
+			<text x="844.043212890625" y="131.5" style="font-family: Arial; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,263) scale(1,-1)">Volume uploads</text>
+			<rect x="999" y="164" width="19" height="22" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="994" y="177" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="994" y="166" width="9" height="6" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 820,365 L 820,310 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 820,310 L 185,310 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 185,310 L 185,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 181.08531,203.104024 L 185,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 185,195 L 188.91469,203.104024 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="277.75" y="314.0" width="204.5" height="22.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="281.75" y="318.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,636) scale(1,-1)">JDBC / transaction / Flyway</text>
+			<path d="M 920,365 L 920,270 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 920,270 L 545,270 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 545,270 L 545,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 541.08531,203.104024 L 545,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 545,195 L 548.91469,203.104024 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="637.86328125" y="272.0" width="110.2734375" height="22.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="641.86328125" y="276.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,552) scale(1,-1)">Redis protocol</text>
+			<path d="M 1020,365 L 1020,235 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 1020,235 L 905,235 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 905,235 L 905,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 901.08531,203.104024 L 905,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 905,195 L 908.91469,203.104024 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="937.21875" y="239.0" width="59.5625" height="22.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="941.21875" y="243.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,486) scale(1,-1)">File I/O</text>
+			<rect x="30" y="21" width="1030" height="44" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="169.6484375" y="38.375" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,76) scale(1,-1)">API là một modular monolith. Thanh toán online là mock + webhook HMAC; vận chuyển được cập nhật thủ công.</text>
+		</g>
+	</g>
+</svg>

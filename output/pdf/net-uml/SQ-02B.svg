@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="650" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 650" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="650"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-650)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="650" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="70.0" cy="625" r="17" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<path d="M 41,643 L 41,607 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 41,625 L 53,625 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="26.03125" y="579.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1158) scale(1,-1)">ui:DonHangUI</text>
+			<path d="M 70,542 L 70,25 Z" style="stroke: rgb(50%,46%,50%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<circle cx="390.0" cy="625" r="17" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<path d="M 395,642 L 385,647 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 385,647 L 385,635 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 381.08531,643.104024 L 385,635 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 385,635 L 388.91469,643.104024 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="328.91748046875" y="579.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1158) scale(1,-1)">ctl:CheckoutControl</text>
+			<path d="M 390,542 L 390,25 Z" style="stroke: rgb(50%,46%,50%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<circle cx="710.0" cy="625" r="17" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<path d="M 690,605 L 730,605 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="672.251953125" y="579.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1158) scale(1,-1)">kho:TonKho</text>
+			<path d="M 710,542 L 710,25 Z" style="stroke: rgb(50%,46%,50%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<circle cx="1030.0" cy="625" r="17" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<path d="M 1010,605 L 1050,605 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="990.693359375" y="579.0" style="font-family: Arial; font-size: 14px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1158) scale(1,-1)">dh:DonHang</text>
+			<path d="M 1030,542 L 1030,25 Z" style="stroke: rgb(50%,46%,50%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<rect x="385.0" y="59" width="10.0" height="471" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,97%,69%); fill-rule: evenodd;"/>
+			<path d="M 70,530 L 390,530 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="381.896 526.0853, 390 530, 381.896 533.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="139.344970703125" y="536.75" width="181.31005859375" height="18.25" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="143.344970703125" y="540.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1080) scale(1,-1)">1. datHang(khóa mới, dữ liệu)</text>
+			<path d="M 390,476 L 428,476 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 428,476 L 428,459 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 428,459 L 390,459 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="398.104 462.9147, 390 459, 398.104 455.0853" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<text x="434.0" y="471.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,942) scale(1,-1)">2. Xác nhận khóa mới; tính lại tổng</text>
+			<rect x="32" y="119" width="1048" height="309" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: none; fill-rule: evenodd;"/>
+			<rect x="32" y="404" width="82" height="24" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="66.135009765625" y="412.125" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,824) scale(1,-1)">alt</text>
+			<text x="125" y="412.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,824) scale(1,-1)">[dữ liệu hợp lệ, mỗi SKU đủ tại một kho]</text>
+			<path d="M 390,381 L 710,381 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="701.896 377.0853, 710 381, 701.896 384.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="447.43994140625" y="387.75" width="205.1201171875" height="18.25" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="451.43994140625" y="391.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,782) scale(1,-1)">3. giuHang() có kiểm tra đồng thời</text>
+			<path d="M 390,336 L 1030,336 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="1021.896 332.0853, 1030 336, 1021.896 339.9147" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<rect x="590.35205078125" y="342.75" width="239.2958984375" height="18.25" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="594.35205078125" y="346.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,692) scale(1,-1)">4. tao() + dòng hàng + bản ghi liên quan</text>
+			<path d="M 390,291 L 70,291 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 78.104024,294.91469 L 70,291 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 70,291 L 78.104024,287.08531 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="148.126953125" y="297.75" width="163.74609375" height="18.25" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="152.126953125" y="301.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,602) scale(1,-1)">5. Commit; trả mã đơn mới</text>
+			<path d="M 32,280 L 1080,280 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<text x="125" y="262.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,524) scale(1,-1)">[không đủ hàng / voucher hết hiệu lực / lỗi ghi]</text>
+			<path d="M 390,217 L 428,217 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 428,217 L 428,200 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 428,200 L 390,200 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="398.104 203.9147, 390 200, 398.104 196.0853" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(24%,20%,25%); fill-rule: evenodd;"/>
+			<text x="434.0" y="212.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,424) scale(1,-1)">6. Rollback toàn bộ giao dịch</text>
+			<path d="M 390,157 L 70,157 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 78.104024,160.91469 L 70,157 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 70,157 L 78.104024,153.08531 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="124.78027343749999" y="163.75" width="210.439453125" height="18.25" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="128.7802734375" y="167.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,334) scale(1,-1)">7. Báo lỗi; giữ giỏ để sửa và thử lại</text>
+			<rect x="438" y="40" width="610" height="53" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="559.27197265625" y="61.875" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,123) scale(1,-1)">Bất biến: không có đơn dở dang hoặc giữ hàng mồ côi.</text>
+			<text x="245.328369140625" y="9.0" style="font-family: Arial; font-size: 13px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,18) scale(1,-1)">Nếu khóa đã có đơn: trả đơn đó và dừng trước bước 2; không giữ hàng lần hai. Hình vẽ nhánh khóa mới.</text>
+		</g>
+	</g>
+</svg>

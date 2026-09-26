@@ -1,0 +1,9 @@
+{
+  "id": "AD-04",
+  "uc": "UC01",
+  "title": "Activity: UC01 Xem, tìm và lọc sản phẩm",
+  "caption": "Người mua tìm sản phẩm bằng từ khóa và bộ lọc, sau đó mở chi tiết để chọn màu và size. Khi không có kết quả hoặc sản phẩm đã ngừng công bố, luồng quay về bước tìm kiếm để người mua thay đổi lựa chọn. Giá và tồn khả dụng hỗ trợ lựa chọn biến thể; thao tác xem sản phẩm chưa giữ hàng.",
+  "reference": "UC01 của báo cáo; docs/ba/03-business-rules.md, BR-CAT-01; catalog/CatalogService.java; cách vẽ theo slide 83–89.",
+  "width": 1300,
+  "height": 775.0
+}

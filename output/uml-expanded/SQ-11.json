@@ -1,0 +1,9 @@
+{
+  "id": "SQ-11",
+  "uc": "UC09",
+  "title": "Sequence: UC09 Ghi nhận nghiệp vụ tồn kho",
+  "caption": "Nhân sự chọn nghiệp vụ và gửi dữ liệu cùng khóa chống lặp; riêng điều chỉnh tồn cần quyền Manager hoặc Admin. Hệ thống khóa những dòng tồn liên quan, kiểm điều kiện riêng của nhập, chuyển, kiểm kê hay điều chỉnh, rồi ghi chứng từ posted cùng movement và audit. Lệnh lặp trả chứng từ cũ; vi phạm reserved hoặc lỗi ghi làm toàn bộ giao dịch bị hủy.",
+  "reference": "UC09; InventoryService; InventoryController; docs/ba/02-use-cases.md mục tồn kho. Đây là khung tương tác chung của các command riêng, không phải một endpoint kho tổng hợp.",
+  "width": 1300,
+  "height": 722
+}

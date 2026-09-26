@@ -1,0 +1,9 @@
+{
+  "id": "SQ-08",
+  "uc": "UC05",
+  "title": "Sequence: UC05 Áp mã giảm giá cho giỏ hàng",
+  "caption": "Người mua nhập mã và hệ thống tính ưu đãi từ giá trị giỏ hàng ở phía máy chủ. Mã cần đang hoạt động, trong thời hạn, đáp ứng mức tiền tối thiểu và còn lượt; mỗi giỏ lưu một mã. Áp mã ở giỏ chưa tiêu thụ lượt sử dụng, vì checkout sẽ khóa và kiểm tra lại cả giới hạn theo khách trước khi ghi nhận đơn.",
+  "reference": "UC05; CartService.applyVoucher/evaluate/validateCustomerUsage; VoucherPolicy; OrderService.create. Xác thực giới hạn theo khách và tăng usage_count diễn ra ở checkout.",
+  "width": 1300,
+  "height": 684
+}

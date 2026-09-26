@@ -1,0 +1,9 @@
+{
+  "id": "SQ-07",
+  "uc": "UC04",
+  "title": "Sequence: UC04 Thêm và cập nhật giỏ hàng",
+  "caption": "Người mua chọn biến thể và số lượng để thêm hoặc sửa một dòng giỏ hàng. Hệ thống xác định giỏ qua token, kiểm tra biến thể đang bán và tồn khả dụng, rồi gộp dòng hoặc cập nhật số lượng tối đa 10 trước khi tính lại tổng. Thao tác giỏ không giữ tồn; xóa dòng cũng phải kiểm quyền sở hữu, còn lỗi dữ liệu hoặc thiếu hàng sẽ bị từ chối.",
+  "reference": "UC04; CartService.add/update/remove/ownedItem/cart; CartController; docs/ba/03-business-rules.md BR-CAR-01/02. Tồn chỉ được đọc ở giai đoạn giỏ.",
+  "width": 1300,
+  "height": 684
+}

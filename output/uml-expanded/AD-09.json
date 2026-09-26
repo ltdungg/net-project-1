@@ -1,0 +1,9 @@
+{
+  "id": "AD-09",
+  "uc": "UC07",
+  "title": "Activity: UC07 Tra cứu đơn của thành viên hoặc khách vãng lai",
+  "caption": "Thành viên phải có phiên hợp lệ và sở hữu đơn, còn khách vãng lai phải gửi guest token của đúng đơn qua header. Token khách có hạn bảy ngày; sai hoặc hết hạn trả lỗi không tìm thấy đơn để bảo vệ dữ liệu. Chỉ sau khi kiểm tra quyền thành công, hệ thống mới trả chi tiết mặt hàng, lịch sử và tiến độ từng kiện giao.",
+  "reference": "UC07 của báo cáo; docs/ba/02-use-cases.md, mục 4; order/OrderService.java; docs/ba/03-business-rules.md, BR-GST-02/03/04.",
+  "width": 1300,
+  "height": 722.0
+}

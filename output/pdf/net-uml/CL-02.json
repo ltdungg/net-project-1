@@ -1,0 +1,8 @@
+{
+  "id": "CL-02",
+  "title": "Biểu đồ lớp: đơn hàng, tồn kho và vận chuyển",
+  "caption": "DonHang hợp thành 1..* DongDonHang; PhieuGiao hợp thành 1..* DongPhieuGiao. ThanhToan của một đơn có bội số 0..*. TonKho duy nhất theo biến thể và kho. Dòng kiện liên kết dòng đơn và lượng giao. Bội số 0..1 của SKU lịch sử, kho của kiện cũ và reservation phản ánh FK có thể null; checkout mới gán đúng SKU, kho và reservation. Composition biểu diễn sở hữu nghiệp vụ, không yêu cầu xóa dây chuyền bản ghi. Các sự kiện/lịch sử chỉ ghi nối tiếp được lược khỏi hình.",
+  "reference": "PDF gốc tr. 64-77 (liên kết, bội số, kết nhập/hợp thành), tr. 79-82 (lớp thực thể), tr. 90. Đối chiếu docs/ba/05-data-model.md và Flyway V1/V7.",
+  "width": 1180,
+  "height": 920
+}

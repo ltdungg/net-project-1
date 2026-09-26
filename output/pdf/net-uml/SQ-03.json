@@ -1,0 +1,8 @@
+{
+  "id": "SQ-03",
+  "title": "Sequence: UC11 Hủy đơn trước khi giao",
+  "caption": "Nhân sự có quyền hủy; khách chưa có API tự hủy. Bước 5 hủy đồng bộ đơn, mọi phiếu giao và payment chưa thu. Giải phóng giữ hàng, trạng thái và lịch sử được cập nhật trong cùng giao dịch.",
+  "reference": "PDF nguồn: tr. 52–58; NÉT: OrderController và quy tắc hủy đơn",
+  "width": 1100,
+  "height": 650
+}

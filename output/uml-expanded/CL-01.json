@@ -1,0 +1,8 @@
+{
+  "id": "CL-01",
+  "title": "Biểu đồ lớp: danh mục, tài khoản và giỏ hàng",
+  "caption": "Sơ đồ liên kết danh mục, sản phẩm và biến thể với tài khoản, giỏ hàng và dòng giỏ. Mỗi dòng giỏ chọn một biến thể cụ thể, còn tài khoản là tùy chọn để hỗ trợ khách vãng lai qua guest token. Các quan hệ và bội số giải thích cách tổ chức dữ liệu trước đặt hàng; thêm sản phẩm vào giỏ chưa tạo đơn hoặc giữ tồn, và tên lớp là mô hình phân tích.",
+  "reference": "PDF gốc tr. 60-77 (lớp, thuộc tính, phương thức, quan hệ), tr. 79-82 (ví dụ), tr. 90 (bài tập).",
+  "width": 1100,
+  "height": 660
+}

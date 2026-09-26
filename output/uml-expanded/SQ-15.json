@@ -1,0 +1,9 @@
+{
+  "id": "SQ-15",
+  "uc": "UC16",
+  "title": "Sequence: UC16 Đổi trạng thái tài khoản khách hàng",
+  "caption": "Admin chọn trạng thái tài khoản khách hàng và nhập lý do nếu vô hiệu hóa. Hệ thống khóa tài khoản, chặn tự vô hiệu hóa và tài khoản đã xóa, sau đó đổi trạng thái kèm audit, outbox; nhánh vô hiệu hóa thu hồi refresh token. Yêu cầu không làm thay đổi trạng thái trả kết quả hiện tại, còn lỗi kiểm tra hoặc xung đột ghi không để lại cập nhật dở dang.",
+  "reference": "UC16; AdminCustomerController.changeStatus; AdminCustomerService.changeStatus; AdminCustomerPolicy.validateStatusChange. API disabled ánh xạ trạng thái lưu blocked; không mô tả vô hiệu hóa tức thì mọi access JWT.",
+  "width": 1300,
+  "height": 720
+}

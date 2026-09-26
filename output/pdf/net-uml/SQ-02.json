@@ -1,0 +1,8 @@
+{
+  "id": "SQ-02",
+  "title": "Sequence: UC06 Đặt hàng COD thành công",
+  "caption": "Kiểm khóa yêu cầu, giá/voucher, khóa tồn và ghi đơn nằm trong cùng giao dịch. Khung critical chỉ biểu thị vùng chống xen kẽ, không tự đồng nghĩa transaction. Đơn lưu snapshot; COD chưa được đánh dấu đã thanh toán.",
+  "reference": "PDF nguồn: tr. 52–58; quy tắc NÉT: docs/ba/03-business-rules.md",
+  "width": 1100,
+  "height": 650
+}

@@ -1,0 +1,9 @@
+{
+  "id": "AD-11",
+  "uc": "UC09",
+  "title": "Activity: UC09 Ghi chứng từ nhập, chuyển, kiểm kê và điều chỉnh kho",
+  "caption": "Nhân viên chọn nhập, chuyển hoặc kiểm kê kho; riêng điều chỉnh yêu cầu Manager hoặc Admin. Hệ thống nhận diện yêu cầu lặp trước khi khóa và thay đổi tồn, đồng thời bảo đảm lượng sau xử lý không thấp hơn phần đã giữ. Mỗi lệnh hợp lệ tạo chứng từ posted, biến động và nhật ký trong một giao dịch; chuyển kho yêu cầu hai kho khác nhau.",
+  "reference": "UC09 của báo cáo; docs/ba/03-business-rules.md BR-INV-07 đến BR-INV-10; inventory/InventoryController.java; inventory/InventoryService.java",
+  "width": 1300,
+  "height": 813.0
+}

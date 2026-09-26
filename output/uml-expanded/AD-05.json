@@ -1,0 +1,9 @@
+{
+  "id": "AD-05",
+  "uc": "UC02",
+  "title": "Activity: UC02 Đăng ký và xác minh tài khoản",
+  "caption": "Đăng ký hợp lệ tạo tài khoản chờ xác minh, mật khẩu đã băm và token dùng một lần có thời hạn 24 giờ. Hệ thống hiện ghi sự kiện vào outbox và hỗ trợ token demo ở local, chưa có bộ gửi email tự động. Khi token hợp lệ, tài khoản được kích hoạt và nhận phiên đăng nhập; token sai hoặc hết hạn bị từ chối.",
+  "reference": "UC02 của báo cáo; docs/ba/02-use-cases.md, mục 3; auth/AuthService.java và AuthController.java; cách vẽ theo slide 83–89.",
+  "width": 1300,
+  "height": 866.0
+}

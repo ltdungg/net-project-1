@@ -1,0 +1,9 @@
+{
+  "id": "SQ-05",
+  "uc": "UC01",
+  "title": "Sequence: UC01 Xem, tìm và lọc sản phẩm",
+  "caption": "Người mua mở danh mục, nhập tiêu chí và chọn sản phẩm để xem chi tiết. Hệ thống cung cấp sản phẩm cùng biến thể đang hoạt động, giá và tồn khả dụng tại các kho hoạt động; giao diện thực hiện lọc theo lựa chọn. Khi không có kết quả, giao diện thông báo để người mua đổi tiêu chí, chưa phát sinh giỏ hàng hay giữ tồn.",
+  "reference": "UC01; CatalogService.products/product/loadProducts; docs/ba/03-business-rules.md, BR-CAT-01 và BR-INV-03. Các đối tượng là mô hình phân tích.",
+  "width": 1300,
+  "height": 684
+}

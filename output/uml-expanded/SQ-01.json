@@ -1,0 +1,8 @@
+{
+  "id": "SQ-01",
+  "title": "Sequence: UC03 Đăng nhập",
+  "caption": "Người dùng nhập email và mật khẩu qua giao diện, sau đó lớp điều khiển yêu cầu đối chiếu thông tin tài khoản. Khi thông tin đúng và tài khoản được phép đăng nhập, hệ thống tạo phiên, nạp quyền và mở trang phù hợp. Sai thông tin hoặc tài khoản không khả dụng dẫn đến thông báo lỗi và cho nhập lại; lần xác thực thất bại không cấp phiên mới.",
+  "reference": "PDF nguồn: tr. 53–59",
+  "width": 1100,
+  "height": 650
+}

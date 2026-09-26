@@ -1,0 +1,9 @@
+{
+  "id": "AD-10",
+  "uc": "UC08",
+  "title": "Activity: UC08 Tạo sản phẩm hoặc khuyến mãi",
+  "caption": "Sơ đồ minh họa UC08 khi Manager hoặc Admin tạo sản phẩm hay khuyến mãi, với bước kiểm tra quyền trước khi ghi. Dữ liệu phải đúng định dạng, mã không trùng, đối tượng liên quan tồn tại và thời gian khuyến mãi hợp lệ. Các API hiện có thực hiện tạo mới; bản ghi cùng nhật ký chỉ có hiệu lực khi giao dịch thành công.",
+  "reference": "UC08 của báo cáo; docs/ba/03-business-rules.md mục 2; catalog/AdminCatalogController.java; catalog/CatalogService.java; platform/app/api/admin/promotions/route.ts",
+  "width": 1300,
+  "height": 816.0
+}

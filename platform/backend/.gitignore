@@ -1,0 +1,12 @@
+/target/
+/data/
+/uploads/
+
+.env
+*.log
+
+.idea/
+.vscode/
+.settings/
+.classpath
+.project

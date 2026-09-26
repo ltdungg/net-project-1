@@ -1,0 +1,8 @@
+{
+  "id": "SQ-04",
+  "title": "Sequence: UC12–UC13 Giao hàng và ghi nhận COD",
+  "caption": "Nhân viên cập nhật từng kiện qua các bước xuất kho và giao thành công, hệ thống tổng hợp lại trạng thái đơn sau mỗi lần cập nhật. Khi kiện chuyển shipped lần đầu, phần giữ tương ứng được tiêu thụ và cả on_hand lẫn reserved đều giảm đúng một lần. COD chỉ chuyển paid khi mọi kiện delivered, trong cùng giao dịch cập nhật kiện cuối; nhiều kiện có thể được xử lý đan xen.",
+  "reference": "PDF nguồn: tr. 52–58; NÉT: fulfillment và trạng thái tổng hợp",
+  "width": 1100,
+  "height": 650
+}

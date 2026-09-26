@@ -1,0 +1,9 @@
+{
+  "id": "SQ-09",
+  "uc": "UC07",
+  "title": "Sequence: UC07 Tra cứu đơn của thành viên và khách vãng lai",
+  "caption": "Thành viên tra cứu đơn bằng phiên đăng nhập và chỉ được xem đơn thuộc sở hữu của mình. Khách vãng lai gửi token trong header để hệ thống kiểm chữ ký, đúng mã đơn và thời hạn 7 ngày trước khi trả chi tiết công khai. Token sai, hết hạn hoặc quyền sở hữu không khớp được xử lý như không tìm thấy đơn; token không đưa vào URL.",
+  "reference": "UC07; OrderService.detail/guestDetail; OrderController; docs/ba/02-use-cases.md mục guest token. Đọc email snapshot là thao tác xác minh nội bộ, chưa cung cấp dữ liệu đơn ra ngoài.",
+  "width": 1300,
+  "height": 846
+}

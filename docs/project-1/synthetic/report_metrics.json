@@ -1,0 +1,43 @@
+{
+  "evidence_type": "SYN",
+  "dataset_id": "SYN-PH-P1-120-v1",
+  "pain_chart": [
+    {
+      "label": "Không chắc size",
+      "count": 74,
+      "denominator": 120
+    },
+    {
+      "label": "Khác ảnh-mô tả",
+      "count": 70,
+      "denominator": 120
+    },
+    {
+      "label": "Đổi trả khó-không rõ",
+      "count": 49,
+      "denominator": 120
+    },
+    {
+      "label": "Phí hoặc tổng tiền xuất hiện muộn",
+      "count": 46,
+      "denominator": 120
+    },
+    {
+      "label": "Không biết size-màu còn hàng",
+      "count": 53,
+      "denominator": 120
+    },
+    {
+      "label": "Tracking không rõ",
+      "count": 30,
+      "denominator": 120
+    },
+    {
+      "label": "Lo thanh toán online",
+      "count": 40,
+      "denominator": 120
+    }
+  ],
+  "valid_n": 120,
+  "source": "docs/project-1/synthetic/survey.json"
+}

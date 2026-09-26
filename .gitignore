@@ -1,0 +1,11 @@
+.docx-work/
+tmp/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+~$*
+node_modules/

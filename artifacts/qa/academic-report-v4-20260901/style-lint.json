@@ -1,0 +1,168 @@
+{
+  "input": "C:\\Users\\dungl\\OneDrive\\Ta\u0300i li\u00ea\u0323u\\ChatGPT\\online-store\\deliverables\\Bao-cao-do-an-website-ban-quan-ao-truc-tuyen.docx",
+  "fonts_by_char_count": {},
+  "direct_run_formatting_runs": 10439,
+  "direct_paragraph_formatting_paragraphs": 2407,
+  "heading_like_paragraphs_not_heading_style": [
+    {
+      "para_index": 1,
+      "text": "[T\u00caN TR\u01af\u1edcNG / H\u1eccC VI\u1ec6N]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 2,
+      "text": "[KHOA / B\u1ed8 M\u00d4N]",
+      "style": "Normal"
+    },
+    {
+      "para_index": 3,
+      "text": "B\u00c1O C\u00c1O \u0110\u1ed2 \u00c1N",
+      "style": "Normal"
+    },
+    {
+      "para_index": 4,
+      "text": "X\u00c2Y D\u1ef0NG WEBSITE B\u00c1N QU\u1ea6N \u00c1O\nTR\u1ef0C TUY\u1ebeN",
+      "style": "Normal"
+    },
+    {
+      "para_index": 6,
+      "text": "TP. H\u1ed2 CH\u00cd MINH, TH\u00c1NG 09 N\u0102M 2026",
+      "style": "Normal"
+    },
+    {
+      "para_index": 537,
+      "text": "H\u1ecdc ph\u1ea7n",
+      "style": "Normal"
+    },
+    {
+      "para_index": 539,
+      "text": "Gi\u1ea3ng vi\u00ean h\u01b0\u1edbng d\u1eabn",
+      "style": "Normal"
+    },
+    {
+      "para_index": 541,
+      "text": "Nh\u00f3m th\u1ef1c hi\u1ec7n",
+      "style": "Normal"
+    },
+    {
+      "para_index": 543,
+      "text": "Sinh vi\u00ean",
+      "style": "Normal"
+    },
+    {
+      "para_index": 545,
+      "text": "Th\u1eddi gian th\u1ef1c hi\u1ec7n",
+      "style": "Normal"
+    },
+    {
+      "para_index": 547,
+      "text": "N\u1ed9i dung",
+      "style": "Normal"
+    },
+    {
+      "para_index": 548,
+      "text": "M\u00f4 t\u1ea3",
+      "style": "Normal"
+    },
+    {
+      "para_index": 562,
+      "text": "T\u1eeb vi\u1ebft t\u1eaft",
+      "style": "Normal"
+    },
+    {
+      "para_index": 563,
+      "text": "Di\u1ec5n gi\u1ea3i",
+      "style": "Normal"
+    },
+    {
+      "para_index": 582,
+      "text": "M\u00e3",
+      "style": "Normal"
+    },
+    {
+      "para_index": 583,
+      "text": "M\u1ee5c ti\u00eau c\u1ee5 th\u1ec3",
+      "style": "Normal"
+    },
+    {
+      "para_index": 584,
+      "text": "Ti\u00eau ch\u00ed ho\u00e0n th\u00e0nh",
+      "style": "Normal"
+    },
+    {
+      "para_index": 603,
+      "text": "N\u1ed9i dung",
+      "style": "Normal"
+    },
+    {
+      "para_index": 604,
+      "text": "Trong ph\u1ea1m vi",
+      "style": "Normal"
+    },
+    {
+      "para_index": 605,
+      "text": "Ngo\u00e0i ph\u1ea1m vi",
+      "style": "Normal"
+    }
+  ],
+  "examples": {
+    "direct_paragraph_formatting": [
+      {
+        "para_index": 1,
+        "text": "[T\u00caN TR\u01af\u1edcNG / H\u1eccC VI\u1ec6N]",
+        "style": "Normal"
+      },
+      {
+        "para_index": 2,
+        "text": "[KHOA / B\u1ed8 M\u00d4N]",
+        "style": "Normal"
+      },
+      {
+        "para_index": 3,
+        "text": "B\u00c1O C\u00c1O \u0110\u1ed2 \u00c1N",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "text": "X\u00c2Y D\u1ef0NG WEBSITE B\u00c1N QU\u1ea6N \u00c1O\nTR\u1ef0C TUY\u1ebeN",
+        "style": "Normal"
+      },
+      {
+        "para_index": 5,
+        "text": "Ph\u00e2n t\u00edch y\u00eau c\u1ea7u \u00b7 Thi\u1ebft k\u1ebf h\u1ec7 th\u1ed1ng \u00b7 C\u00e0i \u0111\u1eb7t \u00b7 Ki\u1ec3m th\u1eed \u00b7 Tri\u1ec3n khai",
+        "style": "Normal"
+      }
+    ],
+    "direct_run_formatting": [
+      {
+        "para_index": 1,
+        "run_text": "[T\u00caN TR\u01af",
+        "style": "Normal"
+      },
+      {
+        "para_index": 1,
+        "run_text": "\u1edc",
+        "style": "Normal"
+      },
+      {
+        "para_index": 1,
+        "run_text": "NG / H",
+        "style": "Normal"
+      },
+      {
+        "para_index": 1,
+        "run_text": "\u1ecc",
+        "style": "Normal"
+      },
+      {
+        "para_index": 1,
+        "run_text": "C VI",
+        "style": "Normal"
+      }
+    ]
+  },
+  "notes": [
+    "Direct formatting is not always wrong, but it often causes inconsistent output when templates change.",
+    "Heading-like paragraphs not using Heading styles can break TOC and accessibility."
+  ]
+}

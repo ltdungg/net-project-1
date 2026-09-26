@@ -1,0 +1,9 @@
+{
+  "id": "AD-14",
+  "uc": "UC15",
+  "title": "Activity: UC15 Xem báo cáo vận hành và tài chính",
+  "caption": "Manager hoặc Admin chọn báo cáo tổng quan hay tài chính với khoảng ngày không quá 366 ngày và không vượt ngày hiện tại. Hệ thống dùng múi giờ Việt Nam, mặc định 30 ngày khi chưa chọn kỳ, rồi tổng hợp dữ liệu và hiển thị kết quả. Doanh thu đơn chỉ tính khoản đã thanh toán, loại đơn hủy, hoàn hàng và hoàn tiền; khoản chờ thanh toán được trình bày riêng.",
+  "reference": "UC15 của báo cáo; admin/report/AdminReportController.java; admin/report/AdminReportService.java; admin/report/ReportDateRangePolicy.java",
+  "width": 1300,
+  "height": 778.0
+}

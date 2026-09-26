@@ -1,0 +1,8 @@
+{
+  "id": "AD-01",
+  "title": "Activity: Mua hàng và đặt hàng COD",
+  "caption": "Ba phân làn thể hiện người chịu trách nhiệm. Hai nút quyết định có điều kiện loại trừ nhau. Nút kết thúc chỉ đạt được ở nhánh đặt hàng thành công; người mua có thể ngừng thao tác ở bất kỳ lần sửa nào.",
+  "reference": "PDF nguồn: tr. 83–89",
+  "width": 1100,
+  "height": 650
+}

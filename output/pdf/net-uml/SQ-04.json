@@ -1,0 +1,8 @@
+{
+  "id": "SQ-04",
+  "title": "Sequence: UC12–UC13 Giao hàng và ghi nhận COD",
+  "caption": "Nhân viên cập nhật thủ công. Mỗi vòng minh họa một kiện được xuất và giao xong; thực tế nhiều kiện có thể được cập nhật đan xen. Bước 9 nằm trong giao dịch delivered cuối: toàn đơn paid, payment succeeded. Xuất kho chỉ một lần.",
+  "reference": "PDF nguồn: tr. 52–58; NÉT: fulfillment và trạng thái tổng hợp",
+  "width": 1100,
+  "height": 650
+}

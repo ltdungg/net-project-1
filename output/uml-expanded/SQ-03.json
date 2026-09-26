@@ -1,0 +1,8 @@
+{
+  "id": "SQ-03",
+  "title": "Sequence: UC11 Hủy đơn trước khi giao",
+  "caption": "Nhân viên có quyền gửi yêu cầu hủy kèm lý do, hệ thống kiểm trạng thái đơn, thanh toán và các phiếu giao. Nếu chưa xuất kho và thanh toán chưa paid hoặc authorized, hệ thống giải phóng phần giữ hàng, hủy đồng bộ đơn cùng dữ liệu liên quan rồi ghi lịch sử trong một giao dịch. Yêu cầu không đủ điều kiện bị từ chối; hủy trước xuất chỉ giảm reserved, không tăng on_hand.",
+  "reference": "PDF nguồn: tr. 52–58; NÉT: OrderController và quy tắc hủy đơn",
+  "width": 1100,
+  "height": 650
+}

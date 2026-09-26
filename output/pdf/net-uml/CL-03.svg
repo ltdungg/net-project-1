@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1100" height="790" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1100 790" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1100" height="790"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-790)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1100" height="790" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="30" y="638.0" width="280" height="117.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="130.38330078125" y="735.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1470) scale(1,-1)">«boundary»</text>
+			<text x="119.0" y="713.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1426) scale(1,-1)">DangNhapUI</text>
+			<path d="M 30,702 L 310,702 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 30,690 L 310,690 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="38" y="668.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1336) scale(1,-1)">+ nhapThongTin()</text>
+			<text x="38" y="648.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1296) scale(1,-1)">+ hienThiKetQua()</text>
+			<rect x="420" y="658.0" width="270" height="97.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="524.146728515625" y="735.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1470) scale(1,-1)">«control»</text>
+			<text x="482.28515625" y="713.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1426) scale(1,-1)">DangNhapControl</text>
+			<path d="M 420,702 L 690,702 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 420,690 L 690,690 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="428" y="668.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1336) scale(1,-1)">+ dangNhap()</text>
+			<rect x="810" y="638.0" width="260" height="117.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="913.731689453125" y="735.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1470) scale(1,-1)">«entity»</text>
+			<text x="901.27685546875" y="713.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1426) scale(1,-1)">TaiKhoan</text>
+			<path d="M 810,702 L 1070,702 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,670 L 1070,670 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="818" y="680.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1360) scale(1,-1)">- email: String</text>
+			<text x="818" y="648.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,1296) scale(1,-1)">+ xacThuc()</text>
+			<rect x="30" y="333.0" width="280" height="137.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="130.38330078125" y="450.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,900) scale(1,-1)">«boundary»</text>
+			<text x="123.727294921875" y="428.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,856) scale(1,-1)">DonHangUI</text>
+			<path d="M 30,417 L 310,417 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 30,405 L 310,405 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="38" y="383.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,766) scale(1,-1)">+ guiYeuCauDatHang()</text>
+			<text x="38" y="363.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,726) scale(1,-1)">+ guiLenhVanHanh()</text>
+			<text x="38" y="343.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,686) scale(1,-1)">+ hienThiKetQua()</text>
+			<rect x="420" y="413.0" width="270" height="97.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="524.146728515625" y="490.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,980) scale(1,-1)">«control»</text>
+			<text x="486.057861328125" y="468.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,936) scale(1,-1)">CheckoutControl</text>
+			<path d="M 420,457 L 690,457 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 420,445 L 690,445 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="428" y="423.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,846) scale(1,-1)">+ datHang()</text>
+			<rect x="810" y="413.0" width="260" height="97.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="913.731689453125" y="490.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,980) scale(1,-1)">«entity»</text>
+			<text x="904.584716796875" y="468.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,936) scale(1,-1)">GioHang</text>
+			<path d="M 810,457 L 1070,457 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,445 L 1070,445 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="818" y="423.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,846) scale(1,-1)">+ layDongHang()</text>
+			<rect x="420" y="103.0" width="270" height="157.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="524.146728515625" y="240.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,480) scale(1,-1)">«control»</text>
+			<text x="487.012451171875" y="218.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,436) scale(1,-1)">DonHangControl</text>
+			<path d="M 420,207 L 690,207 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 420,195 L 690,195 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="428" y="173.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,346) scale(1,-1)">+ huyDon()</text>
+			<text x="428" y="153.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,306) scale(1,-1)">+ giaoHang()</text>
+			<text x="428" y="133.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,266) scale(1,-1)">+ xacNhanGiao()</text>
+			<text x="428" y="113.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,226) scale(1,-1)">+ ghiNhanCOD()</text>
+			<rect x="810" y="103.0" width="260" height="157.0" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,99%,83%); fill-rule: evenodd;"/>
+			<text x="913.731689453125" y="240.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,480) scale(1,-1)">«entity»</text>
+			<text x="902.227294921875" y="218.0" style="font-family: ArialB; font-size: 17px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,436) scale(1,-1)">DonHang</text>
+			<path d="M 810,207 L 1070,207 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,175 L 1070,175 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<text x="818" y="185.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,370) scale(1,-1)">- trangThai: String</text>
+			<text x="818" y="153.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,306) scale(1,-1)">+ tao()</text>
+			<text x="818" y="133.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,266) scale(1,-1)">+ huy()</text>
+			<text x="818" y="113.0" style="font-family: Arial; font-size: 16px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,226) scale(1,-1)">+ capNhatTongHop()</text>
+			<path d="M 310,695 L 420,695 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 411.895976,691.08531 L 420,695 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 420,695 L 411.895976,698.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 690,695 L 810,695 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 801.895976,691.08531 L 810,695 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,695 L 801.895976,698.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 310,425 L 365,425 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 365,425 L 365,465 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 365,465 L 420,465 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 411.895976,461.08531 L 420,465 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 420,465 L 411.895976,468.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 310,370 L 365,370 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 365,370 L 365,200 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 365,200 L 420,200 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 411.895976,196.08531 L 420,200 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 420,200 L 411.895976,203.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 690,460 L 810,460 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 801.895976,456.08531 L 810,460 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,460 L 801.895976,463.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 690,440 L 745,440 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 745,440 L 745,205 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 745,205 L 810,205 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 801.895976,201.08531 L 810,205 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,205 L 801.895976,208.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 690,150 L 810,150 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 5, 4;"/>
+			<path d="M 801.895976,146.08531 L 810,150 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<path d="M 810,150 L 801.895976,153.91469 Z" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<rect x="724.8154296875" y="461.25" width="56.369140625" height="20.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="728.8154296875" y="465.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,930) scale(1,-1)">đọc giỏ</text>
+			<rect x="728.229736328125" y="346.25" width="59.54052734375" height="20.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="732.229736328125" y="350.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,700) scale(1,-1)">tạo đơn</text>
+			<rect x="705.636962890625" y="113.25" width="94.72607421875" height="20.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="709.636962890625" y="117.0" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,234) scale(1,-1)">đổi trạng thái</text>
+			<rect x="30" y="19" width="1040" height="51" style="stroke: rgb(24%,20%,25%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="242.064208984375" y="49.25" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,98) scale(1,-1)">Lớp thiết kế khái niệm. DonHangControl điều phối PhieuGiao, TonKho, ThanhToan ở CL-02.</text>
+			<text x="272.738037109375" y="30.5" style="font-family: Arial; font-size: 15px;fill: rgb(24%,20%,25%); stroke:none;" transform="translate(0,61) scale(1,-1)">Các lệnh hủy/giao/xác nhận giao thuộc giao diện backoffice và phải kiểm tra quyền.</text>
+		</g>
+	</g>
+</svg>

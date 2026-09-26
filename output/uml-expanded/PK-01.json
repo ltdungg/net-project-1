@@ -1,0 +1,8 @@
+{
+  "id": "PK-01",
+  "title": "Biểu đồ gói: mô hình phân tích và các package mã nguồn",
+  "caption": "Sơ đồ đối chiếu cách nhóm mô hình phân tích thành Boundary, Control, Entity với một tập con package Java thực tế. Các phụ thuộc tiêu biểu gồm order sử dụng cart và account, cart sử dụng catalog, account sử dụng auth, rồi auth sử dụng common. Cách nhìn này giúp xác định phạm vi ảnh hưởng khi thay đổi mã; package là đơn vị tổ chức phần mềm, không đồng nghĩa mỗi gói là một dịch vụ riêng.",
+  "reference": "PDF gốc tr. 27-32 (tổ chức các góc nhìn), tr. 90 (package diagram). Đối chiếu platform/backend/src/main/java/vn/netfashion/commerce và platform/ARCHITECTURE.md.",
+  "width": 1100,
+  "height": 690
+}

@@ -1,0 +1,9 @@
+{
+  "id": "AD-07",
+  "uc": "UC04",
+  "title": "Activity: UC04 Thêm, sửa và xóa sản phẩm trong giỏ",
+  "caption": "Người mua thêm, sửa hoặc xóa dòng giỏ; hệ thống xác định giỏ bằng token và kiểm tra quyền với dòng cần thay đổi. Thêm hoặc sửa phải có đủ tồn khả dụng, cùng SKU được gộp thành một dòng với số lượng tối đa 10. Sau thay đổi, giá và tổng tiền được tính lại; giỏ chưa giữ tồn và checkout phải kiểm tra hàng lần nữa.",
+  "reference": "UC04 của báo cáo; cart/CartController.java và CartService.java; docs/ba/03-business-rules.md, BR-CAR-01/02, BR-PRI-01.",
+  "width": 1300,
+  "height": 860.0
+}

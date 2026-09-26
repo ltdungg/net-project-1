@@ -1,0 +1,8 @@
+{
+  "id": "CL-03",
+  "title": "Biểu đồ lớp thiết kế theo boundary - control - entity",
+  "caption": "Boundary nhận dữ liệu và hiển thị kết quả; control thực hiện điều phối ca sử dụng; entity biểu diễn trạng thái nghiệp vụ. Mũi tên đứt là dependency. Tên/phương thức tiếng Việt đồng bộ với sequence diagram, là mô hình thiết kế giảng dạy. Mã hiện tại sử dụng Controller/Service và JdbcClient, không có một lớp Java cho mỗi entity; authority cập nhật giao hàng nằm ở Fulfillment.",
+  "reference": "PDF gốc tr. 53-56 (boundary/control/entity), tr. 58-59 (đối tượng tương tác), tr. 60-63 (lớp), tr. 73-82 (xác định lớp), tr. 90.",
+  "width": 1100,
+  "height": 790
+}

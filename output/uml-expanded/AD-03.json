@@ -1,0 +1,8 @@
+{
+  "id": "AD-03",
+  "title": "Activity: Mẫu chuẩn bị kiện song song",
+  "caption": "Sơ đồ đề xuất chuẩn bị kiện bằng hai công việc song song: kho lấy đúng SKU, kiểm đếm và đóng gói, trong khi nhân viên chuẩn bị hãng vận chuyển và mã vận đơn. Điểm đồng bộ đợi cả hai nhánh hoàn thành trước khi đối chiếu kiện với vận đơn để sẵn sàng bàn giao. Đây là minh họa tổ chức công việc bằng fork/join, chưa khẳng định ứng dụng có tác vụ nền tương ứng.",
+  "reference": "PDF nguồn: tr. 86–87; phương án nghiệp vụ minh họa",
+  "width": 1100,
+  "height": 650
+}

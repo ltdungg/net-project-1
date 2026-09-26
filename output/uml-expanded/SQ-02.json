@@ -1,0 +1,8 @@
+{
+  "id": "SQ-02",
+  "title": "Sequence: UC06 Đặt hàng COD thành công",
+  "caption": "Người mua gửi yêu cầu đặt COD, lớp điều khiển đọc giỏ rồi kiểm thông tin nhận hàng và tính lại giá, voucher. Hệ thống giữ tồn theo SKU tại kho phù hợp, tạo đơn cùng dòng hàng, thanh toán và các phiếu giao trong giao dịch trước khi trả mã đơn. Thành công làm tăng reserved nhưng chưa giảm on_hand; đơn confirmed và thanh toán cod_pending chờ các kiện được giao đầy đủ.",
+  "reference": "PDF nguồn: tr. 52–58; quy tắc NÉT: docs/ba/03-business-rules.md",
+  "width": 1100,
+  "height": 650
+}

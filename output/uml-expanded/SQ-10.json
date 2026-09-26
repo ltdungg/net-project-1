@@ -1,0 +1,9 @@
+{
+  "id": "SQ-10",
+  "uc": "UC08",
+  "title": "Sequence: UC08 Tạo sản phẩm hoặc khuyến mãi",
+  "caption": "Manager hoặc Admin nhập dữ liệu để bổ sung sản phẩm hay chương trình khuyến mãi. Hệ thống kiểm quyền, mã duy nhất và điều kiện riêng: sản phẩm cần tham chiếu hợp lệ, còn khuyến mãi cần thời gian và giá trị hợp lệ trước khi ghi kèm audit. Sơ đồ gom hai luồng tạo đang có trong ứng dụng; dữ liệu sai hoặc lỗi ghi làm thao tác thất bại.",
+  "reference": "UC08; CatalogService.createAdminProduct; AdminCatalogController; AdminInsightsService.createPromotion; AdminInsightsController. Hai dịch vụ được gom ở mức phân tích, không phải một API cập nhật chung.",
+  "width": 1300,
+  "height": 722
+}

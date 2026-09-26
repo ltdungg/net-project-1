@@ -1,0 +1,88 @@
+name: net-commerce-java
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-net_commerce}
+      POSTGRES_USER: ${POSTGRES_USER:-net}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-net_local_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-net_commerce}
+      DATABASE_USER: ${POSTGRES_USER:-net}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-net_local_password}
+      DB_POOL_SIZE: ${DB_POOL_SIZE:-10}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      APP_ENV: ${APP_ENV:-local}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:8787}
+      JWT_SECRET: ${JWT_SECRET:-local-development-jwt-secret-change-before-production-2026}
+      PAYMENT_WEBHOOK_SECRET: ${PAYMENT_WEBHOOK_SECRET:-local-development-webhook-secret-change-me}
+      LOCAL_AUTH_BYPASS: ${LOCAL_AUTH_BYPASS:-false}
+      LOCAL_AUTH_EMAIL: ${LOCAL_AUTH_EMAIL:-owner@example.com}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-owner@example.com}
+      MANAGER_EMAILS: ${MANAGER_EMAILS:-manager@example.com}
+      ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-15m}
+      REFRESH_TOKEN_TTL: ${REFRESH_TOKEN_TTL:-30d}
+      SERVER_PORT: 8080
+      JAVA_OPTS: ${JAVA_OPTS:--XX:MaxRAMPercentage=75.0 -XX:+UseG1GC}
+      UPLOAD_DIR: /app/data/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "${API_PORT:-8080}:8080"
+    volumes:
+      - uploads_data:/app/data/uploads
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    init: true
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/actuator/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 35s
+    stop_grace_period: 30s
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  uploads_data:
