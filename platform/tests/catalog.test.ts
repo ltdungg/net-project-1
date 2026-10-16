@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { catalogProducts } from '../lib/catalog-data';
+import { catalogProducts, formatVnd, getCatalogProduct } from '../lib/catalog-data';
 
 describe('catalog invariants', () => {
   it('uses unique slugs and SKUs', () => {
@@ -31,5 +31,12 @@ describe('catalog invariants', () => {
     expect(expanded.every((product) => product.atlasSize === '400% 400%')).toBe(
       true,
     );
+  });
+
+  it('finds products by slug and formats Vietnamese currency', () => {
+    expect(getCatalogProduct(catalogProducts[0]!.slug)).toEqual(catalogProducts[0]);
+    expect(getCatalogProduct('missing-product')).toBeNull();
+    expect(formatVnd(799_000)).toContain('799');
+    expect(formatVnd(799_000)).toContain('₫');
   });
 });

@@ -10,6 +10,9 @@
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
+/.dev.vars
 
 # next.js
 /.next/

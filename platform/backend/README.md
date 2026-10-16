@@ -103,13 +103,19 @@ Kiểm tra chất lượng:
 
 ```powershell
 mvn clean test
-mvn clean package
+mvn clean verify
 ```
 
-Baseline hiện tại có **69 kiểm thử backend**. Nhóm integration dùng PostgreSQL
-Testcontainers; nếu build image không truy cập Docker socket, các test này có
-thể bị skip theo điều kiện môi trường nên phải kiểm tra test summary, không chỉ
-nhìn exit code của bước compile/package.
+`mvn test` chạy unit test bằng Surefire; `mvn verify` chạy thêm integration bằng
+Failsafe. `package` không xác minh integration. Suite HTTP security mới bắt buộc
+Docker, dùng PostgreSQL/Redis Testcontainers riêng, không dùng database local
+hay production. Suite PostgreSQL cũ vẫn có điều kiện skip khi thiếu Docker.
+
+Đợt review security ngày 2026-10-09: **75 unit pass; integration 68 pass / 32 fail /
+0 skip**. Các test fail đang tái hiện lỗi ứng dụng, không được bỏ qua để release.
+Xem [báo cáo và lệnh tái hiện](../SECURITY.md#review-test-security-2026-10-09).
+Nếu `verify` dừng ở assertion thất bại, chạy `mvn jacoco:report` để đọc coverage
+của lần chạy đó tại `target/site/jacoco/index.html`; lệnh này không làm test pass.
 
 Nếu máy không có JDK/Maven, chạy từ `platform/backend` bằng Maven container:
 
@@ -120,7 +126,7 @@ docker run --rm `
   -v /var/run/docker.sock:/var/run/docker.sock `
   -v "${PWD}:/workspace" -w /workspace `
   maven:3.9.11-eclipse-temurin-21-alpine `
-  mvn --batch-mode --no-transfer-progress clean test
+  mvn --batch-mode --no-transfer-progress clean verify
 ```
 
 ## Endpoint chính

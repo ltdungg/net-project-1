@@ -170,6 +170,7 @@ npm ci
 npm run typecheck
 npm run lint
 npm test
+npm run test:coverage
 npm run build
 npm run test:smoke  # cần hai stack đang chạy
 ```
@@ -193,13 +194,15 @@ docker run --rm `
   -v /var/run/docker.sock:/var/run/docker.sock `
   -v "${PWD}:/workspace" -w /workspace `
   maven:3.9.11-eclipse-temurin-21-alpine `
-  mvn --batch-mode --no-transfer-progress clean test
+  mvn --batch-mode --no-transfer-progress clean verify
 ```
 
-Baseline được xác minh hiện tại gồm **69 kiểm thử backend** và **12 kiểm thử
-frontend**. Frontend còn phải đạt typecheck/build; smoke test kiểm tra storefront,
-health và catalog xuyên BFF. Các luồng admin có xác thực được kiểm tra trong bộ
-test/UAT riêng, không nằm hết trong script smoke công khai.
+Review security ngày 2026-10-09: frontend **70 pass / 1 fail**; backend unit
+**75 pass**; integration **68 pass / 32 fail / 0 skip**. Test thất bại tái hiện lỗi
+ứng dụng và được giữ nguyên; đây chưa phải release gate xanh. Xem
+[báo cáo security](SECURITY.md#review-test-security-2026-10-09) cho bằng chứng HTTP,
+side effect database và giới hạn coverage. `mvn test` chỉ chạy unit; `mvn verify`
+mới chạy integration. Smoke test xuyên BFF chỉ chạy khi hai stack đang hoạt động.
 
 ## Giới hạn của bản đồ án
 
@@ -244,4 +247,6 @@ Hai lệnh có cùng cú pháp nhưng phải chạy ở đúng hai thư mục. C
 - [Backend README](./backend/README.md)
 - [Kiến trúc](./ARCHITECTURE.md)
 - [Bảo mật](./SECURITY.md)
+- [Kiểm thử API và service: inventory, kế hoạch, kết quả](./TEST_COVERAGE.md)
+- [Kiểm thử E2E trên trình duyệt: môi trường, kế hoạch, kết quả](./e2e/README.md)
 - [Runbook](./ops/runbook.md)

@@ -14,9 +14,13 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import vn.netfashion.commerce.account.AccountService;
 import vn.netfashion.commerce.auth.AuthPrincipal;
 import vn.netfashion.commerce.auth.JwtService;
@@ -33,13 +37,15 @@ public class OrderService {
     private final AccountService accounts;
     private final ObjectMapper objectMapper;
     private final JwtService jwtService;
+    private final CacheManager cacheManager;
 
-    public OrderService(JdbcClient jdbc, CartService carts, AccountService accounts, ObjectMapper objectMapper, JwtService jwtService) {
+    public OrderService(JdbcClient jdbc, CartService carts, AccountService accounts, ObjectMapper objectMapper, JwtService jwtService, CacheManager cacheManager) {
         this.jdbc = jdbc;
         this.carts = carts;
         this.accounts = accounts;
         this.objectMapper = objectMapper;
         this.jwtService = jwtService;
+        this.cacheManager = cacheManager;
     }
 
     @Transactional
@@ -177,6 +183,16 @@ public class OrderService {
             jdbc.sql("delete from cart_items where cart_id=:id").param("id", cartId).update();
             jdbc.sql("update carts set coupon_code=null,updated_at=now() where id=:id").param("id", cartId).update();
         }
+
+        // Availability is part of the cached catalog. Evict only after the
+        // reservation transaction commits so the next read sees new stock.
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            @Override
+            public void afterCommit() {
+                Cache catalog = cacheManager.getCache("catalog");
+                if (catalog != null) catalog.clear();
+            }
+        });
 
         return Maps.of(
             "id", id, "orderNumber", number, "status", status, "paymentMethod", request.paymentMethod(),

@@ -1,0 +1,67 @@
+name: E2E CI
+
+on:
+  push:
+    paths: ['platform/**', '.github/workflows/e2e.yml']
+  pull_request:
+    paths: ['platform/**', '.github/workflows/e2e.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+          cache: npm
+          cache-dependency-path: platform/package-lock.json
+      - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start isolated backend
+        run: >-
+          docker compose -p net-commerce-e2e
+          --env-file e2e/backend.compose.env
+          -f backend/docker-compose.yml
+          -f e2e/backend.override.yml
+          up --build -d --wait --wait-timeout 240
+      - name: Run browser journeys
+        run: npm run test:e2e
+      - name: Show backend logs on failure
+        if: failure()
+        run: >-
+          docker compose -p net-commerce-e2e
+          --env-file e2e/backend.compose.env
+          -f backend/docker-compose.yml
+          -f e2e/backend.override.yml
+          logs --no-color --tail 200
+      - name: Upload Playwright artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            platform/test-results/
+            platform/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Remove isolated backend and volumes
+        if: always()
+        run: >-
+          docker compose -p net-commerce-e2e
+          --env-file e2e/backend.compose.env
+          -f backend/docker-compose.yml
+          -f e2e/backend.override.yml
+          down -v --remove-orphans

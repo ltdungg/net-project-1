@@ -1,20 +1,20 @@
-name: Commerce CI
+name: Frontend CI
 
 on:
   push:
-    paths: ['platform/**', '.github/workflows/ci.yml']
+    paths: ['platform/**', '.github/workflows/frontend.yml']
   pull_request:
-    paths: ['platform/**', '.github/workflows/ci.yml']
+    paths: ['platform/**', '.github/workflows/frontend.yml']
 
 permissions:
   contents: read
 
 concurrency:
-  group: commerce-${{ github.ref }}
+  group: frontend-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify:
+  frontend:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,7 +29,15 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run lint
-      - run: npm run test
+      - run: npm run test:coverage
+      - name: Upload Vitest coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitest-coverage
+          path: platform/coverage/
+          if-no-files-found: ignore
+          retention-days: 7
       - run: npm run build
       - run: npm audit --omit=dev --audit-level=high
       - name: Verify migration order
@@ -42,7 +50,7 @@ jobs:
 
   container:
     runs-on: ubuntu-latest
-    needs: verify
+    needs: frontend
     steps:
       - uses: actions/checkout@v4
       - name: Build production image

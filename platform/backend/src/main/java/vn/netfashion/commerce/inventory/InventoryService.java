@@ -10,10 +10,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import vn.netfashion.commerce.account.AccountService;
 import vn.netfashion.commerce.auth.AuthPrincipal;
 import vn.netfashion.commerce.common.ApiException;
@@ -25,11 +29,13 @@ public class InventoryService {
     private final JdbcClient jdbc;
     private final AccountService accounts;
     private final ObjectMapper objectMapper;
+    private final CacheManager cacheManager;
 
-    public InventoryService(JdbcClient jdbc, AccountService accounts, ObjectMapper objectMapper) {
+    public InventoryService(JdbcClient jdbc, AccountService accounts, ObjectMapper objectMapper, CacheManager cacheManager) {
         this.jdbc = jdbc;
         this.accounts = accounts;
         this.objectMapper = objectMapper;
+        this.cacheManager = cacheManager;
     }
 
     public Map<String, Object> dashboard() {
@@ -316,6 +322,15 @@ public class InventoryService {
     private void updateBalance(String id, int onHand, int reserved) {
         jdbc.sql("update inventory_items set on_hand=:onHand,reserved=:reserved,version=version+1,updated_at=now() where id=:id")
             .params(Map.of("onHand", onHand, "reserved", reserved, "id", id)).update();
+        TransactionSynchronizationManager.registerSynchronization(
+            new TransactionSynchronization() {
+                @Override
+                public void afterCommit() {
+                    Cache catalog = cacheManager.getCache("catalog");
+                    if (catalog != null) catalog.clear();
+                }
+            }
+        );
     }
 
     private String createOperation(String id,String type,String source,String destination,String reference,String key,String reason,String notes,String actor) {
