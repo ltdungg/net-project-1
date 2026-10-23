@@ -1,5 +1,16 @@
 # Browser E2E audit and execution
 
+## Selenium 4 suite
+
+The separate Selenium 4 + TypeScript/Vitest POM suite lives in `selenium/` and reuses
+this E2E stack and database helper. It has isolated per-test data, parallel workers,
+failure screenshots and HTML/JSON/JUnit reports. See the Vietnamese
+[run guide](./selenium/HƯỚNG_DẪN_CHẠY_TEST.md),
+[test cases](./selenium/TEST_CASES.md) and
+[execution report](./selenium/KẾT_QUẢ_KIỂM_THỬ.md).
+Run `npm run test:selenium` from `platform` after starting the stack as described
+in that guide. Do not run both browser suites simultaneously against the same stack.
+
 ## Existing test layers
 
 Before this suite, the repository had no Playwright or Cypress configuration. `ops/smoke-test.mjs` fetched four HTTP URLs without a browser. Vitest tests under `tests/` exercise BFF and frontend modules with mocked requests. Backend unit, API, service, and PostgreSQL integration tests live under `backend/src/test/`. None of those tests drove a customer through the rendered storefront, so the browser suite focuses on cross-system journeys rather than repeating endpoint validation.

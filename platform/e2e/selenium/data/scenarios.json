@@ -1,0 +1,8 @@
+{
+  "customer": {"fullName":"Khách Selenium", "phone":"0901234567", "line1":"12 Đường Kiểm Thử", "district":"Quận 1", "province":"TP Hồ Chí Minh", "ward":"Phường Bến Nghé"},
+  "product": {"price":790000, "stock":12, "smallStock":1, "size":"S", "category":"Nữ", "material":"Linen QA"},
+  "voucher": {"percentage":10, "minimum":599000, "maximum":150000, "shippingMinimum":399000},
+  "search": {"match":"linen", "caseAndWhitespace":"  LINEN  ", "noMatch":"zz-no-product-selenium-987654"},
+  "invalid": {"email":"khong-phai-email", "phone":"abc123", "password":"weak", "unknownVoucher":"NO-SUCH-SELENIUM-CODE", "token":"invalid-selenium-token"},
+  "messages": {"badLogin":"Email hoặc mật khẩu không đúng.", "passwordMismatch":"Mật khẩu xác nhận chưa khớp.", "registered":"Kiểm tra email của bạn", "verified":"Email đã được xác minh", "noProducts":"Chưa tìm thấy thiết kế phù hợp", "emptyWishlist":"Danh sách đang trống", "orderCreated":"Đơn hàng đã được ghi nhận"}
+}

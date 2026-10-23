@@ -1,0 +1,710 @@
+[
+  {
+    "id": "ACC-001",
+    "name": "Hồ sơ cập nhật và giữ email chỉ đọc",
+    "steps": "Thành viên mở hồ sơ; đổi tên; lưu; tải lại",
+    "expected": "Tên mới được lưu; email chỉ đọc và không đổi",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ACC-002",
+    "name": "Hồ sơ từ chối tên rỗng",
+    "steps": "Xóa tên trong hồ sơ; lưu",
+    "expected": "Chặn tên rỗng, DB giữ tên cũ",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ACC-003",
+    "name": "Thêm sửa xóa địa chỉ mặc định",
+    "steps": "Thêm địa chỉ đầu; sửa đường; xác nhận xóa",
+    "expected": "Địa chỉ mặc định được tạo, sửa và xóa khỏi DB",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ACC-004",
+    "name": "Địa chỉ thiếu thông tin bắt buộc",
+    "steps": "Thêm địa chỉ; bỏ trống đường; lưu",
+    "expected": "HTML validation chặn, dialog còn mở",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ACC-005",
+    "name": "Hủy xóa giữ nguyên địa chỉ",
+    "steps": "Thêm địa chỉ; chọn xóa rồi hủy; tải lại",
+    "expected": "Địa chỉ vẫn tồn tại",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ACC-006",
+    "name": "Địa chỉ mặc định tự điền checkout",
+    "steps": "Lưu địa chỉ mặc định; thêm hàng; mở checkout",
+    "expected": "Tự điền đường, email, điện thoại và quận",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ACC-007",
+    "name": "Lịch sử của thành viên mới trống",
+    "steps": "Thành viên mới mở lịch sử",
+    "expected": "Hiện Chưa có đơn hàng",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-001",
+    "name": "Admin yêu cầu đăng nhập",
+    "steps": "Khách chưa đăng nhập mở tồn kho admin",
+    "expected": "Chuyển đến đăng nhập",
+    "module": "admin.test.ts",
+    "markers": [
+      "@smoke",
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-002",
+    "name": "Khách hàng không có quyền quản trị",
+    "steps": "Khách hàng đăng nhập mở tồn kho admin",
+    "expected": "Chuyển về tài khoản; không vào admin",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-003",
+    "name": "Điều chỉnh tồn kho phản ánh ra storefront",
+    "steps": "Admin lọc SKU riêng; điều chỉnh +1 có lý do; xem sản phẩm",
+    "expected": "DB và storefront tăng tồn từ 12 lên 13",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-004",
+    "name": "Điều chỉnh âm vượt tồn kho bị từ chối",
+    "steps": "Admin điều chỉnh -9999 cho SKU riêng",
+    "expected": "Báo nghiệp vụ không được ghi nhận; tồn giữ nguyên",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-005",
+    "name": "Điều chỉnh không có lý do bị chặn",
+    "steps": "Admin điều chỉnh +1 nhưng thiếu lý do",
+    "expected": "HTML validation chặn; tồn giữ nguyên",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-006",
+    "name": "Copilot trả lời câu hỏi tồn kho",
+    "steps": "Admin hỏi Copilot về tồn kho",
+    "expected": "Trả kết quả tồn kho và liên kết quản lý",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-007",
+    "name": "Copilot không gửi câu hỏi chỉ có khoảng trắng",
+    "steps": "Nhập câu hỏi chỉ có khoảng trắng",
+    "expected": "Nút gửi bị vô hiệu hóa",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-008",
+    "name": "Copilot câu ngoài chủ đề trả tổng quan",
+    "steps": "Hỏi Copilot về thời tiết",
+    "expected": "Rule engine trả Tóm tắt điều hành",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-009",
+    "name": "Tạo sản phẩm active qua UI",
+    "steps": "Admin tạo sản phẩm active, SKU và tồn 2",
+    "expected": "Storefront hiển thị đúng sản phẩm và tồn",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-010",
+    "name": "Tạo sản phẩm với giá âm bị chặn",
+    "steps": "Admin tạo sản phẩm giá -1",
+    "expected": "HTML validation chặn, DB không có sản phẩm",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-011",
+    "name": "Tạo bản nháp không xuất hiện storefront",
+    "steps": "Admin tạo sản phẩm draft; tìm ở storefront",
+    "expected": "DB lưu draft; storefront không tìm thấy",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ADM-012",
+    "name": "Giao hàng cần vận đơn và COD trả tiền khi giao xong",
+    "steps": "Tạo đơn COD riêng; chuẩn bị; sẵn sàng; giao thiếu vận đơn; bổ sung; giao và hoàn tất",
+    "expected": "Thiếu vận đơn bị từ chối; giao xong COD paid, tồn giảm 1 và reserved=0",
+    "module": "admin.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-001",
+    "name": "Đăng ký và xác minh qua UI",
+    "steps": "Đăng ký email riêng; mở liên kết xác minh local; xác minh; mở tài khoản",
+    "expected": "Tài khoản active, email_verified_at có giá trị và UI đăng nhập",
+    "module": "auth.test.ts",
+    "markers": [
+      "@smoke",
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-002",
+    "name": "Từ chối email đã đăng ký",
+    "steps": "Tạo tài khoản; đăng ký lại cùng email",
+    "expected": "Hiện Email đã được sử dụng.",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-003",
+    "name": "Mật khẩu xác nhận không khớp",
+    "steps": "Nhập mật khẩu và xác nhận khác nhau; gửi",
+    "expected": "Hiện Mật khẩu xác nhận chưa khớp.",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-004",
+    "name": "Mật khẩu yếu bị HTML validation chặn",
+    "steps": "Đăng ký với mật khẩu weak",
+    "expected": "HTML validation chặn, vẫn ở trang đăng ký",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-005",
+    "name": "Chưa đồng ý điều khoản",
+    "steps": "Điền hợp lệ nhưng bỏ đồng ý điều khoản; gửi",
+    "expected": "Checkbox thiếu giá trị, không đăng ký",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-006",
+    "name": "Email sai định dạng khi đăng ký",
+    "steps": "Nhập email sai định dạng; gửi",
+    "expected": "Email không hợp lệ theo HTML validation",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-007",
+    "name": "Đăng nhập và đăng xuất",
+    "steps": "Tạo thành viên đã xác minh; đăng nhập; đăng xuất; mở lịch sử",
+    "expected": "Vào tài khoản; sau logout lịch sử yêu cầu đăng nhập",
+    "module": "auth.test.ts",
+    "markers": [
+      "@smoke",
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-008",
+    "name": "Đăng nhập sai mật khẩu",
+    "steps": "Đăng nhập tài khoản riêng với mật khẩu sai",
+    "expected": "Hiện Email hoặc mật khẩu không đúng.",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-009",
+    "name": "Chặn đăng nhập tài khoản chưa xác minh",
+    "steps": "Tạo thành viên pending; đăng nhập",
+    "expected": "Yêu cầu xác minh email và có liên kết gửi lại",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-010",
+    "name": "Hiện và ẩn mật khẩu",
+    "steps": "Nhập mật khẩu; bấm hiện; bấm ẩn",
+    "expected": "Kiểu input đổi text rồi password",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-011",
+    "name": "Không chuyển hướng ra ngoài từ returnTo",
+    "steps": "Đăng nhập với returnTo=//example.invalid",
+    "expected": "Chỉ điều hướng đến tài khoản trong origin local",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-012",
+    "name": "Token xác minh chỉ dùng một lần",
+    "steps": "Xác minh token; logout; dùng lại token",
+    "expected": "Lần đầu thành công, lần hai báo token không hợp lệ",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-013",
+    "name": "Quên và đặt lại mật khẩu qua UI",
+    "steps": "Quên mật khẩu; mở link local; đổi; thử mật khẩu cũ và mới",
+    "expected": "Mật khẩu cũ bị từ chối, mới đăng nhập được",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-014",
+    "name": "Quên mật khẩu với email chưa tồn tại",
+    "steps": "Quên mật khẩu bằng email chưa tồn tại",
+    "expected": "Phản hồi chung, không tiết lộ tài khoản",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "AUTH-015",
+    "name": "Token reset không hợp lệ",
+    "steps": "Nhập token reset sai và mật khẩu hợp lệ",
+    "expected": "Hiện liên kết reset không hợp lệ hoặc hết hạn",
+    "module": "auth.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-001",
+    "name": "Giỏ hàng mới trống",
+    "steps": "Mở giỏ mới; tiếp tục mua sắm",
+    "expected": "Giỏ trống và điều hướng tới danh mục",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-002",
+    "name": "Thêm sản phẩm và lưu giỏ khi tải lại",
+    "steps": "Thêm sản phẩm 790000; tải lại giỏ",
+    "expected": "Một sản phẩm, tổng 825000 và giữ giỏ",
+    "module": "cart.test.ts",
+    "markers": [
+      "@smoke",
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-003",
+    "name": "Tăng giảm số lượng cập nhật tổng và phí ship",
+    "steps": "Tăng 1 lên 2 rồi giảm về 1",
+    "expected": "Tổng 1580000 miễn ship rồi 825000 có ship",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-004",
+    "name": "Giảm ở số lượng một không xóa sản phẩm",
+    "steps": "Bấm giảm khi số lượng bằng 1",
+    "expected": "Giữ 1, tổng 825000",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-005",
+    "name": "Xóa sản phẩm cuối cùng",
+    "steps": "Xóa sản phẩm cuối",
+    "expected": "Hiện Giỏ hàng đang trống",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-006",
+    "name": "Vượt tồn kho phải báo lỗi và giữ số lượng",
+    "steps": "Tạo SKU tồn 1; thêm 1; tăng thêm",
+    "expected": "Báo lỗi không đủ tồn, UI và DB giữ số lượng 1",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression",
+      "@known_bug"
+    ]
+  },
+  {
+    "id": "CART-007",
+    "name": "Áp voucher phần trăm và gỡ mã",
+    "steps": "Áp mã phần trăm bằng chữ thường; gỡ",
+    "expected": "Chuẩn hóa mã, tổng 746000; gỡ về 825000",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-008",
+    "name": "Voucher không tồn tại",
+    "steps": "Áp mã không tồn tại",
+    "expected": "Báo mã không hợp lệ, tổng không đổi",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-009",
+    "name": "Voucher chưa đạt đơn tối thiểu",
+    "steps": "Áp mã yêu cầu đơn từ 1500000 cho giỏ 790000",
+    "expected": "Báo chưa đạt tối thiểu, tổng không đổi",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-010",
+    "name": "Voucher hết hạn",
+    "steps": "Áp mã đã hết hạn theo đồng hồ database",
+    "expected": "Báo mã không hợp lệ hoặc hết hạn",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-011",
+    "name": "Voucher chạm trần giảm giá",
+    "steps": "Giỏ 1580000; áp mã 10% có trần 150000",
+    "expected": "Giảm đúng 150000; tổng 1430000",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-012",
+    "name": "Voucher miễn phí giao hàng",
+    "steps": "Giỏ 790000; áp mã freeship",
+    "expected": "Miễn phí ship, tổng 790000",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CART-013",
+    "name": "Mốc miễn phí giao hàng đúng 799000",
+    "steps": "Tạo sản phẩm giá đúng 799000; thêm giỏ",
+    "expected": "Tổng 799000, miễn ship ở đúng ngưỡng",
+    "module": "cart.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-001",
+    "name": "Tìm sản phẩm theo chất liệu",
+    "steps": "Mở danh mục; tìm linen",
+    "expected": "Có sản phẩm phù hợp và tiêu đề tìm kiếm",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@smoke",
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-002",
+    "name": "Từ khóa không có kết quả",
+    "steps": "Tìm từ khóa không tồn tại; mở tất cả",
+    "expected": "Empty state rồi danh mục có sản phẩm",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-003",
+    "name": "Tìm kiếm bỏ khoảng trắng và không phân biệt hoa thường",
+    "steps": "Tìm LINEN với khoảng trắng hai đầu",
+    "expected": "Bỏ khoảng trắng, tìm không phân biệt hoa thường",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-004",
+    "name": "Lọc danh mục và giá rồi đặt lại",
+    "steps": "Chọn Nữ và giá dưới 800000; áp dụng; đặt lại",
+    "expected": "Sản phẩm đúng khoảng giá; đặt lại bỏ query",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-005",
+    "name": "Sắp xếp giá tăng và giảm",
+    "steps": "Chọn giá tăng rồi giá giảm; đọc giá từng card",
+    "expected": "Danh sách giá đơn điệu theo chiều chọn",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-006",
+    "name": "Chi tiết sản phẩm và size có tồn kho",
+    "steps": "Mở sản phẩm riêng; chọn S rồi M; kiểm tra L",
+    "expected": "S còn 12, M còn 1, L hết hàng bị vô hiệu hóa",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-007",
+    "name": "Số lượng sản phẩm có biên 1 và 10",
+    "steps": "Giảm ở 1; tăng đến 10; tăng thêm; thêm giỏ",
+    "expected": "Số lượng nằm trong 1..10; giỏ nhận đúng 10",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-008",
+    "name": "Không cho mua sản phẩm hết hàng",
+    "steps": "Mở sản phẩm có S và L hết hàng",
+    "expected": "S bị khóa; biến thể mặc định hết hàng không thêm được",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-009",
+    "name": "Slug không tồn tại trả trang 404",
+    "steps": "Mở slug ngẫu nhiên không tồn tại",
+    "expected": "Trang 404, không có điều khiển số lượng",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "CAT-010",
+    "name": "Mua ngay mở checkout đúng sản phẩm",
+    "steps": "Mở sản phẩm riêng; chọn S; mua ngay",
+    "expected": "Checkout chứa đúng sản phẩm",
+    "module": "catalog.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-001",
+    "name": "Khách đặt COD và theo dõi đơn",
+    "steps": "Khách thêm hàng; điền địa chỉ; COD; theo dõi",
+    "expected": "Một đơn confirmed/cod_pending tổng 825000; giữ tồn 1",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@smoke",
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-002",
+    "name": "Checkout thành viên hiện trong lịch sử",
+    "steps": "Thành viên checkout; mở lịch sử",
+    "expected": "Đơn gắn đúng user_id và có trong lịch sử",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-003",
+    "name": "Checkout thiếu họ tên",
+    "steps": "Checkout hợp lệ; xóa họ tên; gửi",
+    "expected": "HTML validation chặn; DB không có đơn",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-004",
+    "name": "Checkout số điện thoại sai định dạng",
+    "steps": "Checkout với số điện thoại abc123",
+    "expected": "API/UI báo dữ liệu không hợp lệ; không tạo đơn",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-005",
+    "name": "Không đặt đơn từ giỏ trống",
+    "steps": "Mở checkout với giỏ mới trống",
+    "expected": "Nút đặt hàng bị vô hiệu hóa; không tạo đơn",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-006",
+    "name": "Thanh toán online mô phỏng thành công",
+    "steps": "Thành viên chọn online; tạo đơn; mô phỏng trả tiền",
+    "expected": "UI báo thành công; payment_status=paid",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-007",
+    "name": "Phiên mới không xem được đơn khách",
+    "steps": "Khách tạo đơn; xóa sessionStorage mô phỏng phiên khác; mở đơn",
+    "expected": "Hiện Không thể mở đơn hàng",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-008",
+    "name": "Hết tồn sau khi mở checkout không tạo đơn",
+    "steps": "Mở checkout; fixture chuyển tồn riêng về 0; đặt",
+    "expected": "Báo thiếu tồn khả dụng, DB không tạo đơn",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-009",
+    "name": "Đơn voucher giữ đúng giá trị giảm",
+    "steps": "Áp voucher 10%; khách checkout COD",
+    "expected": "DB lưu subtotal 790000, giảm 79000, ship 35000, tổng 746000",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "ORDER-010",
+    "name": "Khách có token checkout mở được cổng online",
+    "steps": "Khách chọn online; giữ token phiên; mở cổng và trả tiền",
+    "expected": "Khách có quyền thanh toán đơn của mình; DB paid",
+    "module": "checkout.test.ts",
+    "markers": [
+      "@regression",
+      "@known_bug"
+    ]
+  },
+  {
+    "id": "WISH-001",
+    "name": "Yêu thích khách lưu qua tải lại và xóa được",
+    "steps": "Khách thêm yêu thích; mở danh sách; gỡ; tải lại",
+    "expected": "Lưu qua tải trang, gỡ xong danh sách trống",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "WISH-002",
+    "name": "Yêu thích thành viên lưu trong database",
+    "steps": "Thành viên yêu thích sản phẩm; mở danh sách",
+    "expected": "Có một sản phẩm, wishlist_items gắn đúng user",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  },
+  {
+    "id": "WISH-003",
+    "name": "Yêu thích mới trống và không có nút bỏ yêu thích",
+    "steps": "Mở danh sách trong trình duyệt mới",
+    "expected": "Empty state; không có nút Bỏ yêu thích",
+    "module": "account.test.ts",
+    "markers": [
+      "@regression"
+    ]
+  }
+]
