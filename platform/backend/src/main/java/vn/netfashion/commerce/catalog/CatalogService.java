@@ -33,6 +33,11 @@ public class CatalogService {
         return loadProducts(true);
     }
 
+    /** Recommendations must see current available stock, bypassing the catalog cache. */
+    public List<Map<String, Object>> recommendationProducts() {
+        return loadProducts(false);
+    }
+
     public Map<String, Object> adminOptions() {
         List<Map<String, Object>> categories = jdbc.sql("""
             select id,slug,name,parent_id,sort_order from categories

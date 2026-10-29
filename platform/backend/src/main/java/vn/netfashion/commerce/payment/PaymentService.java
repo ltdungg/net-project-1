@@ -43,28 +43,38 @@ public class PaymentService {
 
     @Transactional
     public Map<String, Object> confirmMockPayment(String orderId, String guestAccessToken, AuthPrincipal principal) {
-        if (!"local".equalsIgnoreCase(properties.environment())) {
+        return simulateMockPayment(orderId, guestAccessToken, principal, "succeeded");
+    }
+
+    public boolean mockEnabled() { return "local".equalsIgnoreCase(properties.environment()); }
+
+    @Transactional
+    public Map<String, Object> simulateMockPayment(String orderId, String guestAccessToken, AuthPrincipal principal, String outcome) {
+        if (!mockEnabled()) {
             throw new ApiException(
                 HttpStatus.FORBIDDEN,
                 "LOCAL_ONLY",
                 "Mô phỏng thanh toán chỉ khả dụng trong môi trường local."
             );
         }
+        if (!Set.of("succeeded", "failed").contains(outcome == null ? "" : outcome)) {
+            throw new ApiException(HttpStatus.BAD_REQUEST, "INVALID_MOCK_OUTCOME", "Kết quả mô phỏng không hợp lệ.");
+        }
 
         PaymentRow payment = paymentByOrderForUpdate(orderId);
         authorizeMockConfirmation(payment, guestAccessToken, principal);
         validatePaymentSnapshot(payment, payment.amountCents(), payment.currency());
 
-        PaymentStatePolicy.Decision decision = PaymentStatePolicy.forMockConfirmation(
+        PaymentStatePolicy.Decision decision = PaymentStatePolicy.forMockOutcome(
             payment.paymentStatus(),
             payment.orderPaymentStatus(),
-            payment.orderStatus()
+            payment.orderStatus(), outcome
         );
         if (decision.rejected()) {
             throw invalidMockConfirmation(decision.reason());
         }
         if (decision.ignored()) {
-            return Maps.of("orderId", orderId, "status", "paid", "duplicate", true);
+            return Maps.of("orderId", orderId, "status", payment.orderPaymentStatus(), "duplicate", true);
         }
 
         Instant now = Instant.now();
@@ -74,29 +84,29 @@ public class PaymentService {
             decision.targetOrderPaymentStatus(),
             now
         );
-        if ("pending_payment".equals(payment.orderStatus())) {
+        if ("succeeded".equals(outcome) && "pending_payment".equals(payment.orderStatus())) {
             appendConfirmationHistory(
                 payment,
-                "Thanh toán local thành công",
+                "Thanh toán giả lập thành công",
                 Maps.of("provider", PROVIDER, "paymentId", payment.id()),
                 now
             );
         }
         appendOutbox(
             payment.orderId(),
-            "payment.succeeded",
+            "payment." + outcome,
             Maps.of(
                 "provider", PROVIDER,
                 "paymentId", payment.id(),
                 "orderId", payment.orderId(),
                 "amountCents", payment.amountCents(),
                 "currency", payment.currency(),
-                "source", "local-confirm"
+                "source", "local-simulation"
             ),
             now
         );
 
-        return Maps.of("orderId", orderId, "status", "paid", "duplicate", false);
+        return Maps.of("orderId", orderId, "status", decision.targetOrderPaymentStatus(), "duplicate", false);
     }
 
     private void authorizeMockConfirmation(PaymentRow payment, String guestAccessToken, AuthPrincipal principal) {

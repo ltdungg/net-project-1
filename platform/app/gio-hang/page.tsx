@@ -5,6 +5,7 @@ import { ChevronRight } from 'lucide-react';
 import { SiteFooter } from '@/components/storefront/site-footer';
 import { SiteHeader } from '@/components/storefront/site-header';
 import { CartClient } from './cart-client';
+import { Recommendations } from '@/components/storefront/recommendations';
 
 export const metadata: Metadata = { title: 'Giỏ hàng' };
 
@@ -39,6 +40,7 @@ export default function CartPage() {
         </div>
         <CartClient />
       </div>
+      <Recommendations />
       <SiteFooter />
     </main>
   );

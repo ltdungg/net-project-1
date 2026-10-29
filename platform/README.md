@@ -2,7 +2,7 @@
 
 Dự án đồ án website bán quần áo online gồm storefront, tài khoản khách hàng,
 checkout, quản trị, phân khúc khách hàng, tồn kho đa kho, vận chuyển và Copilot
-quản trị theo luật.
+quản trị, tư vấn mua sắm và tạo dashboard bằng AI tùy chọn.
 
 Baseline kế hoạch là 8 tuần (4 sprint × 2 tuần) với đúng 5 người: PM kiêm
 PO/BA/UAT, một Frontend, hai Backend và một DevOps. Backend 1 chủ trì auth,
@@ -43,9 +43,11 @@ và không còn được giao diện hiện tại sử dụng.
   hãng vận chuyển, mã vận đơn, ETA, chi phí, lịch sử trạng thái và khóa phiên bản
   để tránh hai nhân viên ghi đè nhau.
 - Admin/manager: catalog, đơn hàng, khách hàng, vận chuyển, promotion, báo cáo,
-  tài chính, inventory đa kho, upload và Copilot quản trị. Copilot hiện là bộ
-  phân loại câu hỏi/tổng hợp dữ liệu theo luật, không gọi LLM bên ngoài và không
-  tự thay đổi dữ liệu.
+  tài chính, inventory đa kho, upload và Copilot quản trị. AI có thể giải thích
+  số liệu tổng hợp và tạo bố cục dashboard; chỉ lưu dashboard khi người dùng bấm Lưu.
+- Gợi ý sản phẩm tự động ở trang chủ, chi tiết và giỏ hàng, dựa trên sản phẩm
+  đã xem trong phiên, yêu thích, giỏ hàng và lịch sử mua của chính tài khoản.
+  Trợ lý mua sắm hỗ trợ hội thoại, lọc loại sản phẩm, ngân sách và size còn hàng.
 - Docker multi-stage, non-root runtime, healthcheck xuyên frontend–backend,
   Flyway, persistent volumes và smoke test.
 
@@ -73,9 +75,9 @@ curl.exe -fsS http://localhost:8080/api/health
 Set-Location ..
 ```
 
-Flyway tự áp dụng migration khi API khởi động. Database hiện ở V7, gồm phân
-khúc khách hàng và fulfillment đa kho. Không sửa file migration đã chạy; mọi
-thay đổi schema tiếp theo phải tạo migration tiến mới, bắt đầu từ V8.
+Flyway tự áp dụng migration khi API khởi động. Database hiện ở V9, gồm dashboard
+AI theo tài khoản và metadata SePay Sandbox. Không sửa file migration đã chạy;
+mọi thay đổi schema tiếp theo phải tạo migration tiến mới, bắt đầu từ V10.
 
 Nếu Docker không đọc được đường dẫn OneDrive có dấu, dùng junction ASCII trỏ
 tới đúng thư mục (không sao chép dữ liệu):
@@ -155,6 +157,67 @@ Không bật `LOCAL_AUTH_BYPASS` ngoài môi trường demo. Production phải n
 email để giao link xác minh/đặt lại mật khẩu; development token chỉ được trả khi
 `APP_ENV=local`.
 
+## AI cho khách hàng và admin
+
+- Khách hàng: nút **Tư vấn cùng NÉT** trên storefront; gợi ý tự động xuất hiện
+  ở trang chủ, trang sản phẩm và giỏ hàng. Lịch sử xem tối đa 20 sản phẩm nằm
+  trong `sessionStorage`; hội thoại chỉ nằm trong bộ nhớ của trang và được xóa
+  khi đổi tài khoản. Khi bật mô hình, câu hỏi và tối đa 6 câu trước đó được gửi
+  đến Gemini cùng các sản phẩm công khai phù hợp; không gửi hồ sơ hay đơn hàng.
+- Admin/manager: `/admin/ai` → **Tạo dashboard**, nhập yêu cầu (ví dụ “doanh thu
+  và sản phẩm bán chạy 7 ngày”), chỉnh tên/chỉ số rồi lưu. Tối đa 10 dashboard
+  riêng cho mỗi tài khoản; mở lại luôn truy vấn số liệu mới. Staff chỉ có phần
+  tư vấn vận hành, không được truy cập API dashboard.
+- Recommendation là bộ xếp hạng cục bộ, không cần API key: dùng các tín hiệu
+  sở thích, loại thiết kế và tầm giá; loại sản phẩm hết hàng và đã có trong giỏ.
+  Lọc giá/size trên cùng biến thể còn hàng; dữ liệu tồn kho được đọc không qua
+  cache catalog. Giá và tồn vẫn được kiểm tra lại lúc checkout.
+- Để bật Gemini, đặt `GEMINI_API_KEY` và `GEMINI_MODEL=gemini-3.8-flash` trong `backend/.env`,
+  sau đó chạy lại `docker compose --env-file .env up --build -d api` ở backend.
+  Không đặt key trong frontend hoặc biến `NEXT_PUBLIC_*`. Không có key vẫn dùng
+  được gợi ý, tư vấn cơ bản và dashboard theo từ khóa; giao diện ghi rõ chế độ.
+- Frontend chat và `/admin/ai` đọc `/api/commerce/ai/status` để hiển thị cấu hình
+  Gemini; trạng thái này không xác nhận key hợp lệ. Câu trả lời ghi rõ Gemini hay
+  chế độ dự phòng. Browser chỉ gọi BFF, không gọi Google hoặc giữ API key.
+- Dùng [Gemini generateContent với Structured Outputs](https://ai.google.dev/gemini-api/docs/generate-content/structured-output),
+  xác thực bằng header `x-goog-api-key`, timeout 15 giây, tối đa 4 cuộc gọi đồng thời. Mỗi tài khoản/IP
+  tối đa 12 yêu cầu/phút; provider tối đa 300 cuộc gọi/giờ qua Redis. Hết hạn,
+  lỗi API, đầu ra sai hoặc chạm hạn provider chuyển sang luật. Khi Redis không
+  khả dụng, endpoint dùng mô hình trả lỗi tạm thời để tránh bỏ qua giới hạn.
+  Sau proxy, khách vãng lai có thể chia sẻ hạn mức theo địa chỉ mạng của proxy.
+- Dashboard chỉ nhận 7 ID widget đã định nghĩa, không chạy SQL/HTML/JS từ mô hình.
+  Số liệu lấy từ báo cáo thật, theo `Asia/Ho_Chi_Minh`, khoảng 1–90 ngày.
+  AI chỉ nhận câu hỏi và dữ liệu tổng hợp khi tư vấn admin; bố cục dashboard
+  không cần gửi số liệu kinh doanh. API cá nhân hóa và dashboard trả `no-store`.
+
+## Thanh toán giả lập trên frontend
+
+- Chạy backend với `APP_ENV=local`. Checkout hiển thị **Thanh toán giả lập** khi
+  `/api/commerce/payments/config` trả `mockEnabled=true`; ngoài local nút mock bị ẩn.
+- Chọn phương thức giả lập và đặt đơn để mở `/thanh-toan/{id}`. Không nhập số thẻ,
+  không có giao dịch tiền thật. Có hai nút mô phỏng **thành công** và **thất bại**.
+- Thất bại giữ đơn ở `pending_payment`, cập nhật payment thành `failed`; có thể
+  thử lại. Thành công đổi đơn sang `confirmed` và payment sang `paid`. Gửi lặp
+  không tạo thêm sự kiện thành công, thất bại đến sau không hạ trạng thái đã trả.
+- Token khách vãng lai được lưu theo phiên checkout và gửi qua header
+  `X-Guest-Order-Token` khi tải đơn, không đưa vào query. Xác nhận chỉ cho chủ đơn,
+  khách có token hợp lệ hoặc nhân viên. Backend chặn mô phỏng ngoài local.
+- Tồn kho vẫn theo luồng reservation/fulfillment hiện có, không trừ thêm khi
+  bấm thanh toán nhiều lần. Đơn đã hủy hoặc hoàn tiền không thể thanh toán lại.
+
+## Thanh toán SePay Sandbox
+
+Checkout có thêm **SePay Sandbox** khi backend bật `SEPAY_SANDBOX_ENABLED` và
+có API key, UUID tài khoản thử nghiệm. Key chỉ nằm trong backend `.env` được Git
+bỏ qua. Trang `/thanh-toan/{id}` hiển thị QR, tài khoản, số tiền, nội dung riêng
+cho đơn và tự kiểm tra giao dịch mỗi 15 giây khi đang mở. Nút **Kiểm tra thanh
+toán** gọi backend đối soát; frontend không tự đánh dấu đã trả tiền.
+
+Tạo giao dịch tiền vào trong **SePay Test mode → Mô phỏng giao dịch**, nhập đúng
+số tiền và nội dung trên checkout. Không dùng ứng dụng ngân hàng thật để quét QR
+test. Cần đăng nhập dashboard SePay để tạo giao dịch; API key chỉ dùng truy vấn.
+Xem [cấu hình và quy trình test](backend/README.md#sepay-sandbox).
+
 ## Voucher demo
 
 - `CHAONET`: giảm 10% cho đơn từ 599.000đ, tối đa 150.000đ.
@@ -196,15 +259,16 @@ docker run --rm `
   mvn --batch-mode --no-transfer-progress clean test
 ```
 
-Baseline được xác minh hiện tại gồm **69 kiểm thử backend** và **12 kiểm thử
+Baseline được xác minh hiện tại gồm **117 kiểm thử backend** và **15 kiểm thử
 frontend**. Frontend còn phải đạt typecheck/build; smoke test kiểm tra storefront,
 health và catalog xuyên BFF. Các luồng admin có xác thực được kiểm tra trong bộ
 test/UAT riêng, không nằm hết trong script smoke công khai.
 
 ## Giới hạn của bản đồ án
 
-- Thanh toán online dùng mock confirm và webhook HMAC để kiểm thử vòng đời;
-  chưa kết nối merchant/provider thật. Mock endpoint bị khóa ngoài `APP_ENV=local`.
+- Thanh toán online có mock local và SePay Sandbox. Chưa kết nối SePay Live;
+  SePay hiện đối soát khi mở trang thanh toán, chưa có webhook/background worker.
+  Mock endpoint bị khóa ngoài `APP_ENV=local`.
 - Vận chuyển là quy trình thủ công: nhân viên nhập carrier/tracking/ETA/chi phí
   và cập nhật trạng thái. Chưa có API/webhook hãng vận chuyển.
 - Một đơn có thể có nhiều kiện theo kho, nhưng mỗi cặp order–warehouse chỉ có
@@ -214,12 +278,23 @@ test/UAT riêng, không nằm hết trong script smoke công khai.
   tự phục vụ hoặc command hoàn tiền đầy đủ.
 - Transactional outbox mới được ghi trong cùng transaction; chưa có
   dispatcher/consumer. Email/SMS production chưa được nối.
-- Copilot là rule engine read-only, không phải mô hình AI sinh nội dung và không
-  được dùng để tự động phê duyệt/thay đổi nghiệp vụ.
+- AI chỉ tư vấn và chọn bố cục dashboard từ danh sách chỉ số cho phép; không
+  thực thi SQL/mã sinh bởi mô hình hoặc tự thay đổi đơn hàng, giá, tồn kho.
 - Docker Compose hiện phục vụ local/demo. Cloud/CDN, secret manager, centralized
   metrics/alert, pentest/load dài hạn và DR rehearsal production nằm ngoài scope.
 
 ## Vận hành Docker
+
+Quản trị viên (`admin`) có thể mở `/admin/nhat-ky` để xem log backend, lọc mức độ,
+tìm nội dung/nguồn/correlation ID và bật cập nhật mỗi 5 giây. API
+`GET /api/admin/logs` chỉ cho phép role `ADMIN` và trả `Cache-Control: no-store`.
+Lưu tối đa 1.000 bản ghi trong RAM của từng backend, trả tối đa 500 bản ghi mỗi
+lần (giao diện lấy 200); lịch sử mất khi backend khởi động lại. Đây là log ứng
+dụng trong phiên hiện tại, không phải lịch sử Docker hay kho audit lâu dài.
+Request log chỉ ghi method, route template, status và duration; không ghi body,
+query hay header. Viewer che các mẫu credential/email và chỉ hiển thị tên lớp
+exception, không trả stack trace. Không ghi bí mật hoặc dữ liệu cá nhân vào log
+ứng dụng; bộ che mẫu không thay thế nguyên tắc này.
 
 ```powershell
 # Log frontend

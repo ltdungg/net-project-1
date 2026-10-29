@@ -17,7 +17,7 @@ import org.springframework.web.client.RestClient;
 
 @Configuration
 @EnableCaching
-@EnableConfigurationProperties(AppProperties.class)
+@EnableConfigurationProperties({AppProperties.class, vn.netfashion.commerce.payment.SepaySandboxProperties.class})
 public class ApplicationConfig {
     @Bean
     RestClient.Builder restClientBuilder() {

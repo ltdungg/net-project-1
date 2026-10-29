@@ -11,6 +11,7 @@ import {
   CircleDollarSign,
   CircleHelp,
   LayoutDashboard,
+  ScrollText,
   Menu,
   Megaphone,
   Package,
@@ -45,6 +46,7 @@ const navigation = [
   { href: '/admin/bao-cao', label: 'Báo cáo', icon: BarChart3, management: true },
   { href: '/admin/tai-chinh', label: 'Tài chính', icon: CircleDollarSign, management: true },
   { href: '/admin/cai-dat', label: 'Cài đặt', icon: Settings, management: true },
+  { href: '/admin/nhat-ky', label: 'Nhật ký backend', icon: ScrollText, adminOnly: true },
 ];
 
 function SidebarContent({
@@ -73,7 +75,7 @@ function SidebarContent({
         className="flex-1 space-y-1 overflow-y-auto p-4 pt-3"
         aria-label="Quản trị"
       >
-        {navigation.filter((item) => !item.management || canManage).map((item) => {
+        {navigation.filter((item) => (!item.management || canManage) && (!item.adminOnly || role === 'admin')).map((item) => {
           const active =
             item.href === '/admin'
               ? pathname === '/admin'

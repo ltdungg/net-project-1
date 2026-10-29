@@ -23,14 +23,23 @@ import org.springframework.web.bind.annotation.RestController;
 import vn.netfashion.commerce.auth.AuthPrincipal;
 import vn.netfashion.commerce.common.ApiEnvelope;
 import vn.netfashion.commerce.common.CorrelationIdFilter;
+import vn.netfashion.commerce.ai.AdminAiService;
+import vn.netfashion.commerce.ai.AiModelClient;
+import vn.netfashion.commerce.ai.AiRateLimiter;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminInsightsController {
     private final AdminInsightsService insights;
+    private final AdminAiService ai;
+    private final AiRateLimiter limits;
+    private final AiModelClient model;
 
-    public AdminInsightsController(AdminInsightsService insights) {
+    public AdminInsightsController(AdminInsightsService insights, AdminAiService ai, AiRateLimiter limits, AiModelClient model) {
         this.insights = insights;
+        this.ai = ai;
+        this.limits = limits;
+        this.model = model;
     }
 
     @GetMapping("/promotions")
@@ -58,8 +67,9 @@ public class AdminInsightsController {
 
     @PostMapping("/ai")
     @PreAuthorize("hasAnyRole('STAFF','MANAGER','ADMIN')")
-    ApiEnvelope<AdminPromptEngine.CopilotResult> ask(@Valid @RequestBody AiRequest request) {
-        return ApiEnvelope.ok(insights.ask(request.prompt()));
+    ResponseEntity<ApiEnvelope<Map<String, Object>>> ask(@Valid @RequestBody AiRequest request, @AuthenticationPrincipal AuthPrincipal actor) {
+        if (model.configured()) limits.check("admin", actor.id(), 12, java.time.Duration.ofMinutes(1));
+        return ResponseEntity.ok().header("Cache-Control", "no-store").body(ApiEnvelope.ok(ai.ask(request.prompt())));
     }
 
     public record PromotionRequest(

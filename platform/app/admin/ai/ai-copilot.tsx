@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { commerceRaw } from '@/lib/commerce-api-client';
+import { aiModeLabel, type AiMode } from '@/lib/ai-contract';
 
 type CopilotResult = {
   headline: string;
@@ -24,7 +25,7 @@ type CopilotResult = {
     tone: 'good' | 'warning' | 'critical' | 'neutral';
   }>;
   actions: Array<{ label: string; href: string }>;
-  confidence: number;
+  mode: AiMode;
   generatedAt: string;
 };
 
@@ -103,7 +104,7 @@ export function AiCopilot() {
           <div>
             <h2 className="text-sm font-semibold">Trợ lý điều hành</h2>
             <p className="text-[11px] text-muted-foreground">
-              Grounded trên dữ liệu NÉT · Không tự thực thi
+              Phân tích từ dữ liệu cửa hàng · 30 ngày gần nhất
             </p>
           </div>
         </div>
@@ -198,7 +199,7 @@ export function AiCopilot() {
                       </Button>
                     ))}
                     <span className="ml-auto self-center text-[10px] text-muted-foreground">
-                      Độ tin cậy {Math.round(message.result.confidence * 100)}%
+                      {aiModeLabel[message.result.mode]}
                     </span>
                   </div>
                 </div>
@@ -225,10 +226,15 @@ export function AiCopilot() {
         ) : null}
         <div className="flex items-end gap-2 rounded-2xl border border-border bg-background p-2 focus-within:ring-2 focus-within:ring-primary/10">
           <Textarea
+            maxLength={500}
             value={prompt}
             onChange={(event) => setPrompt(event.target.value)}
             onKeyDown={(event) => {
-              if (event.key === 'Enter' && !event.shiftKey) {
+              if (
+                event.key === 'Enter' &&
+                !event.shiftKey &&
+                !event.nativeEvent.isComposing
+              ) {
                 event.preventDefault();
                 void ask(prompt);
               }

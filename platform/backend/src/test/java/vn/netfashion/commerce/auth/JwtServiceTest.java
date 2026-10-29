@@ -71,7 +71,7 @@ class JwtServiceTest {
             "test-webhook-secret",
             "./data/uploads",
             "",
-            "gpt-5.4-mini"
+            "gemini-3.8-flash"
         );
         return new JwtService(JsonMapper.builder().build(), properties);
     }

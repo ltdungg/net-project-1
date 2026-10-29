@@ -25,6 +25,8 @@ import vn.netfashion.commerce.cart.VoucherPolicy;
 import vn.netfashion.commerce.common.ApiException;
 import vn.netfashion.commerce.common.IdempotencyKeys;
 import vn.netfashion.commerce.common.Maps;
+import vn.netfashion.commerce.payment.SepaySandboxProperties;
+import vn.netfashion.commerce.payment.SepayTransactionPolicy;
 
 @Service
 public class OrderService {
@@ -33,13 +35,15 @@ public class OrderService {
     private final AccountService accounts;
     private final ObjectMapper objectMapper;
     private final JwtService jwtService;
+    private final SepaySandboxProperties sepay;
 
-    public OrderService(JdbcClient jdbc, CartService carts, AccountService accounts, ObjectMapper objectMapper, JwtService jwtService) {
+    public OrderService(JdbcClient jdbc, CartService carts, AccountService accounts, ObjectMapper objectMapper, JwtService jwtService, SepaySandboxProperties sepay) {
         this.jdbc = jdbc;
         this.carts = carts;
         this.accounts = accounts;
         this.objectMapper = objectMapper;
         this.jwtService = jwtService;
+        this.sepay = sepay;
     }
 
     @Transactional
@@ -56,9 +60,14 @@ public class OrderService {
             .param("key", idempotencyKey).query((rs, rowNum) -> Maps.of(
                 "id", rs.getString("id"), "orderNumber", rs.getString("order_number"), "status", rs.getString("status"),
                 "guestAccessToken", principal == null ? jwtService.guestOrderToken(rs.getString("id"), rs.getString("email")) : null,
-                "idempotentReplay", true
+                "idempotentReplay", true,
+                "nextAction", Maps.of("type", "pending_payment".equals(rs.getString("status")) ? "redirect" : "confirmation",
+                    "url", ("pending_payment".equals(rs.getString("status")) ? "/thanh-toan/" : "/don-hang/") + rs.getString("id"))
             )).optional().orElse(null);
         if (existing != null) return existing;
+        if ("sepay".equals(request.paymentMethod()) && !sepay.configured()) {
+            throw new ApiException(HttpStatus.SERVICE_UNAVAILABLE, "SEPAY_NOT_CONFIGURED", "SePay Sandbox chưa được cấu hình.");
+        }
 
         Map<String, Integer> grouped = new TreeMap<>();
         for (OrderItemInput input : request.items()) {
@@ -78,11 +87,14 @@ public class OrderService {
             carts.validateCustomerUsage(voucher.couponId(), userId, request.email());
         }
         VoucherPolicy.Totals totals = VoucherPolicy.totals(subtotal, voucher);
+        if ("sepay".equals(request.paymentMethod()) && (totals.grandTotalCents() < 1000 || totals.grandTotalCents() > 499_000_000)) {
+            throw new ApiException(HttpStatus.UNPROCESSABLE_ENTITY, "SEPAY_AMOUNT_OUT_OF_RANGE", "SePay Sandbox hỗ trợ số tiền từ 1.000đ đến 499.000.000đ. Vui lòng chọn phương thức khác.");
+        }
         String id = UUID.randomUUID().toString();
         String number = orderNumber();
         String status = "cod".equals(request.paymentMethod()) ? "confirmed" : "pending_payment";
         String paymentStatus = "cod".equals(request.paymentMethod()) ? "cod_pending" : "pending";
-        Instant reservationExpiresAt = Instant.now().plusSeconds("online".equals(request.paymentMethod()) ? 2 * 60 * 60 : 30L * 24 * 60 * 60);
+        Instant reservationExpiresAt = Instant.now().plusSeconds(!"cod".equals(request.paymentMethod()) ? 2 * 60 * 60 : 30L * 24 * 60 * 60);
         String effectiveCorrelationId = correlationId == null || correlationId.isBlank() ? UUID.randomUUID().toString() : correlationId;
         String addressJson = json(request.shippingAddress());
 
@@ -103,12 +115,13 @@ public class OrderService {
             values(:id,:orderId,null,:status,'Đơn hàng được tạo từ storefront',cast(:metadata as jsonb))
             """).params(Map.of("id", UUID.randomUUID().toString(), "orderId", id, "status", status, "metadata", json(Map.of("correlationId", effectiveCorrelationId)))).update();
         jdbc.sql("""
-            insert into payments(id,order_id,provider,method,status,amount_cents,currency,idempotency_key)
-            values(:id,:orderId,:provider,:method,'pending',:amount,'VND',:key)
+            insert into payments(id,order_id,provider,method,status,amount_cents,currency,idempotency_key,provider_metadata_json)
+            values(:id,:orderId,:provider,:method,'pending',:amount,'VND',:key,cast(:metadata as jsonb))
             """).params(Map.of(
                 "id", UUID.randomUUID().toString(), "orderId", id,
-                "provider", "cod".equals(request.paymentMethod()) ? "cod" : "mockpay",
-                "method", request.paymentMethod(), "amount", totals.grandTotalCents(), "key", id + ":payment"
+                "provider", "sepay".equals(request.paymentMethod()) ? "sepay_sandbox" : "cod".equals(request.paymentMethod()) ? "cod" : "mockpay",
+                "method", "sepay".equals(request.paymentMethod()) ? "bank_transfer" : request.paymentMethod(), "amount", totals.grandTotalCents(), "key", id + ":payment",
+                "metadata", "sepay".equals(request.paymentMethod()) ? json(Map.of("bankAccountId", sepay.bankAccountId(), "transferContent", SepayTransactionPolicy.transferContent(id))) : "{}"
             )).update();
 
         Map<String, String> fulfillmentIds = createFulfillments(id, number, addressJson, items);
@@ -185,7 +198,7 @@ public class OrderService {
             "shipmentCount", fulfillmentIds.size(),
             "voucher", voucher == null ? null : Maps.of("code", voucher.code(), "name", voucher.name(), "savingsCents", voucher.savingsCents()),
             "totals", Maps.of("subtotalCents", totals.subtotalCents(), "discountCents", totals.discountCents(), "shippingTotalCents", totals.shippingCents(), "grandTotalCents", totals.grandTotalCents()),
-            "nextAction", Maps.of("type", "online".equals(request.paymentMethod()) ? "redirect" : "confirmation", "url", "online".equals(request.paymentMethod()) ? "/thanh-toan/" + id : "/don-hang/" + id)
+            "nextAction", Maps.of("type", !"cod".equals(request.paymentMethod()) ? "redirect" : "confirmation", "url", !"cod".equals(request.paymentMethod()) ? "/thanh-toan/" + id : "/don-hang/" + id)
         );
     }
 
@@ -250,6 +263,8 @@ public class OrderService {
                 "createdAt", rs.getBigDecimal("created_ms").longValue()
             )).list();
         order.put("items", items);
+        order.put("paymentProvider", jdbc.sql("select provider from payments where order_id=:id order by created_at limit 1")
+            .param("id", id).query(String.class).optional().orElse("cod"));
         order.put("history", history);
         order.put("fulfillments", customerFulfillments(id));
         return order;

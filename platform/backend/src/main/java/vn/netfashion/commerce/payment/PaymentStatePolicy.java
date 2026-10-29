@@ -35,6 +35,10 @@ final class PaymentStatePolicy {
         String currentOrderPaymentStatus,
         String currentOrderStatus
     ) {
+        return forMockOutcome(currentPaymentStatus, currentOrderPaymentStatus, currentOrderStatus, "succeeded");
+    }
+
+    static Decision forMockOutcome(String currentPaymentStatus, String currentOrderPaymentStatus, String currentOrderStatus, String outcome) {
         if ("cancelled".equals(currentOrderStatus)) {
             return Decision.reject("ORDER_ALREADY_CANCELLED");
         }
@@ -42,11 +46,11 @@ final class PaymentStatePolicy {
             || "refunded".equals(currentOrderPaymentStatus)) {
             return Decision.reject("PAYMENT_ALREADY_REFUNDED");
         }
-        if ("succeeded".equals(currentPaymentStatus)
-            && "paid".equals(currentOrderPaymentStatus)) {
-            return Decision.ignore("PAYMENT_ALREADY_SUCCEEDED");
-        }
-        return Decision.apply("succeeded", "paid");
+        return switch (outcome) {
+            case "succeeded" -> successfulPayment(currentPaymentStatus, currentOrderPaymentStatus);
+            case "failed" -> failedPayment(currentPaymentStatus, currentOrderPaymentStatus);
+            default -> Decision.reject("INVALID_MOCK_OUTCOME");
+        };
     }
 
     private static Decision successfulPayment(

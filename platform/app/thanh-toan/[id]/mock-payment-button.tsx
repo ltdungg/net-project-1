@@ -1,72 +1,74 @@
 'use client';
 
-import { useState } from 'react';
-import { CheckCircle2, LoaderCircle } from 'lucide-react';
-
+import { useRef, useState } from 'react';
+import { LoaderCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { commerceRaw } from '@/lib/commerce-api-client';
+import { commerceRequest } from '@/lib/commerce-api-client';
 
 export function MockPaymentButton({
   orderId,
   guestAccessToken,
+  onResult,
 }: {
   orderId: string;
   guestAccessToken?: string;
+  onResult: (status: 'paid' | 'failed') => void;
 }) {
-  const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>(
-    'idle',
-  );
+  const [busy, setBusy] = useState<'succeeded' | 'failed' | null>(null);
   const [message, setMessage] = useState('');
+  const inFlight = useRef(false);
 
-  async function confirm() {
-    setState('loading');
-    const response = await commerceRaw('/payments/mock/confirm', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ orderId, guestAccessToken }),
-    });
-    const payload = (await response.json()) as {
-      error?: { message?: string } | null;
-    };
-    if (!response.ok) {
-      setState('error');
-      setMessage(payload.error?.message ?? 'Chưa thể xác nhận thanh toán.');
-      return;
+  async function simulate(outcome: 'succeeded' | 'failed') {
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setBusy(outcome);
+    setMessage('');
+    try {
+      const result = await commerceRequest<{ status: 'paid' | 'failed' }>(
+        '/payments/mock/confirm',
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ orderId, guestAccessToken, outcome }),
+        },
+      );
+      onResult(result.status);
+    } catch (reason) {
+      setMessage(
+        reason instanceof Error
+          ? reason.message
+          : 'Chưa thể xác nhận thanh toán. Vui lòng thử lại.',
+      );
+    } finally {
+      inFlight.current = false;
+      setBusy(null);
     }
-    setState('success');
-  }
-
-  if (state === 'success') {
-    return (
-      <div className="rounded-xl bg-emerald-50 p-4 text-sm text-emerald-800">
-        <div className="flex items-center gap-2 font-semibold">
-          <CheckCircle2 className="size-4" /> Thanh toán local thành công
-        </div>
-        <a
-          href={`/don-hang/${orderId}`}
-          className="mt-2 inline-block underline underline-offset-4"
-        >
-          Mở trạng thái đơn hàng
-        </a>
-      </div>
-    );
   }
 
   return (
-    <div>
+    <div className="space-y-3">
       <Button
-        onClick={() => void confirm()}
-        disabled={state === 'loading'}
+        onClick={() => void simulate('succeeded')}
+        disabled={busy !== null}
         className="h-11 w-full rounded-full"
       >
-        {state === 'loading' ? <LoaderCircle className="animate-spin" /> : null}
+        {busy === 'succeeded' && <LoaderCircle className="animate-spin" />}
         Mô phỏng thanh toán thành công
       </Button>
-      {state === 'error' ? (
-        <p role="alert" className="mt-2 text-sm text-destructive">
+      <Button
+        onClick={() => void simulate('failed')}
+        disabled={busy !== null}
+        variant="outline"
+        className="h-11 w-full rounded-full"
+      >
+        {busy === 'failed' && <LoaderCircle className="animate-spin" />}
+        Mô phỏng thanh toán thất bại
+      </Button>
+      {message && (
+        <p role="alert" className="text-sm text-destructive">
           {message}
         </p>
-      ) : null}
+      )}
     </div>
   );
 }

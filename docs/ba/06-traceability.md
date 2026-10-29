@@ -25,7 +25,9 @@
 | UAT-AUTH-03 | Reset password | Token consumed, refresh token cũ bị revoked | Must |
 | UAT-GST-01 | Guest đọc đơn với header/token đúng | 200 và chỉ public order detail | Must |
 | UAT-GST-02 | Token sai/hết 7 ngày/dùng sai order | 404 ORDER_NOT_FOUND | Must |
-| UAT-GST-03 | Guest mở trang thanh toán online | Client gửi header, URL không có raw token và order tải thành công | Must — đang fail bởi KD-GUEST-01 |
+| UAT-GST-03 | Guest mở trang thanh toán online | Client gửi header, URL không có raw token và order tải thành công | Đã kiểm tra local 29/10/2026: checkout guest → mock thất bại → thử lại thành công → theo dõi đơn |
+| UAT-PAY-SEPAY-01 | Guest chọn SePay Sandbox | QR, số tiền và nội dung riêng; kiểm tra trạng thái qua BFF | Đã kiểm tra UI 29/10/2026 với API sandbox thật: tạo đơn, tải tài khoản/QR, sao chép, đối soát pending. Chưa tạo giao dịch trên dashboard vì chưa có phiên đăng nhập SePay |
+| UAT-PAY-SEPAY-02 | Giao dịch khớp/sai/trùng; đơn hủy hoặc hết hạn | Chỉ khớp mới paid, không ghi nhận lặp hoặc khôi phục đơn terminal | 20 test mới đạt: 6 integration PostgreSQL với provider giả lập, 14 test adapter/policy; chưa thay thế kiểm thử E2E giao dịch tạo trong SePay Test mode |
 | UAT-INV-01 | 20 checkout tranh SKU cuối | Tối đa một reservation hợp lệ; reserved không vượt on_hand | Must |
 | UAT-INV-02 | Transfer kho | Hai movement đối ứng, operation/item/audit khớp | Must |
 | UAT-INV-03 | Repost cùng idempotency | Không lặp balance/movement | Must |
@@ -74,7 +76,7 @@
 
 | ID | Requirement bị ảnh hưởng | Bằng chứng | Trạng thái |
 |---|---|---|---|
-| KD-GUEST-01 | FR-GUEST-02/04, BR-GST-03/06, NFR-04 | order tracking gửi X-Guest-Order-Token đúng; online-payment-client ghép `?token=` dù backend chỉ nhận header | Open; contract API đạt, nhánh UI payment guest chưa đạt |
+| KD-GUEST-01 | FR-GUEST-02/04, BR-GST-03/06, NFR-04 | Online payment đã chuyển sang `X-Guest-Order-Token`, không ghép token vào URL | Fixed 29/10/2026; kiểm thử contract frontend, HTTP PostgreSQL và browser checkout guest đã đạt |
 | KD-INV-01 | BR-INV-11, NFR-02 | InventoryService đổi customer_orders.payment_status nhưng không update payments.status | Open; release tồn đạt, payment aggregate không đồng bộ |
 | KD-INV-02 | FR-ORD-04, BR-INV-11, NFR-02/03 | COD tạo confirmed/cod_pending với TTL 30 ngày; expiry query chỉ chọn pending_payment + pending/failed | Open; COD reserved có thể giữ vô hạn |
 | KD-PAY-01 | BR-PAY-02/04, NFR-02/03 | Webhook policy không nhận order.status; late success sau cancel vẫn apply succeeded/paid | Open; order/payment aggregate có thể mâu thuẫn |

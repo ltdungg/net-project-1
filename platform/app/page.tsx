@@ -70,6 +70,8 @@ const testimonials = [
   },
 ];
 
+import { Recommendations } from '@/components/storefront/recommendations';
+
 export default async function Home() {
   const catalogProducts = await listCatalogProductsFromDb();
   return (
@@ -272,6 +274,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <Recommendations />
 
       <section className="mx-auto grid max-w-[1440px] gap-8 px-4 py-20 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:items-stretch lg:px-12">
         <div className="grid min-h-[560px] grid-cols-2 gap-4">

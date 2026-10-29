@@ -8,8 +8,10 @@ Redis 7 và hai Docker Compose stack.
 Phạm vi đã hiện thực gồm storefront, xác thực và tài khoản, giỏ hàng/voucher,
 checkout khách hoặc thành viên, quản trị catalog, tồn kho đa kho, đơn hàng, khách
 hàng và sáu phân khúc tự động, fulfillment thủ công theo từng kho, báo cáo/tài
-chính và Copilot quản trị dựa trên luật. Thanh toán thật, API hãng vận chuyển,
-email production và mô hình AI sinh nội dung bên ngoài chưa thuộc bản đồ án này.
+chính, gợi ý sản phẩm tự động, trợ lý tư vấn mua sắm và Copilot quản trị hỗ trợ
+tạo/lưu dashboard. Mô hình AI bên ngoài được bật tùy chọn bằng API key backend,
+có chế độ dự phòng theo luật. Thanh toán thật, API hãng vận chuyển và email
+production chưa thuộc bản đồ án này.
 
 ## Hồ sơ Word đã đóng gói
 
@@ -98,17 +100,15 @@ Không nhập dữ liệu SYN vào ứng dụng, không dùng như bằng chứn
 - Thời lượng: 8 tuần, 4 sprint × 2 tuần; không tính thêm một tuần thứ 9 vào
   baseline đồ án.
 - Đội delivery: đúng 5 người — PM, Frontend, Backend 1, Backend 2 và DevOps.
-- Schema runtime: 33 bảng PostgreSQL và view đọc
-  `admin_customer_segments`; Flyway hiện ở V7.
-- Kiểm thử hiện tại: 69 bài kiểm thử backend và 12 bài kiểm thử frontend, cùng
+- Schema runtime: 34 bảng PostgreSQL và view đọc
+  `admin_customer_segments`; Flyway hiện ở V9.
+- Kiểm thử hiện tại: 117 bài kiểm thử backend và 15 bài kiểm thử frontend, cùng
   build/typecheck và smoke test Docker.
 - Chạy dự án và xem kiến trúc tại [Platform README](platform/README.md) và
   [Architecture](platform/ARCHITECTURE.md).
 
 ## Sai lệch đã biết của bản hiện tại
 
-- `KD-GUEST-01`: trang online-payment của khách vãng lai còn truyền guest token
-  qua query thay vì header `X-Guest-Order-Token`.
 - `KD-PAY-01`: webhook thành công đến sau khi order đã `cancelled` có thể làm
   payment và order lệch trạng thái.
 - `KD-INV-01`: job giải phóng reservation hết hạn có thể hủy order nhưng chưa
@@ -118,7 +118,7 @@ Không nhập dữ liệu SYN vào ứng dụng, không dùng như bằng chứn
 
 Chi tiết, tác động và yêu cầu sửa được truy vết tại
 [ma trận yêu cầu](docs/ba/06-traceability.md). Các test đang pass là bằng chứng
-regression trong phạm vi đã phủ, không phủ nhận bốn sai lệch trên.
+regression trong phạm vi đã phủ, không phủ nhận ba sai lệch trên.
 
 ## Quy ước trạng thái yêu cầu
 

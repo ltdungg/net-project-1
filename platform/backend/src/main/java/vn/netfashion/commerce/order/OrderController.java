@@ -91,7 +91,7 @@ public class OrderController {
         @Email @NotBlank String email,
         @NotBlank @Pattern(regexp = "^(0|\\+84)[0-9]{9,10}$") String phone,
         @Size(max = 1000) String customerNote,
-        @NotBlank @Pattern(regexp = "^(cod|online)$") String paymentMethod,
+        @NotBlank @Pattern(regexp = "^(cod|online|sepay)$") String paymentMethod,
         @Size(max = 60) String voucherCode,
         @NotBlank @Size(max = 160) String idempotencyKey,
         @NotNull @Valid ShippingAddressRequest shippingAddress,

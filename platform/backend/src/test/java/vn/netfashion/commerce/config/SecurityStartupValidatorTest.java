@@ -64,7 +64,7 @@ class SecurityStartupValidatorTest {
             webhookSecret,
             "./data/uploads",
             "",
-            "gpt-5.4-mini"
+            "gemini-3.8-flash"
         );
     }
 

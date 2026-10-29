@@ -17,6 +17,6 @@ public record AppProperties(
     Set<String> managerEmails,
     String paymentWebhookSecret,
     String uploadDir,
-    String openaiApiKey,
-    String openaiModel
+    String geminiApiKey,
+    String geminiModel
 ) {}

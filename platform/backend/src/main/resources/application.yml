@@ -65,8 +65,14 @@ app:
   manager-emails: ${MANAGER_EMAILS:manager@example.com}
   payment-webhook-secret: ${PAYMENT_WEBHOOK_SECRET:replace-with-provider-webhook-secret}
   upload-dir: ${UPLOAD_DIR:./data/uploads}
-  openai-api-key: ${OPENAI_API_KEY:}
-  openai-model: ${OPENAI_MODEL:gpt-5.4-mini}
+  gemini-api-key: ${GEMINI_API_KEY:}
+  gemini-model: ${GEMINI_MODEL:gemini-3.8-flash}
+
+sepay:
+  sandbox:
+    enabled: ${SEPAY_SANDBOX_ENABLED:false}
+    api-key: ${SEPAY_SANDBOX_API_KEY:}
+    bank-account-id: ${SEPAY_SANDBOX_BANK_ACCOUNT_ID:}
 
 logging:
   pattern:

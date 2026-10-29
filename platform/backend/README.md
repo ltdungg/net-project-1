@@ -16,8 +16,8 @@ curl.exe http://localhost:8080/actuator/health
 
 Flyway tự tạo schema và seed catalog khi API khởi động. API chạy tại `http://localhost:8080`; PostgreSQL và Redis chỉ nằm trong network nội bộ của Compose.
 
-Schema hiện tại ở Flyway V7. Migration đã chạy là bất biến; không chỉnh sửa V7
-trên môi trường có dữ liệu, mà tạo V8 trở lên cho thay đổi tiếp theo.
+Schema hiện tại ở Flyway V9, gồm dashboard AI riêng theo tài khoản và metadata
+đối soát SePay Sandbox. Migration đã chạy là bất biến; thay đổi tiếp theo tạo V10 trở lên.
 
 Nếu Docker báo lỗi context `desktop-linux`, socket/pipe không tồn tại hoặc không kết nối được daemon, kiểm tra context rồi chạy trực tiếp bằng context `default`:
 
@@ -106,7 +106,7 @@ mvn clean test
 mvn clean package
 ```
 
-Baseline hiện tại có **69 kiểm thử backend**. Nhóm integration dùng PostgreSQL
+Baseline hiện tại có **117 kiểm thử backend**. Nhóm integration dùng PostgreSQL
 Testcontainers; nếu build image không truy cập Docker socket, các test này có
 thể bị skip theo điều kiện môi trường nên phải kiểm tra test summary, không chỉ
 nhìn exit code của bước compile/package.
@@ -134,7 +134,9 @@ docker run --rm `
 | Xác thực | `/api/auth/register`, `/verify-email`, `/resend-verification`, `/login`, `/refresh`, `/logout`, `/forgot-password`, `/reset-password`, `/me` | Tùy thao tác | Vòng đời email/password, JWT access và refresh rotation |
 | Tài khoản | `/api/account/profile`, `/api/account/addresses` | Thành viên | Hồ sơ và sổ địa chỉ |
 | Yêu thích | `GET/POST /api/account/wishlist`, `DELETE /api/account/wishlist/{productId}` | Thành viên | Xem, thêm và bỏ sản phẩm yêu thích |
-| Thanh toán | `POST /api/payments/mock/confirm`, `POST /api/payments/webhook` | Theo chữ ký/quy trình thanh toán | Xác nhận giả lập và nhận webhook HMAC |
+| Cấu hình thanh toán | `GET /api/payments/config` | Công khai | `mockEnabled` chỉ bật trong local; `sepaySandboxEnabled` khi đã cấu hình |
+| SePay Sandbox | `GET /api/payments/sepay-sandbox/{orderId}`, `POST /api/payments/sepay-sandbox/{orderId}/check` | Chủ đơn, token guest hoặc nhân viên | Lấy thông tin chuyển khoản/QR và đối soát qua API v2 |
+| Thanh toán | `POST /api/payments/mock/confirm`, `POST /api/payments/webhook` | Chủ đơn, token guest hoặc nhân viên (mock); chữ ký HMAC (webhook) | Mock body: `orderId`, `guestAccessToken?`, `outcome: succeeded\|failed` (mặc định succeeded); chỉ local |
 | Catalog admin | `GET/POST /api/admin/products`, `POST /api/admin/products/{id}/media` | Manager/Admin khi ghi | Quản lý sản phẩm và media |
 | Product options | `GET /api/admin/products/options` | Manager/Admin | Lấy category, warehouse và các lựa chọn cho form sản phẩm |
 | Upload | `POST /api/admin/uploads`, `GET /api/assets/**` | Manager/Admin khi tải lên | Lưu và phục vụ media |
@@ -151,6 +153,12 @@ docker run --rm `
 | Báo cáo | `GET /api/admin/reports/overview` | Manager/Admin | Doanh thu thuần, AOV, đơn, top sản phẩm và doanh số ngày |
 | Tài chính | `GET /api/admin/finance` | Manager/Admin | Tổng hợp thanh toán và payment ledger phân trang |
 | Copilot quản trị | `POST /api/admin/ai` | Staff/Manager/Admin | Phân tích dữ liệu tổng hợp, không tự thay đổi nghiệp vụ |
+| Gợi ý tự động | `POST /api/ai/recommendations` | Công khai, cá nhân hóa theo phiên/tài khoản | Body: `currentSlug`, `recentIds`, `favoriteIds` tùy chọn |
+| Tư vấn mua sắm | `POST /api/ai/chat` | Công khai | `message` bắt buộc; `previousQuestions` tối đa 6, mỗi câu tối đa 1.000 ký tự |
+| Cấu hình AI | `GET /api/ai/status` | Công khai | `provider: gemini`, `configured` cho frontend; không trả API key |
+| Tạo bản xem trước | `POST /api/admin/ai/dashboard` | Manager/Admin | `prompt`, `days` (1–90); mô hình chọn widget, backend tính số liệu |
+| Dashboard đã lưu | `GET/POST /api/admin/ai/dashboards` | Manager/Admin | Mỗi user tối đa 10 bản; POST: `title`, `days`, `widgets` |
+| Mở/xóa dashboard | `GET/DELETE /api/admin/ai/dashboards/{id}` | Chính chủ Manager/Admin | ID của người khác trả 404; mở lại truy vấn số liệu mới |
 | Sức khỏe | `GET /actuator/health`, `GET /api/health` | Công khai | Kiểm tra runtime và kết nối PostgreSQL |
 
 `GET /api/admin/reports/overview` nhận `from`, `to` theo `yyyy-MM-dd`. Mặc định là 30 ngày gần nhất, tối đa 366 ngày, không trước `2000-01-01`, không vượt ngày hiện tại và dùng múi giờ `Asia/Ho_Chi_Minh`. `GET /api/admin/finance` nhận thêm `page` từ 1 và `size` từ 1 đến 100. Ledger không trả email, số điện thoại, địa chỉ, idempotency key, mã giao dịch nhà cung cấp, lỗi chi tiết hoặc payload webhook.
@@ -170,25 +178,62 @@ nhất hai đơn paid và lần mua paid gần nhất trong 90 ngày, không nh�
 
 ## Giới hạn backend hiện tại
 
-- `KD-GUEST-01`: client online-payment của guest chưa gọi đúng contract header
-  `X-Guest-Order-Token`; backend không hỗ trợ token trong query.
 - `KD-PAY-01`: webhook payment thành công đến muộn có thể cập nhật payment trong
   khi order đã `cancelled`; chưa có bước reject/reconcile trạng thái terminal.
 - `KD-INV-01`: expiry job chưa đồng bộ `payments.status` khi hủy order do hết hạn.
 - `KD-INV-02`: expiry job chỉ chọn order `pending_payment`, nên reservation COD
   của order `confirmed` không được giải phóng theo TTL hiện tại.
-- Payment online dùng mock confirm/webhook HMAC; chưa có SDK/provider merchant
-  thật hoặc command refund đầy đủ.
+- Payment online hỗ trợ mock confirm/webhook HMAC và SePay Sandbox API v2.
+  SePay đối soát khi người dùng mở trang thanh toán; chưa có webhook/background
+  reconciliation SePay, kết nối Live hoặc command refund đầy đủ.
 - Fulfillment được tạo tự động theo kho nhưng tracking/state do nhân viên cập
   nhật; chưa có carrier API/webhook và chưa split nhiều kiện trong cùng một kho.
 - Outbox được ghi transactional nhưng chưa có dispatcher/consumer; email/SMS
   production chưa được nối.
-- Copilot là `AdminPromptEngine` theo luật, read-only; không gọi LLM và không tự
-  mutation.
+- Copilot dùng `AdminPromptEngine` làm dự phòng; khi có `GEMINI_API_KEY`, gọi
+  Gemini generateContent bằng key backend, đầu ra có cấu trúc. Model mặc định
+  `gemini-3.8-flash`, đổi qua `GEMINI_MODEL`. Không tự thay đổi nghiệp vụ.
 - Upload dùng volume local; cloud object storage/CDN, malware scan, centralized
   observability, secret manager và DR production nằm ngoài baseline.
-- V1–V7 là migration đã baseline và phải bất biến. Thay đổi schema tiếp theo bắt
-  đầu bằng V8, kèm test migration/upgrade.
+- V1–V9 là migration đã baseline và phải bất biến. Thay đổi schema tiếp theo bắt
+  đầu bằng V10, kèm test migration/upgrade.
+
+## SePay Sandbox
+
+Trong `.env` của backend (Git bỏ qua), cấu hình:
+
+```dotenv
+SEPAY_SANDBOX_ENABLED=true
+SEPAY_SANDBOX_API_KEY=<API token trong Test mode>
+SEPAY_SANDBOX_BANK_ACCOUNT_ID=<UUID tài khoản ngân hàng thử nghiệm>
+```
+
+Chạy lại `docker compose up --build -d api` để nạp cấu hình và Flyway V9.
+Nếu chạy Java/Maven trực tiếp, cần đặt ba biến môi trường này vào tiến trình;
+Spring không tự đọc `.env`. Không dùng biến frontend hoặc `NEXT_PUBLIC_*` cho key.
+Adapter chỉ gọi `https://userapi-sandbox.sepay.vn/v2/`, gửi Bearer token từ backend.
+
+1. Checkout chọn **SePay Sandbox**, đặt đơn rồi mở trang thanh toán.
+2. Trong dashboard SePay, chuyển sang **Test mode → Mô phỏng giao dịch**.
+   Chọn đúng tài khoản hiển thị trên checkout, loại tiền **vào**, số tiền VND
+   và nội dung `NET...` đầy đủ. QR là tài khoản thử; không chuyển tiền thật.
+3. Trang thanh toán tự kiểm tra mỗi 15 giây khi tab đang hiển thị, hoặc bấm
+   **Kiểm tra thanh toán**. Không cần webhook hoặc public tunnel cho luồng này.
+   Đóng trang sẽ ngừng kiểm tra; mở lại trong thời gian giữ hàng để đối soát.
+
+Backend kiểm tra UUID giao dịch, tài khoản, chiều tiền, số tiền chính xác, toàn
+bộ mã tham chiếu và thời gian từ lúc tạo payment đến khi hết hạn giữ hàng (2 giờ).
+Các trường `*_cents` hiện lưu **VND nguyên**, không chia 100 khi gửi SePay.
+Tài khoản và nội dung được chụp lại theo đơn. Khóa database và unique event ngăn
+ghi nhận lặp; đơn đã hủy/hết hạn/nhả tồn không được xác nhận lại. Không trừ tồn
+lần nữa lúc thanh toán. Lỗi provider giữ đơn chờ và cho phép kiểm tra lại.
+Mỗi đơn có cooldown 10 giây, mỗi tiến trình backend tối đa 2 yêu cầu SePay/giây;
+nhiều replica chung IP cần giới hạn phân tán trước khi mở rộng.
+
+API v2 công khai dùng để đọc/đối soát; không giả định có API tạo chuyển khoản.
+Tài liệu: [truy cập API Test mode](https://developer.sepay.vn/vi/tien-ich-khac/test-mode/api-access),
+[mô phỏng giao dịch](https://developer.sepay.vn/vi/tien-ich-khac/test-mode/mo-phong-giao-dich),
+[danh sách giao dịch v2](https://developer.sepay.vn/vi/sepay-api/v2/giao-dich/danh-sach).
 
 ## Lưu ý production
 

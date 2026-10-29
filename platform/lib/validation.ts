@@ -20,7 +20,7 @@ export const createOrderSchema = z.object({
     .regex(/^(0|\+84)[0-9]{9,10}$/),
   shippingAddress: addressSchema,
   customerNote: z.string().trim().max(500).optional(),
-  paymentMethod: z.enum(['cod', 'online']),
+  paymentMethod: z.enum(['cod', 'online', 'sepay']),
   voucherCode: z.string().trim().max(40).optional(),
   idempotencyKey: z.uuid(),
   items: z

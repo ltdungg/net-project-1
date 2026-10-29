@@ -26,6 +26,7 @@ import {
   type CatalogVariant,
 } from '@/lib/catalog-data';
 import { commerceRaw, commerceRequest } from '@/lib/commerce-api-client';
+import type { PaymentConfig } from '@/lib/payment-client';
 
 type CheckoutItem = {
   variantId: string;
@@ -87,7 +88,11 @@ export function CheckoutClient() {
   const [cart, setCart] = useState<CartPayload | null>(null);
   const [contact, setContact] = useState<CheckoutContact>(emptyContact);
   const [savedAddresses, setSavedAddresses] = useState<SavedAddress[]>([]);
-  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'online'>('cod');
+  const [paymentMethod, setPaymentMethod] = useState<
+    'cod' | 'online' | 'sepay'
+  >('cod');
+  const [mockEnabled, setMockEnabled] = useState(false);
+  const [sepayEnabled, setSepayEnabled] = useState(false);
   const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>(
     'idle',
   );
@@ -99,6 +104,23 @@ export function CheckoutClient() {
     nextAction?: { type: string; url: string };
   } | null>(null);
   const idempotencyKey = useMemo(() => crypto.randomUUID(), []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    void commerceRequest<PaymentConfig>('/payments/config', {
+      signal: controller.signal,
+    })
+      .then((config) => {
+        if (!controller.signal.aborted) {
+          setMockEnabled(config.mockEnabled);
+          setSepayEnabled(config.sepaySandboxEnabled);
+        }
+      })
+      .catch(() => {
+        /* COD remains available when the payment service is unavailable. */
+      });
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     commerceRaw('/cart', { cache: 'no-store' })
@@ -181,7 +203,13 @@ export function CheckoutClient() {
 
   async function submit(event: SyntheticEvent<HTMLFormElement, SubmitEvent>) {
     event.preventDefault();
-    if (!cart?.items.length) return;
+    if (
+      !cart?.items.length ||
+      state === 'loading' ||
+      (paymentMethod === 'online' && !mockEnabled) ||
+      (paymentMethod === 'sepay' && !sepayEnabled)
+    )
+      return;
     setState('loading');
     const formData = new FormData(event.currentTarget);
     const body = {
@@ -485,19 +513,36 @@ export function CheckoutClient() {
               [
                 'online',
                 CreditCard,
-                'Thanh toán trực tuyến',
-                'Chuyển tới cổng thanh toán bảo mật',
+                'Thanh toán giả lập',
+                mockEnabled
+                  ? 'Demo thành công / thất bại · không thu tiền thật'
+                  : 'Chưa khả dụng trong môi trường này',
               ],
+              ...(sepayEnabled
+                ? [
+                    [
+                      'sepay',
+                      CreditCard,
+                      'SePay Sandbox',
+                      'QR chuyển khoản thử · xác nhận từ SePay',
+                    ],
+                  ]
+                : []),
             ].map(([value, Icon, title, copy]) => (
               <label
                 key={String(value)}
-                className={`relative cursor-pointer rounded-xl border p-4 ${paymentMethod === value ? 'border-primary bg-secondary/70' : 'border-border'}`}
+                className={`relative cursor-pointer rounded-xl border p-4 ${value === 'online' && !mockEnabled ? 'cursor-not-allowed opacity-50' : ''} ${paymentMethod === value ? 'border-primary bg-secondary/70' : 'border-border'}`}
               >
                 <input
                   type="radio"
+                  name="paymentMethod"
+                  value={String(value)}
+                  disabled={value === 'online' && !mockEnabled}
                   className="sr-only"
                   checked={paymentMethod === value}
-                  onChange={() => setPaymentMethod(value as 'cod' | 'online')}
+                  onChange={() =>
+                    setPaymentMethod(value as 'cod' | 'online' | 'sepay')
+                  }
                 />
                 {paymentMethod === value ? (
                   <span className="absolute right-3 top-3 flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">

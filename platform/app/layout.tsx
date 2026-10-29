@@ -1,19 +1,14 @@
 import type { Metadata } from 'next';
-import { Be_Vietnam_Pro, Cormorant_Garamond } from 'next/font/google';
+import { Noto_Sans } from 'next/font/google';
 
 import './globals.css';
 import { AuthProvider } from '@/components/auth/auth-provider';
+import { ShoppingAssistant } from '@/components/storefront/shopping-assistant';
 
-const sans = Be_Vietnam_Pro({
+const sans = Noto_Sans({
   variable: '--font-sans-custom',
   subsets: ['latin', 'vietnamese'],
   weight: ['400', '500', '600', '700'],
-});
-
-const heading = Cormorant_Garamond({
-  variable: '--font-heading-custom',
-  subsets: ['latin', 'vietnamese'],
-  weight: ['500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -54,8 +49,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi">
-      <body className={`${sans.variable} ${heading.variable} antialiased`}>
-        <AuthProvider>{children}</AuthProvider>
+      <body className={`${sans.variable} font-sans antialiased`}>
+        <AuthProvider>
+          {children}
+          <ShoppingAssistant />
+        </AuthProvider>
       </body>
     </html>
   );

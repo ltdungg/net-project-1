@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { FavoriteButton } from '@/components/storefront/favorite-button';
-import { ProductCard } from '@/components/storefront/product-card';
+import { Recommendations } from '@/components/storefront/recommendations';
 import { ProductImage } from '@/components/storefront/product-image';
 import { SiteFooter } from '@/components/storefront/site-footer';
 import { SiteHeader } from '@/components/storefront/site-header';
@@ -313,19 +313,7 @@ export default async function ProductPage({
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-[1440px] px-4 py-12 sm:px-8 lg:px-12">
-        <h2 className="font-heading text-4xl font-semibold">
-          Có thể bạn cũng thích
-        </h2>
-        <div className="mt-7 grid grid-cols-2 gap-5 md:grid-cols-4">
-          {products
-            .filter((item) => item.id !== product.id)
-            .slice(0, 4)
-            .map((item) => (
-              <ProductCard key={item.id} product={item} />
-            ))}
-        </div>
-      </section>
+      <Recommendations currentSlug={product.slug} productId={product.id} />
       <SiteFooter />
     </main>
   );
