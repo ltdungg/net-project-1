@@ -1,0 +1,880 @@
+{
+  "date": "2026-10-29",
+  "baseUrl": "http://localhost:8788",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "ui": {
+    "counts": {
+      "Đạt": 41,
+      "Một phần": 11,
+      "Lỗi": 2
+    },
+    "cases": [
+      {
+        "id": "KH-01",
+        "title": "Trang chủ",
+        "status": "Đạt",
+        "steps": "Mở cửa hàng khi chưa đăng nhập.",
+        "expected": "Hiển thị bộ sưu tập, điều hướng và lời kêu gọi mua sắm.",
+        "actual": "Trang tải được, ảnh sản phẩm và các liên kết chính xuất hiện.",
+        "images": [
+          1
+        ]
+      },
+      {
+        "id": "KH-02",
+        "title": "Đăng nhập và đăng xuất",
+        "status": "Đạt",
+        "steps": "Đăng nhập customer01@example.test; mở tài khoản; đăng xuất. Sau đó đăng nhập tài khoản quản trị mẫu.",
+        "expected": "Nhận đúng phiên và quyền của từng tài khoản; đăng xuất đưa về trạng thái khách.",
+        "actual": "Khách hàng thấy Nguyễn Minh Anh; quản trị vào được khu vực admin; đăng xuất thành công.",
+        "images": [
+          2,
+          5
+        ]
+      },
+      {
+        "id": "KH-03",
+        "title": "Đăng ký thành viên",
+        "status": "Một phần",
+        "steps": "Mở trang đăng ký.",
+        "expected": "Biểu mẫu có thông tin tài khoản và đồng ý điều khoản.",
+        "actual": "Biểu mẫu hiển thị đủ. Chưa gửi đăng ký, xác minh email hay kiểm thử trùng email trong lượt này.",
+        "images": [
+          3
+        ]
+      },
+      {
+        "id": "KH-04",
+        "title": "Quên mật khẩu",
+        "status": "Một phần",
+        "steps": "Mở liên kết Quên mật khẩu từ đăng nhập.",
+        "expected": "Hiển thị trường email và nút gửi hướng dẫn.",
+        "actual": "Giao diện tải đúng. Chưa gửi email, mở token hoặc đặt lại mật khẩu.",
+        "images": [
+          4
+        ]
+      },
+      {
+        "id": "KH-05",
+        "title": "Cập nhật hồ sơ",
+        "status": "Đạt",
+        "steps": "Mở Hồ sơ và bấm Lưu hồ sơ với dữ liệu mẫu hiện có.",
+        "expected": "Lưu thành công và giữ nguyên thông tin nhập.",
+        "actual": "Thông báo cập nhật thành công xuất hiện; tên và số điện thoại mẫu được giữ nguyên. Chưa kiểm thử thay đổi từng trường.",
+        "images": [
+          6
+        ]
+      },
+      {
+        "id": "KH-06",
+        "title": "Sổ địa chỉ và sửa địa chỉ",
+        "status": "Đạt",
+        "steps": "Mở sổ địa chỉ; sửa địa chỉ Nhà riêng; lưu lại các giá trị hiện có.",
+        "expected": "Nạp đúng địa chỉ, người nhận và trạng thái mặc định; lưu được.",
+        "actual": "Địa chỉ được điền sẵn và lưu thành công; checkout dùng được địa chỉ này.",
+        "images": [
+          7,
+          8
+        ]
+      },
+      {
+        "id": "KH-07",
+        "title": "Danh sách đơn của khách",
+        "status": "Một phần",
+        "steps": "Mở Đơn hàng trong tài khoản customer01.",
+        "expected": "Chỉ hiển thị đơn của tài khoản và tên trạng thái tiếng Việt.",
+        "actual": "Danh sách đơn tải đúng; một số nhãn vẫn là delivered. Xem lỗi L-07.",
+        "images": [
+          9
+        ]
+      },
+      {
+        "id": "KH-08",
+        "title": "Chi tiết đơn đã mua",
+        "status": "Đạt",
+        "steps": "Mở đơn mẫu NET-DEMO-0001 từ lịch sử mua hàng.",
+        "expected": "Hiển thị hành trình, sản phẩm và tổng tiền.",
+        "actual": "Chi tiết đơn đã giao hiển thị; tổng tiền 1.780.000 ₫.",
+        "images": [
+          10
+        ]
+      },
+      {
+        "id": "KH-09",
+        "title": "Danh mục sản phẩm",
+        "status": "Đạt",
+        "steps": "Mở danh mục Nữ.",
+        "expected": "Hiển thị sản phẩm thuộc danh mục với ảnh và giá.",
+        "actual": "Danh mục có 10 sản phẩm, thẻ sản phẩm và bộ lọc xuất hiện.",
+        "images": [
+          11
+        ]
+      },
+      {
+        "id": "KH-10",
+        "title": "Lọc theo giá",
+        "status": "Đạt",
+        "steps": "Trong danh mục Nữ, chọn mức giá dưới 800.000 ₫.",
+        "expected": "Chỉ giữ sản phẩm dưới ngưỡng giá.",
+        "actual": "Còn Áo linen cổ V Mộc giá 790.000 ₫.",
+        "images": [
+          12
+        ]
+      },
+      {
+        "id": "KH-11",
+        "title": "Tìm kiếm cửa hàng",
+        "status": "Đạt",
+        "steps": "Tìm từ khóa linen.",
+        "expected": "Kết quả phù hợp từ khóa.",
+        "actual": "Hiển thị 4 sản phẩm phù hợp và tiêu đề kết quả cho linen.",
+        "images": [
+          27
+        ]
+      },
+      {
+        "id": "KH-12",
+        "title": "Chi tiết sản phẩm và chọn size",
+        "status": "Một phần",
+        "steps": "Mở Áo linen cổ V Mộc; chọn size M.",
+        "expected": "Giá, tồn khả dụng và SKU tương ứng size được cập nhật.",
+        "actual": "Chọn M và thêm đúng biến thể M vào giỏ được; dòng SKU trên trang vẫn lấy biến thể đầu tiên. Xem L-08.",
+        "images": [
+          13
+        ]
+      },
+      {
+        "id": "KH-13",
+        "title": "Giỏ hàng và số lượng",
+        "status": "Đạt",
+        "steps": "Thêm áo size M; tăng từ 1 lên 2; cuối lượt chụp lại đã xóa sản phẩm thử khỏi giỏ.",
+        "expected": "Tổng tiền và phí vận chuyển đổi theo số lượng; xóa được dòng hàng.",
+        "actual": "1 áo: 790.000 ₫ + 35.000 ₫ giao hàng. 2 áo: 1.580.000 ₫, miễn phí giao hàng. Giỏ cuối cùng trống.",
+        "images": [
+          14
+        ]
+      },
+      {
+        "id": "KH-14",
+        "title": "Từ chối voucher hết hạn",
+        "status": "Đạt",
+        "steps": "Nhập DEMOHE vào giỏ 2 áo và bấm Áp dụng.",
+        "expected": "Không áp dụng giảm giá; báo lý do hết hạn.",
+        "actual": "Hiển thị lỗi mã không còn hiệu lực; tổng chưa giảm là 1.580.000 ₫.",
+        "images": [
+          15
+        ]
+      },
+      {
+        "id": "KH-15",
+        "title": "Áp dụng voucher hợp lệ",
+        "status": "Đạt",
+        "steps": "Nhập DEMO10 vào giỏ 2 áo.",
+        "expected": "Giảm 10%, tối đa 150.000 ₫.",
+        "actual": "Giảm 150.000 ₫; tổng thanh toán 1.430.000 ₫.",
+        "images": [
+          16
+        ]
+      },
+      {
+        "id": "KH-16",
+        "title": "Checkout, địa chỉ và phương thức thanh toán",
+        "status": "Đạt",
+        "steps": "Mở checkout từ giỏ; dùng Nhà riêng; chọn thanh toán giả lập; đặt đơn thử.",
+        "expected": "Địa chỉ tự điền, tổng tiền đúng, tạo được đơn thử.",
+        "actual": "Đã tạo NET-261029-724620 tổng 1.430.000 ₫. Ảnh checkout được chụp lại sau đó với cùng giỏ mẫu để có bố cục rõ; lần chụp lại không đặt thêm đơn.",
+        "images": [
+          17,
+          60
+        ]
+      },
+      {
+        "id": "KH-17",
+        "title": "Thanh toán giả lập thất bại và thử lại",
+        "status": "Đạt",
+        "steps": "Trên trang thanh toán của đơn thử, chọn mô phỏng thất bại, sau đó mô phỏng thành công.",
+        "expected": "Lần thất bại cho phép thử lại; lần thành công cập nhật trạng thái thanh toán.",
+        "actual": "Đã quan sát trạng thái thất bại rồi thông báo thành công. Đơn cuối cùng có payment_status=paid. Không có giao dịch tiền thật.",
+        "images": [
+          18,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "KH-18",
+        "title": "Theo dõi đơn mới qua toàn bộ quy trình",
+        "status": "Đạt",
+        "steps": "Mở đơn sau thanh toán; sau khi quản trị giao thành công, mở lại phía khách.",
+        "expected": "Khách thấy trạng thái đồng bộ với quản trị.",
+        "actual": "Ban đầu Đã xác nhận; cuối quy trình Đã giao, cùng mã đơn và tổng tiền.",
+        "images": [
+          21,
+          62
+        ]
+      },
+      {
+        "id": "KH-19",
+        "title": "Danh sách yêu thích",
+        "status": "Đạt",
+        "steps": "Bấm yêu thích Áo linen cổ V Mộc và mở danh sách yêu thích.",
+        "expected": "Sản phẩm được lưu vào tài khoản.",
+        "actual": "Số sản phẩm yêu thích tăng từ 3 lên 4; áo xuất hiện trong danh sách.",
+        "images": [
+          22
+        ]
+      },
+      {
+        "id": "KH-20",
+        "title": "Tư vấn mua sắm theo giá và size",
+        "status": "Đạt",
+        "steps": "Hỏi trợ lý: Áo nữ dưới 800k, size M.",
+        "expected": "Gợi ý đúng loại hàng, ngân sách và size.",
+        "actual": "Trả về Áo linen cổ V Mộc giá 790.000 ₫ với size M. Kết quả kiểm thử trên cơ chế dự phòng hiện có.",
+        "images": [
+          23
+        ]
+      },
+      {
+        "id": "KH-21",
+        "title": "Tư vấn theo loại chân váy",
+        "status": "Lỗi",
+        "steps": "Trong cùng cuộc tư vấn, hỏi chân váy nữ dưới 2 triệu.",
+        "expected": "Chỉ gợi ý chân váy phù hợp ngân sách.",
+        "actual": "Kết quả lẫn Đầm satin Nắng và Đầm midi Hoa, ngoài Chân váy xếp ly Rêu. Xem L-01.",
+        "images": [
+          24
+        ]
+      },
+      {
+        "id": "KH-22",
+        "title": "Gợi ý sản phẩm tự động",
+        "status": "Đạt",
+        "steps": "Mở giỏ hàng của khách có lịch sử yêu thích.",
+        "expected": "Hiển thị gợi ý và lý do chọn sản phẩm.",
+        "actual": "Hiển thị các sản phẩm trong yêu thích và nhóm thiết kế quan tâm. Ảnh cuối ghi lại giỏ đã dọn trống nhưng vẫn có gợi ý.",
+        "images": [
+          61
+        ]
+      },
+      {
+        "id": "KH-23",
+        "title": "Hướng dẫn chọn size",
+        "status": "Đạt",
+        "steps": "Mở Hướng dẫn chọn size.",
+        "expected": "Hiển thị cách đo và bảng kích thước.",
+        "actual": "Có 3 bước hướng dẫn và bảng size S/M/L.",
+        "images": [
+          25
+        ]
+      },
+      {
+        "id": "KH-24",
+        "title": "Câu chuyện thương hiệu",
+        "status": "Đạt",
+        "steps": "Mở Câu chuyện thương hiệu.",
+        "expected": "Nội dung, hình minh họa và các cam kết hiển thị.",
+        "actual": "Trang tải đúng với ảnh thương hiệu và ba nội dung giới thiệu.",
+        "images": [
+          26
+        ]
+      },
+      {
+        "id": "QT-01",
+        "title": "Tổng quan quản trị",
+        "status": "Một phần",
+        "steps": "Đăng nhập admin mẫu và mở Tổng quan.",
+        "expected": "KPI và ngày tháng phản ánh dữ liệu hiện tại.",
+        "actual": "KPI 30 ngày có 44 đơn, doanh thu 45.120.000 ₫. Ngày tháng, mục tiêu và một số chỉ số ưu tiên vẫn cố định. Xem L-04.",
+        "images": [
+          28
+        ]
+      },
+      {
+        "id": "QT-02",
+        "title": "Danh sách sản phẩm",
+        "status": "Một phần",
+        "steps": "Mở Sản phẩm và thử nút thao tác của sản phẩm kiểm thử.",
+        "expected": "Danh sách tải; thao tác từng sản phẩm và xuất dữ liệu hoạt động.",
+        "actual": "Danh sách tải được. Nút thao tác và Xuất CSV chưa có xử lý trong mã nguồn. Xem L-05.",
+        "images": [
+          29
+        ]
+      },
+      {
+        "id": "QT-03",
+        "title": "Tìm sản phẩm trong quản trị",
+        "status": "Lỗi",
+        "steps": "Nhập linen vào ô tìm tên, SKU hoặc slug.",
+        "expected": "Lọc danh sách theo từ khóa.",
+        "actual": "Danh sách vẫn giữ sản phẩm không liên quan; ô nhập không có xử lý lọc. Xem L-02.",
+        "images": [
+          30
+        ]
+      },
+      {
+        "id": "QT-04",
+        "title": "Tạo sản phẩm nháp",
+        "status": "Một phần",
+        "steps": "Tạo Áo kiểm thử giao diện 1920, SKU NET-QA1920-M, giá 590.000 ₫, size M, trạng thái Bản nháp, tồn đầu 5 tại HCM-DEMO.",
+        "expected": "Lưu sản phẩm, biến thể và tồn đầu; hiển thị đúng nhãn nháp.",
+        "actual": "Cơ sở dữ liệu lưu status=draft và tồn đầu thành công. Danh sách gắn nhãn Đang chạy cho mọi sản phẩm. Ảnh biểu mẫu được mở lại để chụp rõ, không lưu lần thứ hai. Xem L-03.",
+        "images": [
+          31,
+          32
+        ]
+      },
+      {
+        "id": "QT-05",
+        "title": "Danh sách đơn quản trị",
+        "status": "Một phần",
+        "steps": "Mở Đơn hàng khi dữ liệu có hơn 50 đơn.",
+        "expected": "Xem đầy đủ đơn hoặc có phân trang và tổng số đúng.",
+        "actual": "Trang chỉ tải 50 đơn và tính thẻ Tất cả theo 50 dòng này; chưa có phân trang. Đơn mới vẫn truy cập được từ Tổng quan/chi tiết. Xem L-09.",
+        "images": [
+          33
+        ]
+      },
+      {
+        "id": "QT-06",
+        "title": "Chi tiết đơn quản trị",
+        "status": "Đạt",
+        "steps": "Mở NET-261029-724620.",
+        "expected": "Thông tin khách, sản phẩm, phiếu giao, giữ hàng và tiền khớp.",
+        "actual": "Hiển thị 2 áo size M, giảm 150.000 ₫, tổng 1.430.000 ₫ và reservation liên kết.",
+        "images": [
+          34
+        ]
+      },
+      {
+        "id": "QT-07",
+        "title": "Cập nhật xử lý đơn",
+        "status": "Đạt",
+        "steps": "Chuyển đơn đã xác nhận sang Đang xử lý, kèm ghi chú thử nghiệm.",
+        "expected": "Trạng thái đơn/phiếu giao và lịch sử cập nhật.",
+        "actual": "Lưu thành công; phiếu giao chuyển sang xử lý và có lịch sử.",
+        "images": [
+          35
+        ]
+      },
+      {
+        "id": "QT-08",
+        "title": "Hàng đợi vận chuyển",
+        "status": "Đạt",
+        "steps": "Mở Vận chuyển.",
+        "expected": "Hiển thị các phiếu giao với trạng thái và liên kết chi tiết.",
+        "actual": "Danh sách có 73 phiếu giao tại thời điểm chụp, bao gồm đơn thử mới.",
+        "images": [
+          36
+        ]
+      },
+      {
+        "id": "QT-09",
+        "title": "Chi tiết phiếu giao",
+        "status": "Đạt",
+        "steps": "Mở SHP-261029-724620-01.",
+        "expected": "Hiển thị kho, người nhận, hàng trong kiện và nhật ký.",
+        "actual": "Thông tin đúng đơn thử; ảnh được chụp lại ở trạng thái cuối Đã giao.",
+        "images": [
+          37
+        ]
+      },
+      {
+        "id": "QT-10",
+        "title": "Lưu thông tin vận đơn",
+        "status": "Đạt",
+        "steps": "Nhập đối tác Vận chuyển kiểm thử, mã QA1920-261029-724620, phí nội bộ 25.000 ₫ rồi lưu.",
+        "expected": "Thông tin được lưu và xuất hiện trong nhật ký.",
+        "actual": "Lưu thành công; tải lại vẫn còn các giá trị. Ảnh chụp lại sau khi hoàn tất giao hàng.",
+        "images": [
+          38
+        ]
+      },
+      {
+        "id": "QT-11",
+        "title": "Chuẩn bị, xuất kho và chuyển đang giao",
+        "status": "Đạt",
+        "steps": "Chuyển phiếu từ Đang xử lý sang Chờ lấy hàng rồi Đang giao.",
+        "expected": "Ghi nhật ký, trừ tồn và tiêu thụ giữ hàng đúng một lần.",
+        "actual": "Nhật ký có các bước; reservation của 2 áo chuyển consumed. Ảnh cho thấy lịch sử sau khi giao xong; đối chiếu DB xác nhận trạng thái.",
+        "images": [
+          39
+        ]
+      },
+      {
+        "id": "QT-12",
+        "title": "Giao thành công",
+        "status": "Đạt",
+        "steps": "Chuyển phiếu từ Đang giao sang Đã giao.",
+        "expected": "Phiếu và đơn hoàn thành; khách thấy trạng thái mới.",
+        "actual": "Đơn delivered, payment paid, fulfillment fulfilled; phía khách cũng thấy Đã giao.",
+        "images": [
+          40
+        ]
+      },
+      {
+        "id": "QT-13",
+        "title": "Khách hàng và phân khúc",
+        "status": "Đạt",
+        "steps": "Mở Khách hàng; chọn phân khúc VIP và áp dụng.",
+        "expected": "Danh sách lọc đúng phân khúc.",
+        "actual": "Hiển thị 5 khách VIP trong dữ liệu mẫu. Ảnh dùng danh sách đã lọc.",
+        "images": [
+          41
+        ]
+      },
+      {
+        "id": "QT-14",
+        "title": "Hồ sơ khách hàng 360 độ",
+        "status": "Đạt",
+        "steps": "Mở Nguyễn Minh Anh/customer01.",
+        "expected": "Tổng mua, đơn và lịch sử tương ứng khách được chọn.",
+        "actual": "Có 10 đơn đã thanh toán, tổng 21.840.000 ₫, bao gồm đơn thử 1.430.000 ₫.",
+        "images": [
+          42
+        ]
+      },
+      {
+        "id": "QT-15",
+        "title": "Tổng hợp tồn kho đa kho",
+        "status": "Đạt",
+        "steps": "Mở Tồn kho và xem các chỉ số theo kho/SKU.",
+        "expected": "Hiển thị tồn thực, giữ hàng, khả dụng và cảnh báo.",
+        "actual": "Hiển thị 3 kho; tìm theo SKU kiểm thử được; có trạng thái hết hàng/sắp hết/an toàn.",
+        "images": [
+          43
+        ]
+      },
+      {
+        "id": "QT-16",
+        "title": "Nhập kho",
+        "status": "Đạt",
+        "steps": "Tạo phiếu nhập +10 NET-QA1920-M vào HCM-DEMO, kèm lý do.",
+        "expected": "Tồn từ 5 lên 15 và ghi sổ.",
+        "actual": "Phiếu RCV-20261029Z-AA1878 được ghi; tồn lên 15.",
+        "images": [
+          44
+        ]
+      },
+      {
+        "id": "QT-17",
+        "title": "Chuyển kho",
+        "status": "Đạt",
+        "steps": "Chuyển 2 NET-QA1920-M từ HCM-DEMO sang HN-01.",
+        "expected": "Kho nguồn giảm 2, kho đích tăng 2.",
+        "actual": "Phiếu TRF-20261029Z-5EC781 thành công; nguồn còn 13, đích 2.",
+        "images": [
+          45
+        ]
+      },
+      {
+        "id": "QT-18",
+        "title": "Kiểm kê",
+        "status": "Đạt",
+        "steps": "Kiểm kê NET-QA1920-M tại HCM-DEMO với số thực tế 12.",
+        "expected": "Ghi chênh lệch -1 và cập nhật tồn.",
+        "actual": "Tồn nguồn từ 13 về 12; lịch sử ghi nhận điều chỉnh kiểm kê.",
+        "images": [
+          46
+        ]
+      },
+      {
+        "id": "QT-19",
+        "title": "Điều chỉnh tồn kho",
+        "status": "Đạt",
+        "steps": "Điều chỉnh +1 NET-QA1920-M tại HCM-DEMO, có lý do.",
+        "expected": "Tồn từ 12 lên 13 và có phiếu điều chỉnh.",
+        "actual": "Phiếu ADJ-20261029Z-41EAD4 thành công. Ảnh biểu mẫu được mở lại sau giao dịch để chụp rõ, sau đó hủy, không ghi thêm +1.",
+        "images": [
+          47
+        ]
+      },
+      {
+        "id": "QT-20",
+        "title": "Sổ cái và đối chiếu số dư",
+        "status": "Đạt",
+        "steps": "Lọc NET-QA1920-M; xem phiếu và đối chiếu inventory_items với tổng movement.",
+        "expected": "Tồn thực bằng tổng các bút toán; không giữ hàng thừa.",
+        "actual": "HCM-DEMO 13, HN-01 2, reserved=0 tại cả hai kho; số dư sổ cái lần lượt 13 và 2.",
+        "images": [
+          48
+        ]
+      },
+      {
+        "id": "QT-21",
+        "title": "Danh sách khuyến mãi",
+        "status": "Đạt",
+        "steps": "Mở Khuyến mãi.",
+        "expected": "Hiển thị mã, giá trị, lượt dùng và thời gian áp dụng.",
+        "actual": "DEMO10 có 19 lượt sử dụng sau đơn thử; các chương trình hiển thị đầy đủ. Nhãn expired chưa dịch, xem L-07.",
+        "images": [
+          49
+        ]
+      },
+      {
+        "id": "QT-22",
+        "title": "Tạo voucher",
+        "status": "Đạt",
+        "steps": "Tạo QA1920: giảm 5%, tối đa 50.000 ₫, giới hạn 1 lượt dùng.",
+        "expected": "Lưu được chương trình và xuất hiện trong danh sách.",
+        "actual": "Chương trình Kiểm thử giao diện 1920 xuất hiện, lượt dùng 0/1. Chưa dùng mã này để đặt đơn.",
+        "images": [
+          50,
+          51
+        ]
+      },
+      {
+        "id": "QT-23",
+        "title": "Báo cáo kinh doanh",
+        "status": "Một phần",
+        "steps": "Mở Báo cáo; thử Xuất báo cáo.",
+        "expected": "KPI/charts tải đúng và có thể xuất báo cáo.",
+        "actual": "KPI tải được; nút xuất chưa có xử lý. Funnel được ghi rõ là minh họa, chưa có tracking phiên. Xem L-04/L-05.",
+        "images": [
+          52
+        ]
+      },
+      {
+        "id": "QT-24",
+        "title": "Tài chính và đối soát",
+        "status": "Một phần",
+        "steps": "Mở Tài chính; đối chiếu cấu hình nút với mã nguồn.",
+        "expected": "Hiển thị tiền đã thu và các trạng thái; thao tác đối soát/xuất hoạt động.",
+        "actual": "Đã thu 45.120.000 ₫, chờ 17.615.000 ₫. Nút Đối soát lại/Xuất CSV chưa gắn xử lý; các thanh phần trăm được gán theo trạng thái. Chưa kiểm thử đối soát thực. Xem L-05.",
+        "images": [
+          53
+        ]
+      },
+      {
+        "id": "QT-25",
+        "title": "Tư vấn vận hành",
+        "status": "Đạt",
+        "steps": "Chọn Tóm tắt cửa hàng hôm nay.",
+        "expected": "Trả lời từ dữ liệu cửa hàng và có điều hướng liên quan.",
+        "actual": "Trả lời 44 đơn, doanh thu 45.120.000 ₫ trong 30 ngày, 10 đơn cần xử lý; có liên kết đơn và tồn kho. Cơ chế dự phòng trả lời được.",
+        "images": [
+          54
+        ]
+      },
+      {
+        "id": "QT-26",
+        "title": "Tạo bản xem trước dashboard",
+        "status": "Đạt",
+        "steps": "Chọn gợi ý doanh thu/sản phẩm bán chạy 7 ngày; thêm chỉ số Tổng đơn hàng và đổi tên.",
+        "expected": "Đúng khoảng ngày và chỉ số được chọn.",
+        "actual": "Khoảng 23–29/10/2026; doanh thu 10.945.000 ₫, 21 đơn, 10 sản phẩm đã bán.",
+        "images": [
+          55
+        ]
+      },
+      {
+        "id": "QT-27",
+        "title": "Lưu, mở lại và làm mới dashboard",
+        "status": "Đạt",
+        "steps": "Lưu Kiểm thử 1920 – 7 ngày; chuyển dashboard khác; mở lại và làm mới.",
+        "expected": "Dashboard lưu theo tài khoản và giữ cấu hình.",
+        "actual": "Danh sách tăng 2 lên 3; mở lại được và số liệu được tải mới.",
+        "images": [
+          56
+        ]
+      },
+      {
+        "id": "QT-28",
+        "title": "Biểu đồ và bảng bán chạy",
+        "status": "Đạt",
+        "steps": "Mở dashboard đã lưu; chọn cột ngày 29/10.",
+        "expected": "Hiển thị doanh thu theo ngày và bảng sản phẩm bán chạy.",
+        "actual": "Cột 29/10 có 1.430.000 ₫; bảng có 2 áo linen của đơn thử. Doanh số dòng hàng 1.580.000 ₫ chưa trừ voucher, đúng chú thích.",
+        "images": [
+          57
+        ]
+      },
+      {
+        "id": "QT-29",
+        "title": "Cài đặt hệ thống",
+        "status": "Một phần",
+        "steps": "Mở Cài đặt.",
+        "expected": "Xem cấu hình và lưu thay đổi khi chức năng hoàn thiện.",
+        "actual": "Trang hiển thị; nút Chưa hỗ trợ lưu bị vô hiệu hóa. Chỉ xác nhận giao diện, không xác nhận khả năng thay đổi cấu hình.",
+        "images": [
+          58
+        ]
+      },
+      {
+        "id": "QT-30",
+        "title": "Nhật ký backend và bộ lọc",
+        "status": "Đạt",
+        "steps": "Mở Nhật ký backend; nhập inventory; bấm Làm mới.",
+        "expected": "Lọc và tải lại bản ghi liên quan.",
+        "actual": "Danh sách còn các yêu cầu inventory; thấy các POST nhập/chuyển/kiểm kê/điều chỉnh trả 200.",
+        "images": [
+          59
+        ]
+      }
+    ]
+  },
+  "automated": {
+    "frontend": {
+      "tests": 15,
+      "passed": 15,
+      "typecheck": "passed",
+      "lint": "passed",
+      "build": "passed"
+    },
+    "smoke": {
+      "checks": 4,
+      "passed": 4
+    },
+    "api": {
+      "checks": 34,
+      "warnings": [
+        "/admin/metrics: permission denied returns 500, expected 403"
+      ],
+      "reportKpis": {
+        "netRevenueCents": 45120000,
+        "orders": 44,
+        "paidOrders": 26,
+        "averageOrderValueCents": 1735384,
+        "itemsSold": 44,
+        "paidCustomers": 10
+      },
+      "results": [
+        {
+          "path": "/auth/login",
+          "status": 200
+        },
+        {
+          "path": "/auth/login",
+          "status": 200
+        },
+        {
+          "path": "/auth/login",
+          "status": 200
+        },
+        {
+          "path": "/auth/login",
+          "status": 200
+        },
+        {
+          "path": "/admin/metrics",
+          "status": 200
+        },
+        {
+          "path": "/admin/orders",
+          "status": 200
+        },
+        {
+          "path": "/admin/orders/demo-v1-order-001",
+          "status": 200
+        },
+        {
+          "path": "/admin/customers",
+          "status": 200
+        },
+        {
+          "path": "/admin/customers/segments",
+          "status": 200
+        },
+        {
+          "path": "/admin/customers/demo-v1-customer-001",
+          "status": 200
+        },
+        {
+          "path": "/admin/fulfillments",
+          "status": 200
+        },
+        {
+          "path": "/admin/fulfillments/demo-v1-fulfillment-051",
+          "status": 200
+        },
+        {
+          "path": "/admin/inventory",
+          "status": 200
+        },
+        {
+          "path": "/admin/promotions",
+          "status": 200
+        },
+        {
+          "path": "/admin/finance",
+          "status": 200
+        },
+        {
+          "path": "/admin/reports/overview",
+          "status": 200
+        },
+        {
+          "path": "/admin/ai/dashboards",
+          "status": 200
+        },
+        {
+          "path": "/admin/ai/dashboards/5526af0a-fd44-44bb-a109-556cf19d0d2b",
+          "status": 200
+        },
+        {
+          "path": "/admin/ai",
+          "status": 200
+        },
+        {
+          "path": "/admin/ai/dashboard",
+          "status": 200
+        },
+        {
+          "path": "/admin/metrics",
+          "status": 200
+        },
+        {
+          "path": "/admin/orders",
+          "status": 200
+        },
+        {
+          "path": "/admin/metrics",
+          "status": 500,
+          "expected": 403,
+          "passed": false
+        },
+        {
+          "path": "/admin/orders",
+          "status": 403,
+          "expected": 403,
+          "passed": true
+        },
+        {
+          "path": "/orders",
+          "status": 200
+        },
+        {
+          "path": "/orders/demo-v1-order-001",
+          "status": 200
+        },
+        {
+          "path": "/account/wishlist",
+          "status": 200
+        },
+        {
+          "path": "/account/addresses",
+          "status": 200
+        },
+        {
+          "path": "/admin/ai/dashboards/demo-v1-admin-001-dashboard",
+          "status": 404
+        },
+        {
+          "path": "/admin",
+          "status": 200
+        },
+        {
+          "path": "/admin/don-hang",
+          "status": 200
+        },
+        {
+          "path": "/admin/khach-hang",
+          "status": 200
+        },
+        {
+          "path": "/admin/van-chuyen",
+          "status": 200
+        },
+        {
+          "path": "/admin/ai",
+          "status": 200
+        }
+      ]
+    }
+  },
+  "data": {
+    "order": "NET-261029-724620",
+    "orderStatus": "delivered",
+    "paymentStatus": "paid",
+    "fulfillmentStatus": "fulfilled",
+    "grandTotalVnd": 1430000,
+    "reservationStatus": "consumed",
+    "reservationQuantity": 2,
+    "productStatus": "draft",
+    "stock": [
+      {
+        "warehouse": "HCM-DEMO",
+        "sku": "NET-QA1920-M",
+        "onHand": 13,
+        "reserved": 0,
+        "ledgerBalance": 13
+      },
+      {
+        "warehouse": "HN-01",
+        "sku": "NET-QA1920-M",
+        "onHand": 2,
+        "reserved": 0,
+        "ledgerBalance": 2
+      }
+    ],
+    "demoIntegrity": "passed"
+  },
+  "bugs": [
+    [
+      "L-01",
+      "Cao",
+      "Tư vấn chân váy trả cả đầm",
+      "KH-21",
+      "Phân biệt chân váy với đầm trước khi xếp hạng; kiểm tra lại ngữ cảnh câu hỏi tiếp nối."
+    ],
+    [
+      "L-02",
+      "Vừa",
+      "Ô tìm kiếm sản phẩm quản trị không lọc",
+      "QT-03",
+      "Nối từ khóa vào truy vấn hoặc bộ lọc; kiểm tra tên/SKU/slug."
+    ],
+    [
+      "L-03",
+      "Vừa",
+      "Sản phẩm draft mang nhãn Đang chạy",
+      "QT-04",
+      "Truyền trạng thái thực vào StatusBadge; DB đã xác nhận sản phẩm thử là draft."
+    ],
+    [
+      "L-04",
+      "Cao",
+      "Tổng quan còn ngày và chỉ số cố định",
+      "QT-01/QT-23",
+      "Thay ngày 31/08/2026, mục tiêu 486,2/520 triệu và thẻ ưu tiên cố định bằng dữ liệu. Funnel chưa có tracking phải được xem là minh họa."
+    ],
+    [
+      "L-05",
+      "Vừa",
+      "Một số nút quản trị chưa được triển khai",
+      "QT-02/QT-23/QT-24/QT-29",
+      "Hoàn thiện thao tác sản phẩm, xuất CSV/báo cáo, đối soát và lưu cài đặt; hiện có các nút không handler hoặc bị disable."
+    ],
+    [
+      "L-06",
+      "Vừa",
+      "Staff gọi metrics nhận HTTP 500",
+      "API",
+      "Kỳ vọng HTTP 403 cho quyền bị từ chối. Không có dữ liệu được trả, nhưng mã lỗi đang sai; cần ánh xạ AccessDenied đúng."
+    ],
+    [
+      "L-07",
+      "Thấp",
+      "Nhãn trạng thái chưa thống nhất",
+      "KH-07/QT-21/QT-05",
+      "Dịch delivered/expired/refunded; tránh dùng Giao thất bại cho payment failed."
+    ],
+    [
+      "L-08",
+      "Thấp",
+      "SKU chi tiết sản phẩm không đổi theo size",
+      "KH-12",
+      "Dòng SKU đang lấy product.variants[0], trong khi ProductActions quản lý biến thể riêng; cần đồng bộ."
+    ],
+    [
+      "L-09",
+      "Vừa",
+      "Danh sách đơn bị giới hạn 50 nhưng chưa phân trang",
+      "QT-05",
+      "Hiển thị tổng thực và phân trang/tải thêm; thẻ Tất cả hiện chỉ phản ánh mảng 50 dòng."
+    ]
+  ]
+}

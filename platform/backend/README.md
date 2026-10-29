@@ -59,6 +59,13 @@ docker compose down
 
 Chỉ dùng `docker compose down -v` khi chủ động muốn xóa toàn bộ PostgreSQL, Redis và ảnh đã upload.
 
+## Dữ liệu mẫu cho local
+
+Từ thư mục backend, chạy `node scripts/seed-demo.mjs --project <ten-compose-project> --context default`
+để thêm khách hàng, đơn hàng, thanh toán, vận chuyển, tồn kho, khuyến mãi và dashboard.
+Script chỉ chạy với `APP_ENV=local`, sao lưu database trước khi nạp và không tạo trùng khi chạy lại.
+Xem [tài khoản mẫu và hướng dẫn sử dụng](../../docs/du-lieu-mau.md).
+
 ## Healthcheck và smoke test
 
 Sau khi cả ba service có trạng thái `healthy`, chạy các kiểm tra chỉ đọc sau:

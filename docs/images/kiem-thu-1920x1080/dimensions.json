@@ -1,0 +1,374 @@
+[
+  {
+    "file": "01-trang-chu.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "02-dang-nhap.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "03-dang-ky.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "04-quen-mat-khau.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "05-tai-khoan.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "06-ho-so.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "07-so-dia-chi.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "08-sua-dia-chi.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "09-don-hang-ca-nhan.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "10-chi-tiet-don-khach.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "11-danh-muc-san-pham.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "12-loc-san-pham.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "13-chi-tiet-san-pham.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "14-them-gio-hang.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "15-voucher-het-han.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "16-voucher-hop-le.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "17-checkout.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "18-thanh-toan-gia-lap.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "19-thanh-toan-that-bai.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "20-thanh-toan-thanh-cong.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "21-don-hang-vua-tao.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "22-yeu-thich.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "23-tu-van-mua-sam.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "24-loi-goi-y-chan-vay.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "25-huong-dan-size.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "26-cau-chuyen.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "27-tim-kiem.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "28-admin-tong-quan.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "29-admin-san-pham.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "30-admin-tim-san-pham.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "31-admin-them-san-pham.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "32-admin-san-pham-da-tao.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "33-admin-don-hang.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "34-admin-chi-tiet-don.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "35-admin-cap-nhat-don.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "36-admin-van-chuyen.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "37-admin-chi-tiet-van-chuyen.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "38-admin-luu-van-don.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "39-admin-xuat-kho.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "40-admin-giao-thanh-cong.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "41-admin-khach-hang.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "42-admin-ho-so-khach.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "43-admin-ton-kho.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "44-admin-nhap-kho.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "45-admin-chuyen-kho.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "46-admin-kiem-ke.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "47-admin-dieu-chinh-ton.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "48-admin-so-cai.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "49-admin-khuyen-mai.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "50-admin-tao-khuyen-mai.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "51-admin-voucher-da-tao.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "52-admin-bao-cao.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "53-admin-tai-chinh.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "54-admin-tu-van-van-hanh.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "55-admin-dashboard-xem-truoc.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "56-admin-dashboard-da-luu.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "57-admin-dashboard-bieu-do.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "58-admin-cai-dat.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "59-admin-nhat-ky.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "60-checkout-phuong-thuc.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "61-goi-y-tu-dong.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  },
+  {
+    "file": "62-khach-theo-doi-da-giao.jpg",
+    "width": 1920,
+    "height": 1080,
+    "valid": true
+  }
+]

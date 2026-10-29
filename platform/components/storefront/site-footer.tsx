@@ -107,7 +107,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 py-5 text-xs text-primary-foreground/45 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
-          <p>© 2026 NÉT Fashion. Bản MVP phục vụ kiểm thử sản phẩm.</p>
+          <p>© 2026 NÉT Fashion. Bảo lưu mọi quyền.</p>
           <div className="flex gap-5">
             <Link href="#" className="hover:text-white">
               Điều khoản

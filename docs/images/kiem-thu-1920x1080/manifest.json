@@ -1,0 +1,444 @@
+[
+  {
+    "name": "01-trang-chu",
+    "url": "http://localhost:8788/",
+    "capturedAt": "2026-10-29T15:01:53.054Z",
+    "fileModifiedAt": "2026-10-29T15:06:11.092Z"
+  },
+  {
+    "name": "02-dang-nhap",
+    "url": "http://localhost:8788/dang-nhap",
+    "capturedAt": "2026-10-29T15:02:08.580Z",
+    "fileModifiedAt": "2026-10-29T15:06:12.560Z"
+  },
+  {
+    "name": "03-dang-ky",
+    "url": "http://localhost:8788/dang-ky",
+    "capturedAt": "2026-10-29T15:02:11.714Z",
+    "fileModifiedAt": "2026-10-29T15:06:13.754Z"
+  },
+  {
+    "name": "04-quen-mat-khau",
+    "url": "http://localhost:8788/quen-mat-khau",
+    "capturedAt": "2026-10-29T15:02:25.389Z",
+    "fileModifiedAt": "2026-10-29T15:06:14.995Z"
+  },
+  {
+    "name": "05-tai-khoan",
+    "url": "http://localhost:8788/tai-khoan",
+    "capturedAt": "2026-10-29T15:03:09.849Z",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:03:09.849Z"
+  },
+  {
+    "name": "06-ho-so",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:03:23.307Z"
+  },
+  {
+    "name": "07-so-dia-chi",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:03:30.721Z"
+  },
+  {
+    "name": "08-sua-dia-chi",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:03:35.882Z"
+  },
+  {
+    "name": "09-don-hang-ca-nhan",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:03:48.334Z"
+  },
+  {
+    "name": "10-chi-tiet-don-khach",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:03:58.015Z"
+  },
+  {
+    "name": "11-danh-muc-san-pham",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:04:07.877Z"
+  },
+  {
+    "name": "12-loc-san-pham",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:04:09.584Z"
+  },
+  {
+    "name": "13-chi-tiet-san-pham",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:04:31.069Z"
+  },
+  {
+    "name": "14-them-gio-hang",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:04:33.014Z"
+  },
+  {
+    "name": "15-voucher-het-han",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:04:43.326Z"
+  },
+  {
+    "name": "16-voucher-hop-le",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:04:44.852Z"
+  },
+  {
+    "name": "17-checkout",
+    "url": "http://localhost:8788/thanh-toan",
+    "capturedAt": "2026-10-29T15:19:31.671Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:19:31.671Z"
+  },
+  {
+    "name": "18-thanh-toan-gia-lap",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:04.341Z"
+  },
+  {
+    "name": "19-thanh-toan-that-bai",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:10.902Z"
+  },
+  {
+    "name": "20-thanh-toan-thanh-cong",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:18.402Z"
+  },
+  {
+    "name": "21-don-hang-vua-tao",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:58.377Z"
+  },
+  {
+    "name": "22-yeu-thich",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:21.238Z"
+  },
+  {
+    "name": "23-tu-van-mua-sam",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:38.471Z"
+  },
+  {
+    "name": "24-loi-goi-y-chan-vay",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:38.958Z"
+  },
+  {
+    "name": "25-huong-dan-size",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:48.424Z"
+  },
+  {
+    "name": "26-cau-chuyen",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:49.801Z"
+  },
+  {
+    "name": "27-tim-kiem",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:05:56.716Z"
+  },
+  {
+    "name": "28-admin-tong-quan",
+    "url": "http://localhost:8788/admin",
+    "capturedAt": "2026-10-29T15:21:33.569Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:21:33.568Z"
+  },
+  {
+    "name": "29-admin-san-pham",
+    "url": "http://localhost:8788/admin/san-pham",
+    "capturedAt": "2026-10-29T15:17:53.531Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 116,
+    "fileModifiedAt": "2026-10-29T15:17:53.530Z"
+  },
+  {
+    "name": "30-admin-tim-san-pham",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:07:06.007Z"
+  },
+  {
+    "name": "31-admin-them-san-pham",
+    "url": "http://localhost:8788/admin/san-pham/moi",
+    "capturedAt": "2026-10-29T15:18:18.843Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 13.333333015441896,
+    "fileModifiedAt": "2026-10-29T15:18:18.840Z"
+  },
+  {
+    "name": "32-admin-san-pham-da-tao",
+    "url": "http://localhost:8788/admin/san-pham",
+    "capturedAt": "2026-10-29T15:17:55.024Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 978.6666870117188,
+    "fileModifiedAt": "2026-10-29T15:17:55.023Z"
+  },
+  {
+    "name": "33-admin-don-hang",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:07:41.457Z"
+  },
+  {
+    "name": "34-admin-chi-tiet-don",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:07:47.761Z"
+  },
+  {
+    "name": "35-admin-cap-nhat-don",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:07:54.339Z"
+  },
+  {
+    "name": "36-admin-van-chuyen",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:08:01.011Z"
+  },
+  {
+    "name": "37-admin-chi-tiet-van-chuyen",
+    "url": "http://localhost:8788/admin/van-chuyen/1a404aad-a1ac-4c94-8914-04079177d15f",
+    "capturedAt": "2026-10-29T15:18:32.427Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:18:32.426Z"
+  },
+  {
+    "name": "38-admin-luu-van-don",
+    "url": "http://localhost:8788/admin/van-chuyen/1a404aad-a1ac-4c94-8914-04079177d15f",
+    "capturedAt": "2026-10-29T15:18:33.009Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 202,
+    "fileModifiedAt": "2026-10-29T15:18:33.007Z"
+  },
+  {
+    "name": "39-admin-xuat-kho",
+    "url": "http://localhost:8788/admin/van-chuyen/1a404aad-a1ac-4c94-8914-04079177d15f",
+    "capturedAt": "2026-10-29T15:18:33.455Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 236.6666717529297,
+    "fileModifiedAt": "2026-10-29T15:18:33.454Z"
+  },
+  {
+    "name": "40-admin-giao-thanh-cong",
+    "url": "http://localhost:8788/admin/van-chuyen/1a404aad-a1ac-4c94-8914-04079177d15f",
+    "capturedAt": "2026-10-29T15:18:32.558Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:18:32.557Z"
+  },
+  {
+    "name": "41-admin-khach-hang",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:08:36.454Z"
+  },
+  {
+    "name": "42-admin-ho-so-khach",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:08:37.930Z"
+  },
+  {
+    "name": "43-admin-ton-kho",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:08:40.935Z"
+  },
+  {
+    "name": "44-admin-nhap-kho",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:09:06.241Z"
+  },
+  {
+    "name": "45-admin-chuyen-kho",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:09:24.901Z"
+  },
+  {
+    "name": "46-admin-kiem-ke",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:09:31.844Z"
+  },
+  {
+    "name": "47-admin-dieu-chinh-ton",
+    "url": "http://localhost:8788/admin/ton-kho",
+    "capturedAt": "2026-10-29T15:18:48.217Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 82.66666412353516,
+    "fileModifiedAt": "2026-10-29T15:18:48.216Z"
+  },
+  {
+    "name": "48-admin-so-cai",
+    "url": "http://localhost:8788/admin/ton-kho",
+    "capturedAt": "2026-10-29T15:18:41.869Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 20.66666603088379,
+    "fileModifiedAt": "2026-10-29T15:18:41.868Z"
+  },
+  {
+    "name": "49-admin-khuyen-mai",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:09:40.692Z"
+  },
+  {
+    "name": "50-admin-tao-khuyen-mai",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:14:39.151Z"
+  },
+  {
+    "name": "51-admin-voucher-da-tao",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:14:43.882Z"
+  },
+  {
+    "name": "52-admin-bao-cao",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:14:46.883Z"
+  },
+  {
+    "name": "53-admin-tai-chinh",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:15:00.043Z"
+  },
+  {
+    "name": "54-admin-tu-van-van-hanh",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:15:06.845Z"
+  },
+  {
+    "name": "55-admin-dashboard-xem-truoc",
+    "url": "http://localhost:8788/admin/ai",
+    "capturedAt": "2026-10-29T15:17:44.299Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 310.6666564941406,
+    "fileModifiedAt": "2026-10-29T15:17:44.297Z"
+  },
+  {
+    "name": "56-admin-dashboard-da-luu",
+    "url": "http://localhost:8788/admin/ai",
+    "capturedAt": "2026-10-29T15:21:57.557Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:21:57.555Z"
+  },
+  {
+    "name": "57-admin-dashboard-bieu-do",
+    "url": "http://localhost:8788/admin/ai",
+    "capturedAt": "2026-10-29T15:17:42.235Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 804.6666870117188,
+    "fileModifiedAt": "2026-10-29T15:17:42.233Z"
+  },
+  {
+    "name": "58-admin-cai-dat",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:15:31.992Z"
+  },
+  {
+    "name": "59-admin-nhat-ky",
+    "width": 1920,
+    "height": 1080,
+    "fileModifiedAt": "2026-10-29T15:15:41.794Z"
+  },
+  {
+    "name": "60-checkout-phuong-thuc",
+    "url": "http://localhost:8788/thanh-toan",
+    "capturedAt": "2026-10-29T15:19:33.115Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 538,
+    "fileModifiedAt": "2026-10-29T15:19:33.115Z"
+  },
+  {
+    "name": "61-goi-y-tu-dong",
+    "url": "http://localhost:8788/gio-hang",
+    "capturedAt": "2026-10-29T15:20:58.372Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:20:58.371Z"
+  },
+  {
+    "name": "62-khach-theo-doi-da-giao",
+    "url": "http://localhost:8788/don-hang/f98d3344-7d89-48e4-bcd2-b33c92f9b6d4",
+    "capturedAt": "2026-10-29T15:19:42.979Z",
+    "width": 1920,
+    "height": 1080,
+    "scrollX": 0,
+    "scrollY": 0,
+    "fileModifiedAt": "2026-10-29T15:19:42.978Z"
+  }
+]

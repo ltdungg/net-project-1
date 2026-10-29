@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { commerceRequest } from '@/lib/commerce-api-client';
 import { formatVnd } from '@/lib/catalog-data';
 import {
-  aiModeLabel,
   widgetLabels,
   type AiDashboard,
   type WidgetId,
@@ -358,10 +357,10 @@ export function DashboardBuilder() {
                 ))}
               </fieldset>
               <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                {dashboard.report.period.from} → {dashboard.report.period.to} ·
-                Asia/Ho_Chi_Minh
+                {dashboard.report.period.from.split('-').reverse().join('/')} –{' '}
+                {dashboard.report.period.to.split('-').reverse().join('/')}
                 <br />
-                {aiModeLabel[dashboard.mode]} · Cập nhật{' '}
+                Cập nhật{' '}
                 {new Date(dashboard.generatedAt).toLocaleString('vi-VN', {
                   timeZone: 'Asia/Ho_Chi_Minh',
                 })}

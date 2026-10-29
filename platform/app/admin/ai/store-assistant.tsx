@@ -14,9 +14,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { commerceRaw } from '@/lib/commerce-api-client';
-import { aiModeLabel, type AiMode } from '@/lib/ai-contract';
+import type { AiMode } from '@/lib/ai-contract';
 
-type CopilotResult = {
+type AssistantResult = {
   headline: string;
   answer: string;
   insights: Array<{
@@ -31,7 +31,7 @@ type CopilotResult = {
 
 type Message =
   | { id: string; role: 'user'; text: string }
-  | { id: string; role: 'assistant'; result: CopilotResult };
+  | { id: string; role: 'assistant'; result: AssistantResult };
 
 const suggestions = [
   'Tóm tắt cửa hàng hôm nay',
@@ -41,7 +41,7 @@ const suggestions = [
   'Sản phẩm nào bán chạy nhất?',
 ];
 
-export function AiCopilot() {
+export function StoreAssistant() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [prompt, setPrompt] = useState('');
   const [state, setState] = useState<'idle' | 'loading'>('idle');
@@ -66,7 +66,7 @@ export function AiCopilot() {
         body: JSON.stringify({ prompt: text }),
       });
       const payload = (await response.json()) as {
-        data?: CopilotResult;
+        data?: AssistantResult;
         error?: { message?: string } | null;
       };
       if (!response.ok || !payload.data) {
@@ -82,7 +82,7 @@ export function AiCopilot() {
       setError(
         caught instanceof Error
           ? caught.message
-          : 'Chưa thể kết nối với Copilot.',
+          : 'Chưa thể kết nối với trợ lý. Vui lòng thử lại.',
       );
     } finally {
       setState('idle');
@@ -122,7 +122,7 @@ export function AiCopilot() {
             </h3>
             <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
               Chọn một câu hỏi gợi ý hoặc nhập yêu cầu bằng ngôn ngữ tự nhiên.
-              Copilot sẽ phân tích dữ liệu mới nhất và đề xuất bước tiếp theo.
+              Trợ lý sẽ tổng hợp số liệu cửa hàng và gợi ý việc cần ưu tiên.
             </p>
             <div className="mt-7 flex max-w-2xl flex-wrap justify-center gap-2">
               {suggestions.map((suggestion) => (
@@ -198,9 +198,6 @@ export function AiCopilot() {
                         {action.label} <ArrowRight />
                       </Button>
                     ))}
-                    <span className="ml-auto self-center text-[10px] text-muted-foreground">
-                      {aiModeLabel[message.result.mode]}
-                    </span>
                   </div>
                 </div>
               </div>
@@ -240,7 +237,7 @@ export function AiCopilot() {
               }
             }}
             placeholder="Ví dụ: Tôi nên ưu tiên việc gì trước 12 giờ?"
-            aria-label="Câu hỏi cho NÉT AI Copilot"
+            aria-label="Câu hỏi cho trợ lý cửa hàng"
             className="min-h-12 resize-none border-0 bg-transparent shadow-none focus-visible:ring-0"
           />
           <Button
@@ -254,7 +251,7 @@ export function AiCopilot() {
           </Button>
         </div>
         <p className="mt-2 text-center text-[10px] text-muted-foreground">
-          Copilot có thể sai. Hãy kiểm tra dữ liệu trước khi ra quyết định.
+          Tham khảo số liệu chi tiết trước khi quyết định thay đổi hoạt động cửa hàng.
         </p>
       </form>
     </section>

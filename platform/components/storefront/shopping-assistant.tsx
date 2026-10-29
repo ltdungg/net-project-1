@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowUp, LoaderCircle, MessageCircle, RotateCcw } from 'lucide-react';
 import { useAuth } from '@/components/auth/auth-provider';
-import { AiProviderStatus } from '@/components/ai/provider-status';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -19,7 +18,6 @@ import { ProductImage } from './product-image';
 import { formatVnd } from '@/lib/catalog-data';
 import { commerceRequest } from '@/lib/commerce-api-client';
 import {
-  aiModeLabel,
   recentProductIds,
   type ShopperReply,
 } from '@/lib/ai-contract';
@@ -137,7 +135,6 @@ function ShoppingAssistantSession() {
           <SheetDescription className="mt-1 text-xs leading-5">
             Tìm thiết kế hợp gu, chất liệu và ngân sách của bạn.
           </SheetDescription>
-          {open && <AiProviderStatus />}
         </SheetHeader>
         <div
           role="log"
@@ -206,9 +203,6 @@ function ShoppingAssistantSession() {
                       </Link>
                     ))}
                   </div>
-                  <p className="mt-3 text-[10px] text-muted-foreground">
-                    {aiModeLabel[message.reply.mode]}
-                  </p>
                 </div>
               )}
             </div>
@@ -281,9 +275,8 @@ function ShoppingAssistantSession() {
             </Button>
           </form>
           <p className="mt-2 text-[10px] leading-4 text-muted-foreground">
-            Tư vấn sử dụng Gemini khi cửa hàng bật kết nối. Không gửi mật khẩu
-            hoặc thông tin thanh toán. Giá và tồn kho được kiểm tra lại khi đặt
-            hàng.
+            Giá và tình trạng còn hàng được xác nhận khi đặt hàng. Vui lòng
+            không chia sẻ mật khẩu hoặc thông tin thanh toán trong cuộc trò chuyện.
           </p>
         </div>
       </SheetContent>

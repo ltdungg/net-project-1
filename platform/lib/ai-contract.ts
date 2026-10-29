@@ -1,12 +1,6 @@
 import type { CatalogProduct } from '@/lib/catalog-data';
 
 export type AiMode = 'ai' | 'rules' | 'fallback' | 'saved';
-export const aiModeLabel: Record<AiMode, string> = {
-  ai: 'Gemini · dựa trên dữ liệu cửa hàng',
-  rules: 'Chế độ cơ bản · chưa bật Gemini',
-  fallback: 'Gemini chưa phản hồi · đang dùng chế độ cơ bản',
-  saved: 'Dashboard đã lưu · số liệu mới nhất',
-};
 export type Recommendation = { product: CatalogProduct; reason: string };
 export type ShopperReply = {
   answer: string;

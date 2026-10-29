@@ -78,7 +78,7 @@ export default async function AdminDashboard() {
           </span>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
-              Mới · NÉT AI Copilot
+              Trợ lý cửa hàng
             </p>
             <h2 className="mt-1 font-heading text-2xl font-semibold">
               Hỏi dữ liệu cửa hàng bằng tiếng Việt
@@ -90,7 +90,7 @@ export default async function AdminDashboard() {
           </div>
         </div>
         <span className="flex items-center gap-2 text-sm font-semibold">
-          Mở Copilot{' '}
+          Mở trợ lý{' '}
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
         </span>
       </Link>

@@ -31,7 +31,7 @@ import { Button } from '@/components/ui/button';
 
 const navigation = [
   { href: '/admin', label: 'Tổng quan', icon: LayoutDashboard, management: true },
-  { href: '/admin/ai', label: 'NÉT AI Copilot', icon: Sparkles, badge: 'AI' },
+  { href: '/admin/ai', label: 'Trợ lý cửa hàng', icon: Sparkles },
   { href: '/admin/san-pham', label: 'Sản phẩm', icon: Package },
   {
     href: '/admin/don-hang',

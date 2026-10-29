@@ -1,16 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { AiCopilot } from './ai-copilot';
+import { StoreAssistant } from './store-assistant';
 import { DashboardBuilder } from './dashboard-builder';
-import { AiProviderStatus } from '@/components/ai/provider-status';
 
 export function AiWorkspace({ canBuild }: { canBuild: boolean }) {
   const [tab, setTab] = useState<'chat' | 'dashboard'>('chat');
   return (
     <>
-      <div className="mb-5">
-        <AiProviderStatus admin />
-      </div>
       <div
         className="mb-6 flex flex-wrap gap-2"
         aria-label="Chức năng trợ lý quản trị"
@@ -33,7 +29,7 @@ export function AiWorkspace({ canBuild }: { canBuild: boolean }) {
         )}
       </div>
       <div hidden={tab !== 'chat'}>
-        <AiCopilot />
+        <StoreAssistant />
       </div>
       {canBuild && tab === 'dashboard' && <DashboardBuilder />}
     </>
