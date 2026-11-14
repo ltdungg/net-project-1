@@ -88,6 +88,21 @@ Không nhập dữ liệu SYN vào ứng dụng, không dùng như bằng chứn
 
 ## Cách sử dụng
 
+### Chạy ứng dụng và nạp dữ liệu mẫu bằng Docker
+
+Từ thư mục gốc, với Docker Compose v2 và Node.js 22 trở lên:
+
+```bash
+docker compose up --build -d --wait --wait-timeout 240
+node platform/backend/scripts/seed-demo.mjs --project net-commerce-demo
+```
+
+Mở **http://localhost:8787**. Admin: `demo.admin@example.test`, khách hàng:
+`customer01@example.test`; mật khẩu chung: `NetDemo2026!`.
+Không cần tạo `.env` cho cấu hình local này.
+
+Xem [hướng dẫn Docker, tài khoản và kiểm tra dữ liệu](docs/chay-docker.md).
+
 1. Sponsor/PO duyệt Vision, phạm vi MVP, KPI và các quyết định còn mở.
 2. BA tổ chức workshop để xác thực nghiệp vụ, use case, business rules và mô hình dữ liệu.
 3. Frontend tạo prototype/UI dựa trên journey, use case và acceptance criteria.

@@ -1,0 +1,44 @@
+name: net-commerce-demo
+
+services:
+  postgres:
+    extends:
+      file: platform/backend/docker-compose.yml
+      service: postgres
+  redis:
+    extends:
+      file: platform/backend/docker-compose.yml
+      service: redis
+  api:
+    extends:
+      file: platform/backend/docker-compose.yml
+      service: api
+    build:
+      context: ./platform/backend
+    environment:
+      APP_ENV: local
+      LOCAL_AUTH_BYPASS: "false"
+      PUBLIC_ORIGIN: http://localhost:8787
+  commerce:
+    build:
+      context: ./platform
+      target: runtime
+    init: true
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./platform/ops/docker-demo.env:/app/.env:ro
+      - commerce_state:/app/.wrangler
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 20s
+
+volumes:
+  postgres_data:
+  redis_data:
+  uploads_data:
+  commerce_state:

@@ -1,11 +1,14 @@
 -- Read-only integrity checks. The same checks run before the seed transaction commits.
 DO $$
 BEGIN
-  IF (SELECT count(*) FROM customer_orders WHERE id LIKE 'demo-v1-order-%') <> 72 THEN
-    RAISE EXCEPTION 'Expected 72 demo orders';
+  IF NOT EXISTS (SELECT 1 FROM audit_logs WHERE id='demo-v1-seeded') THEN
+    RAISE EXCEPTION 'Demo seed manifest is missing';
   END IF;
-  IF (SELECT count(*) FROM users WHERE id LIKE 'demo-v1-%') <> 27 THEN
-    RAISE EXCEPTION 'Expected 27 demo users';
+  IF (SELECT count(*) FROM customer_orders WHERE id LIKE 'demo-v1-order-%') <> (SELECT (after_json::jsonb->>'orders')::int FROM audit_logs WHERE id='demo-v1-seeded') THEN
+    RAISE EXCEPTION 'Demo order count differs from seed manifest';
+  END IF;
+  IF (SELECT count(*) FROM users WHERE id LIKE 'demo-v1-%') <> (SELECT (after_json::jsonb->>'customers')::int + (after_json::jsonb->>'employees')::int FROM audit_logs WHERE id='demo-v1-seeded') THEN
+    RAISE EXCEPTION 'Demo user count differs from seed manifest';
   END IF;
   IF EXISTS (
     SELECT 1 FROM customer_orders o
@@ -44,6 +47,15 @@ BEGIN
       OR (o.payment_status IN ('pending','failed','cancelled','refunded') AND o.payment_status<>p.status)
     )
   ) THEN RAISE EXCEPTION 'Payment/order status mismatch'; END IF;
+  IF EXISTS (
+    SELECT 1 FROM customer_orders o JOIN users u ON u.id=o.user_id
+    WHERE o.id LIKE 'demo-v1-order-%'
+    AND (o.created_at < u.created_at OR o.updated_at < o.created_at OR o.updated_at > now())
+  ) THEN RAISE EXCEPTION 'Order dates are inconsistent'; END IF;
+  IF EXISTS (
+    SELECT 1 FROM fulfillments WHERE id LIKE 'demo-v1-fulfillment-%'
+    AND (shipped_at < created_at OR delivered_at < shipped_at OR delivered_at > now())
+  ) THEN RAISE EXCEPTION 'Shipment dates are inconsistent'; END IF;
 END $$;
 
 SELECT json_build_object(

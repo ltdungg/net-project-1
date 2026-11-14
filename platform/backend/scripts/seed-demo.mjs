@@ -52,6 +52,13 @@ writeFileSync(backupPath, docker(['exec', '-T', 'postgres', 'pg_dump', '-U', 'ne
 console.log(`Database backup: ${backupPath}`);
 
 const now = Date.now();
+// Reproducible variation, with dates relative to the first seed run.
+let randomState = 20261114;
+const random = () => {
+  randomState = (Math.imul(1664525, randomState) + 1013904223) >>> 0;
+  return randomState / 4294967296;
+};
+const pick = (items) => items[Math.floor(random() * items.length)];
 const day = 86400000;
 const hour = 3600000;
 const stamp = (time) => new Date(time).toISOString();
@@ -67,6 +74,9 @@ const names = ['Nguyễn Minh Anh', 'Trần Bảo Ngọc', 'Lê Quốc Huy', 'Ph
   'Đặng Phương Thảo', 'Bùi Tuấn Kiệt', 'Đỗ Thanh Mai', 'Hồ Nhật Nam', 'Ngô Khánh Vy', 'Dương Hải Đăng',
   'Lý Ngọc Hân', 'Mai Thành Đạt', 'Phan Quỳnh Chi', 'Võ Anh Khoa', 'Nguyễn Yến Nhi', 'Trần Minh Châu',
   'Lê Hoàng Phúc', 'Phạm Tú Anh', 'Hoàng Bảo Trâm', 'Vũ Trung Hiếu', 'Đặng Thùy Dương', 'Bùi Quang Vinh'];
+const surnames = ['Nguyễn', 'Trần', 'Lê', 'Phạm', 'Hoàng', 'Vũ', 'Đặng', 'Bùi', 'Đỗ', 'Võ', 'Phan', 'Dương'];
+const givenNames = ['Minh Khôi', 'Thảo Nguyên', 'Hà My', 'Tuấn Anh', 'Ngọc Diệp', 'Bảo An'];
+for (const surname of surnames) for (const given of givenNames) names.push(`${surname} ${given}`);
 const locations = [
   { city: 'Thành phố Hồ Chí Minh', district: 'Quận 3', ward: 'Phường Võ Thị Sáu' },
   { city: 'Hà Nội', district: 'Cầu Giấy', ward: 'Dịch Vọng' },
@@ -80,19 +90,21 @@ const customers = names.map((name, i) => ({
   ...locations[i % locations.length],
 }));
 const employees = [
-  { id: id('admin', 1), email: 'demo.admin@example.test', full_name: 'Quản trị cửa hàng', roles: ['customer', 'staff', 'manager', 'admin'] },
-  { id: id('manager', 1), email: 'demo.manager@example.test', full_name: 'Quản lý kinh doanh', roles: ['customer', 'staff', 'manager'] },
-  { id: id('staff', 1), email: 'demo.staff@example.test', full_name: 'Nhân viên vận hành', roles: ['customer', 'staff'] },
+  { id: id('admin', 1), email: 'demo.admin@example.test', full_name: 'Nguyễn Hoàng Nam', roles: ['customer', 'staff', 'manager', 'admin'] },
+  { id: id('manager', 1), email: 'demo.manager@example.test', full_name: 'Trần Ngọc Ánh', roles: ['customer', 'staff', 'manager'] },
+  { id: id('staff', 1), email: 'demo.staff@example.test', full_name: 'Lê Thanh Tùng', roles: ['customer', 'staff'] },
 ];
 for (const person of [...employees, ...customers]) {
   const created = stamp(person.created ?? now - 200 * day);
   insert('users', { id: person.id, email: person.email, password_hash: passwordHash, full_name: person.full_name,
-    phone: person.phone ?? '0900000099', status: 'active', marketing_consent: false,
+    phone: person.phone ?? '0900000099', status: 'active', marketing_consent: random() < 0.3,
+    last_login_at: stamp(Math.max(person.created ?? now - 200 * day, now - Math.floor(random() * 21) * day)),
     email_verified_at: created, created_at: created, updated_at: created });
   for (const role of person.roles ?? ['customer']) insert('user_roles', { user_id: person.id, role_id: `role-${role}`, assigned_at: created });
 }
+const streets = ['Nguyễn Đình Chiểu', 'Trần Thái Tông', 'Núi Thành', 'Nguyễn Văn Cừ'];
 const address = (c) => ({ recipientName: c.full_name, phone: c.phone,
-  line1: `${12 + customers.indexOf(c) * 3} Đường Hoa Ban`, ward: c.ward, district: c.district, province: c.city });
+  line1: `${12 + customers.indexOf(c) * 3}${customers.indexOf(c) % 5 === 0 ? '/8' : ''} ${streets[customers.indexOf(c) % streets.length]}`, ward: c.ward, district: c.district, province: c.city });
 for (const c of customers) insert('addresses', {
   id: id('address', customers.indexOf(c) + 1), user_id: c.id, label: 'Nhà riêng', recipient_name: c.full_name,
   phone: c.phone, line1: address(c).line1, ward: c.ward, district: c.district, city: c.city,
@@ -151,13 +163,29 @@ for (let j = 0; j < 24; j++) {
     method: j < 4 || slot === 10 || slot === 11 ? 'cod' : 'online',
     failed: slot === 9, deliveryFailed: slot === 10, simple: false });
 }
+// Additional shoppers: a mix of one-off, occasional and frequent customers.
+for (let c = 24; c < customers.length; c++) {
+  const count = c % 12 === 0 ? 0 : c % 5 === 0 ? 7 : 1 + Math.floor(random() * 4);
+  for (let repeat = 0; repeat < count; repeat++) {
+    orders.push({ n: orders.length + 1, c, state: 'delivered',
+      created: now - (5 + Math.floor(random() * 140)) * day - Math.floor(random() * 20) * hour,
+      method: random() < 0.42 ? 'cod' : 'online', simple: random() < 0.45 });
+  }
+}
+// Delivery takes days; terminal orders must be old enough to have completed.
+for (const o of orders) {
+  if (['delivered', 'returned', 'refunded'].includes(o.state)) o.created = Math.min(o.created, now - 5 * day);
+  o.created -= Math.floor(random() * 180) * 60000;
+  if (o.state === 'pending_payment') o.created = now - (5 + Math.floor(random() * 25)) * 60000;
+}
 const productChoices = [...new Map(variants.map(v => [v.product_id, v])).values()];
 const cheapChoices = variants.filter(v => v.price_cents <= 890000);
 if (cheapChoices.length < 2) throw new Error('Demo segmentation needs at least two variants under 890,000 VND.');
-const stateHours = { pending: 0, pending_payment: 0, confirmed: 0, processing: 1,
-  ready_to_ship: 2, shipped: 3, delivered: 6, returned: 7, refunded: 8, failed: 7, cancelled: 8 };
+const baseStateHours = { pending: 0, pending_payment: 0, confirmed: 0, processing: 1,
+  ready_to_ship: 8, shipped: 18, delivered: 54, returned: 78, refunded: 96, failed: 30, cancelled: 8 };
 
 for (const o of orders.sort((a, b) => a.created - b.created)) {
+  const stateHours = { ...baseStateHours, delivered: 42 + o.n % 30, returned: 80 + o.n % 10, refunded: 100 + o.n % 10 };
   const c = customers[o.c];
   const oid = id('order', o.n);
   const fid = id('fulfillment', o.n);
@@ -171,52 +199,56 @@ for (const o of orders.sort((a, b) => a.created - b.created)) {
   const orderState = o.deliveryFailed ? 'processing' : o.state;
   const fulfillStatus = cancelled ? 'cancelled' : ['returned', 'refunded'].includes(o.state) ? 'returned'
     : o.state === 'delivered' ? 'fulfilled' : o.deliveryFailed ? 'reserved' : shipped ? 'shipped' : 'reserved';
-  const choices = o.simple ? cheapChoices : productChoices;
-  const lines = [{ v: choices[(o.n * 3) % choices.length], qty: 1 }];
-  if (!o.simple && o.n % 3 !== 0) lines.push({ v: productChoices[(o.n * 3 + 5) % productChoices.length], qty: o.n % 4 === 0 ? 2 : 1 });
+  const choices = o.simple ? cheapChoices : variants;
+  const preferred = choices.filter(v => v.size === ['S', 'M', 'L', 'XL'][o.c % 4]);
+  const first = pick(preferred.length ? preferred : choices);
+  const lines = [{ v: first, qty: 1 }];
+  if (!o.simple && random() < 0.7) {
+    lines.push({ v: pick(variants.filter(v => v.product_id !== first.product_id)), qty: random() < 0.18 ? 2 : 1 });
+  }
   const subtotal = lines.reduce((sum, l) => sum + l.v.price_cents * l.qty, 0);
   const discounted = o.n % 4 === 0 && subtotal >= promos[0].min && !cancelled;
   const discount = discounted ? Math.min(Math.floor(subtotal * 0.1), 150000) : 0;
   const shipping = subtotal >= 799000 ? 0 : 35000;
   const total = subtotal - discount + shipping;
-  const finished = pending ? o.created : o.created + 8 * hour;
+  const finished = o.created + Math.max(pending ? 0 : 60000, (o.deliveryFailed ? stateHours.failed : stateHours[o.state]) * hour);
   insert('customer_orders', { id: oid, order_number: `NET-DEMO-${String(o.n).padStart(4, '0')}`, user_id: c.id,
     email: c.email, phone: c.phone, status: orderState, payment_status: paymentStatus, fulfillment_status: fulfillStatus,
     subtotal_cents: subtotal, discount_total_cents: discount, shipping_total_cents: shipping, tax_total_cents: 0,
-    grand_total_cents: total, shipping_address_json: json(address(c)), customer_note: o.n % 5 === 0 ? 'Vui lòng gọi trước khi giao hàng.' : null,
+    grand_total_cents: total, shipping_address_json: json(address(c)), customer_note: random() < 0.35 ? pick(['Vui lòng gọi trước khi giao hàng.', 'Mình nhận hàng sau 17h nhé.', 'Giao giờ hành chính, nhờ gửi lễ tân.', 'Cho mình kiểm tra size trước khi nhận.', 'Nhờ shop đóng gói gọn, hạn chế túi nhựa.']) : null,
     source: 'web', placed_at: stamp(o.created), cancelled_at: cancelled ? stamp(finished) : null,
     created_at: stamp(o.created), updated_at: stamp(finished), idempotency_key: oid });
   insert('payments', { id: id('payment', o.n), order_id: oid, provider: o.method === 'cod' ? 'cod' : 'mockpay', method: o.method,
     status: paymentStatus === 'paid' ? 'succeeded' : paymentStatus === 'cod_pending' ? 'pending' : paymentStatus,
     amount_cents: total, idempotency_key: id('payment', o.n),
     failure_code: o.failed ? 'DEMO_DECLINED' : null, failure_message: o.failed ? 'Giao dịch mẫu bị từ chối' : null,
-    captured_at: ['paid', 'refunded'].includes(paymentStatus) ? stamp(o.created + (o.method === 'cod' ? 6 * hour : 60000)) : null,
+    captured_at: ['paid', 'refunded'].includes(paymentStatus) ? stamp(o.created + (o.method === 'cod' ? stateHours.delivered * hour : 60000)) : null,
     provider_metadata_json: json({ demo: true }), created_at: stamp(o.created), updated_at: stamp(finished) });
   if (['paid', 'refunded', 'failed'].includes(paymentStatus)) insert('payment_events', { id: id('payment-event', o.n),
     payment_id: id('payment', o.n), provider: o.method === 'cod' ? 'cod' : 'mockpay', provider_event_id: id('payment-event', o.n),
     event_type: paymentStatus === 'paid' ? 'payment.succeeded' : `payment.${paymentStatus}`, signature_valid: false,
     payload_json: json({ demo: true, orderId: oid }), processed_at: stamp(finished), created_at: stamp(finished) });
   insert('fulfillments', { id: fid, shipment_number: `SHP-DEMO-${String(o.n).padStart(4, '0')}`, order_id: oid, warehouse_id: warehouse,
-    status: fulfillmentState, carrier: shipped || o.state === 'ready_to_ship' ? 'Giao hàng nội địa' : null,
+    status: fulfillmentState, carrier: shipped || o.state === 'ready_to_ship' ? ['GHN (mô phỏng)', 'GHTK (mô phỏng)', 'Viettel Post (mô phỏng)'][o.n % 3] : null,
     tracking_number: shipped || o.state === 'ready_to_ship' ? `DEMO${String(o.n).padStart(10, '0')}` : null,
     shipping_cost_cents: 25000, address_snapshot_json: json(address(c)), estimated_delivery_at: cancelled ? null : stamp(o.created + 3 * day),
-    shipped_at: shipped ? stamp(o.created + 3 * hour) : null, delivered_at: o.state === 'delivered' ? stamp(o.created + 6 * hour) : null,
-    delivery_attempts: o.state === 'delivered' || o.deliveryFailed ? 1 : 0,
+    shipped_at: shipped ? stamp(o.created + stateHours.shipped * hour) : null, delivered_at: ['delivered', 'returned', 'refunded'].includes(o.state) ? stamp(o.created + stateHours.delivered * hour) : null,
+    delivery_attempts: ['delivered', 'returned', 'refunded'].includes(o.state) ? (o.n % 9 === 0 ? 2 : 1) : o.deliveryFailed ? 1 : 0,
     last_failure_reason: o.deliveryFailed ? 'Khách hẹn giao lại vào ngày hôm sau.' : null,
     idempotency_key: fid, version: 1, created_at: stamp(o.created), updated_at: stamp(finished) });
   const orderTimeline = pending ? ['pending_payment'] : cancelled ? ['pending_payment', 'cancelled']
     : ['confirmed', ...(!['confirmed'].includes(o.state) ? ['processing'] : []),
       ...(['ready_to_ship', 'shipped', 'delivered', 'returned', 'refunded'].includes(o.state) ? ['ready_to_ship'] : []),
-      ...(shipped ? ['shipped'] : []), ...(o.state === 'delivered' ? ['delivered'] : []),
+      ...(shipped ? ['shipped'] : []), ...(['delivered', 'returned', 'refunded'].includes(o.state) ? ['delivered'] : []),
       ...(['returned', 'refunded'].includes(o.state) ? ['returned'] : []), ...(o.state === 'refunded' ? ['refunded'] : []),
       ...(o.deliveryFailed ? ['processing'] : [])];
   orderTimeline.forEach((state, i) => insert('order_status_history', { id: `${oid}-h${i}`, order_id: oid,
     from_status: i === 0 ? null : orderTimeline[i - 1], to_status: state,
     reason: 'Lịch sử đơn hàng mẫu', actor_user_id: i === 0 ? c.id : employees[2].id,
-    created_at: stamp(o.created + (o.deliveryFailed && i === orderTimeline.length - 1 ? 7 : stateHours[state]) * hour) }));
+    created_at: stamp(o.created + (o.deliveryFailed && i === orderTimeline.length - 1 ? stateHours.failed : stateHours[state]) * hour) }));
   const fulfillmentTimeline = ['pending', ...(!['confirmed', 'pending_payment', 'cancelled'].includes(o.state) ? ['processing'] : []),
     ...(['ready_to_ship', 'shipped', 'delivered', 'returned', 'refunded'].includes(o.state) ? ['ready_to_ship'] : []),
-    ...(shipped ? ['shipped'] : []), ...(o.state === 'delivered' ? ['delivered'] : []),
+    ...(shipped ? ['shipped'] : []), ...(['delivered', 'returned', 'refunded'].includes(o.state) ? ['delivered'] : []),
     ...(['returned', 'refunded'].includes(o.state) ? ['returned'] : []), ...(cancelled ? ['cancelled'] : []), ...(o.deliveryFailed ? ['failed'] : [])];
   fulfillmentTimeline.forEach((state, i) => insert('fulfillment_events', { id: `${fid}-h${i}`, fulfillment_id: fid,
     from_status: i === 0 ? null : fulfillmentTimeline[i - 1], to_status: state,
@@ -234,12 +266,12 @@ for (const o of orders.sort((a, b) => a.created - b.created)) {
     insert('inventory_reservations', { id: reservationId, inventory_item_id: stock.id, order_id: oid, quantity: qty,
       status: shipped ? 'consumed' : cancelled ? 'released' : 'active',
       expires_at: stamp(o.created + (pending ? 2 * hour : 30 * day)),
-      released_at: shipped ? stamp(o.created + 3 * hour) : cancelled ? stamp(finished) : null, created_at: stamp(o.created) });
+      released_at: shipped ? stamp(o.created + stateHours.shipped * hour) : cancelled ? stamp(finished) : null, created_at: stamp(o.created) });
     insert('fulfillment_items', { id: `${fid}-i${i}`, fulfillment_id: fid, order_item_id: lineId, reservation_id: reservationId, quantity: qty, created_at: stamp(o.created) });
     insert('inventory_movements', { id: `${oid}-m${i}`, inventory_item_id: stock.id, type: shipped ? 'sale' : cancelled ? 'release' : 'reservation',
       quantity_delta: shipped ? -qty : 0, balance_after: stock.onHand, reference_type: 'fulfillment', reference_id: fid,
       reason: shipped ? 'Xuất hàng theo đơn mẫu' : cancelled ? 'Giải phóng tồn đơn hủy' : 'Giữ hàng cho đơn mẫu',
-      idempotency_key: `${oid}-m${i}`, actor_user_id: employees[2].id, created_at: stamp(o.created + (shipped ? 3 * hour : 0)) });
+      idempotency_key: `${oid}-m${i}`, actor_user_id: employees[2].id, created_at: stamp(o.created + (shipped ? stateHours.shipped * hour : cancelled ? stateHours.cancelled * hour : 0)) });
   });
   if (discounted) insert('order_promotions', { id: `${oid}-promo`, order_id: oid, promotion_id: 'demo-v1-promo-welcome',
     coupon_id: 'demo-v1-coupon-welcome', name_snapshot: 'Ưu đãi khách hàng mới (DEMO10)', discount_cents: discount, created_at: stamp(o.created) });
@@ -266,7 +298,7 @@ variants.forEach((v, i) => {
 statements.push(`UPDATE promotions SET usage_count=(SELECT count(*) FROM order_promotions WHERE promotion_id='demo-v1-promo-welcome') WHERE id='demo-v1-promo-welcome';`);
 statements.push(`UPDATE coupons SET usage_count=(SELECT count(*) FROM order_promotions WHERE coupon_id='demo-v1-coupon-welcome') WHERE id='demo-v1-coupon-welcome';`);
 customers.forEach((c, i) => {
-  for (let j = 0; j < 3; j++) insert('wishlist_items', { user_id: c.id, product_id: productChoices[(i * 3 + j) % productChoices.length].product_id, created_at: stamp(now - (j + 1) * day) });
+  for (let j = 0, count = Math.floor(random() * 7); j < count; j++) insert('wishlist_items', { user_id: c.id, product_id: productChoices[(i * 3 + j) % productChoices.length].product_id, created_at: stamp(now - (j + 1) * day) });
 });
 // The application uses a browser cart token; do not seed inaccessible user carts.
 for (const employee of employees.slice(0, 2)) {
@@ -276,7 +308,7 @@ for (const employee of employees.slice(0, 2)) {
     widgets: json(['top_products', 'items_sold', 'low_stock']) });
 }
 insert('audit_logs', { id: 'demo-v1-seeded', actor_user_id: employees[0].id, action: 'demo.seeded', entity_type: 'demo_dataset',
-  entity_id: 'demo-v1', after_json: json({ customers: 24, employees: 3, orders: 72, warehouse, createdAt: stamp(now) }),
+  entity_id: 'demo-v1', after_json: json({ customers: customers.length, employees: employees.length, orders: orders.length, warehouse, createdAt: stamp(now) }),
   correlation_id: 'demo-v1-seed' });
 
 // Advisory lock and marker make concurrent and repeated runs harmless.

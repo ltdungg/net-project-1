@@ -1,5 +1,10 @@
 # NÉT Commerce Platform
 
+Chạy toàn bộ hệ thống bằng một Compose tại thư mục gốc và nạp dữ liệu mẫu:
+xem [hướng dẫn Docker hiện tại](../docs/chay-docker.md). Cấu hình này dùng
+http://localhost:8787 và không cần tạo `.env`. Các mục bên dưới vẫn mô tả cách
+chạy riêng từng stack.
+
 Dự án đồ án website bán quần áo online gồm storefront, tài khoản khách hàng,
 checkout, quản trị, phân khúc khách hàng, tồn kho đa kho, vận chuyển và Copilot
 quản trị, tư vấn mua sắm và tạo dashboard bằng AI tùy chọn.

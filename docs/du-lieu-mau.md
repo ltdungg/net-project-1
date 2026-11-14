@@ -1,5 +1,10 @@
 # Dữ liệu mẫu NÉT Fashion
 
+> Hướng dẫn hiện tại: [chạy toàn bộ dự án bằng Docker](chay-docker.md), cổng
+> **8787**, project **net-commerce-demo**. Seed mới tạo **96 khách hàng** trên
+> database chưa có dữ liệu demo. Nội dung và kết quả ngày 29/10 dưới đây là
+> hồ sơ của bộ seed cũ (24 khách), được giữ để tham khảo.
+
 Bộ dữ liệu được nạp vào [website local](http://localhost:8788) ngày 29/10/2026, dùng PostgreSQL của Compose project `net-pj1-java`. Dữ liệu khách hàng, địa chỉ, giao dịch và vận đơn trong bộ này đều là giả lập.
 
 ## Tài khoản đăng nhập
