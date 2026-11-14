@@ -110,6 +110,11 @@ Xem [hướng dẫn Docker, tài khoản và kiểm tra dữ liệu](docs/chay-d
 5. DevOps thiết lập CI/CD, môi trường, security, observability và quality gates.
 6. PM kiêm PO/BA/UAT coordinator: baseline backlog/timeline, quản lý thay đổi và acceptance.
 
+### Deploy lên AWS
+
+Terraform triển khai toàn bộ ứng dụng trên **một EC2**, cấu hình qua `.envrc`.
+Xem [hướng dẫn deploy AWS](docs/deploy-aws.md) và [mẫu tham số](.envrc.example).
+
 ## Baseline triển khai
 
 - Thời lượng: 8 tuần, 4 sprint × 2 tuần; không tính thêm một tuần thứ 9 vào

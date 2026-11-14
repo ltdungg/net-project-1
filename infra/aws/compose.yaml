@@ -1,0 +1,85 @@
+name: net-commerce-aws
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  postgres:
+    extends:
+      file: platform/backend/docker-compose.yml
+      service: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    logging: *logging
+
+  redis:
+    extends:
+      file: platform/backend/docker-compose.yml
+      service: redis
+    logging: *logging
+
+  api:
+    extends:
+      file: platform/backend/docker-compose.yml
+      service: api
+    build:
+      context: ./platform/backend
+    ports: !reset []
+    environment:
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      APP_ENV: ${APP_ENV:?Set APP_ENV}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET}
+      PAYMENT_WEBHOOK_SECRET: ${PAYMENT_WEBHOOK_SECRET:?Set PAYMENT_WEBHOOK_SECRET}
+      LOCAL_AUTH_BYPASS: "false"
+      ADMIN_EMAILS: ${ADMIN_EMAILS:?Set ADMIN_EMAILS}
+      MANAGER_EMAILS: ${MANAGER_EMAILS:-}
+      JAVA_OPTS: -Xms128m -Xmx768m -XX:+UseG1GC
+    logging: *logging
+
+  commerce:
+    build:
+      context: ./platform
+      target: runtime
+    init: true
+    volumes:
+      - ./frontend.env:/app/.env:ro
+      - commerce_state:/app/.wrangler
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    stop_grace_period: 20s
+    security_opt:
+      - no-new-privileges:true
+    logging: *logging
+
+  proxy:
+    image: caddy:2-alpine
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?Set SITE_ADDRESS}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      commerce:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    logging: *logging
+
+volumes:
+  postgres_data:
+  redis_data:
+  uploads_data:
+  commerce_state:
+  caddy_data:
+  caddy_config:

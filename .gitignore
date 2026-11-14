@@ -7,5 +7,16 @@ __pycache__/
 !.env.example
 *.pem
 *.key
+.envrc
+.envrc.*
+!.envrc.example
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+*.tfvars
+*.tfvars.json
+net-commerce-backup*.sql
 ~$*
 node_modules/

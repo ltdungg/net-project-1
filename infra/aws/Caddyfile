@@ -1,0 +1,11 @@
+{$SITE_ADDRESS} {
+	encode gzip
+	reverse_proxy commerce:8787 {
+		# The backend trusts this header for rate limiting; use the real peer IP.
+		header_up CF-Connecting-IP {remote_host}
+		header_up -oai-authenticated-user-id
+		header_up -oai-authenticated-user-email
+		header_up -oai-authenticated-user-full-name
+		header_up -oai-authenticated-user-full-name-encoding
+	}
+}

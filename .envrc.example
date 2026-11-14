@@ -1,0 +1,37 @@
+# Chép thành .envrc, điền giá trị rồi chạy: bash scripts/deploy-aws.sh
+# Dùng AWS profile đã cấu hình bằng `aws configure` hoặc `aws configure sso`.
+export AWS_PROFILE="default"
+export AWS_REGION="ap-southeast-1"
+# Nếu dùng access key thay cho profile: bỏ AWS_PROFILE và đặt các biến sau.
+# export AWS_ACCESS_KEY_ID=""
+# export AWS_SECRET_ACCESS_KEY=""
+# export AWS_SESSION_TOKEN="" # Chỉ cần với credential tạm thời.
+
+export TF_VAR_aws_region="$AWS_REGION"
+export TF_VAR_project_name="net-commerce"
+export TF_VAR_instance_type="t3.medium"
+export TF_VAR_root_volume_size=40
+
+# Key pair đã tạo trên AWS, cùng account và region với EC2.
+export TF_VAR_key_pair_name="aws-key-pair"
+# Đường dẫn file .pem đã tải từ AWS; sửa lại nếu bạn lưu ở nơi khác.
+# Cấp quyền đọc riêng cho bạn: chmod 400 ~/.ssh/aws-key-pair.pem
+export SSH_PRIVATE_KEY="$HOME/.ssh/aws-key-pair.pem"
+# SSH mở từ mọi IP; đăng nhập bằng key pair ở trên.
+
+# Điền từng giá trị bằng kết quả của `openssl rand -hex 32`.
+# Lưu cố định: không đặt lệnh sinh ngẫu nhiên trực tiếp trong .envrc.
+export POSTGRES_PASSWORD="CHANGE_ME"
+export JWT_SECRET="CHANGE_ME"
+export PAYMENT_WEBHOOK_SECRET="CHANGE_ME"
+export ADMIN_EMAILS="your-email@example.com"
+export MANAGER_EMAILS=""
+
+# Để trống: HTTP qua IP, APP_ENV=local, phục vụ demo.
+# Có tên miền: ví dụ shop.example.com, tự dùng HTTPS và APP_ENV=production.
+# Trỏ bản ghi DNS A về Elastic IP trước khi deploy ứng dụng với tên miền.
+export DOMAIN=""
+
+# Tùy chọn: để trống thì ứng dụng dùng bộ gợi ý có sẵn.
+export GEMINI_API_KEY=""
+export GEMINI_MODEL="gemini-3.8-flash"
