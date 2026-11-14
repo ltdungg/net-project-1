@@ -117,23 +117,23 @@ Xem [hướng dẫn Docker, tài khoản và kiểm tra dữ liệu](docs/chay-d
 - Đội delivery: đúng 5 người — PM, Frontend, Backend 1, Backend 2 và DevOps.
 - Schema runtime: 34 bảng PostgreSQL và view đọc
   `admin_customer_segments`; Flyway hiện ở V9.
-- Kiểm thử hiện tại: 117 bài kiểm thử backend và 15 bài kiểm thử frontend, cùng
+- Kiểm thử hiện tại: 125 bài kiểm thử backend và 15 bài kiểm thử frontend, cùng
   build/typecheck và smoke test Docker.
 - Chạy dự án và xem kiến trúc tại [Platform README](platform/README.md) và
   [Architecture](platform/ARCHITECTURE.md).
 
-## Sai lệch đã biết của bản hiện tại
+## Các lỗi local đã sửa ngày 14/11/2026
 
-- `KD-PAY-01`: webhook thành công đến sau khi order đã `cancelled` có thể làm
-  payment và order lệch trạng thái.
-- `KD-INV-01`: job giải phóng reservation hết hạn có thể hủy order nhưng chưa
-  đồng bộ dòng `payments` đang `pending`.
-- `KD-INV-02`: reservation COD có TTL nhưng job hiện chỉ quét order
-  `pending_payment`, trong khi COD chuyển sang `confirmed`.
+- `KD-PAY-01`: webhook thành công/thất bại đến sau khi đơn đã hủy trả 409,
+  không đổi trạng thái thanh toán. Hoàn tiền cho đơn đã thanh toán vẫn được phép.
+- `KD-INV-01`: hết hạn giữ hàng cập nhật đồng bộ đơn, payment, fulfillment và tồn.
+- `KD-INV-02`: COD quá 30 ngày được hủy và nhả tồn nếu chưa xuất kho; không hủy
+  đơn đã thanh toán hoặc có kiện đã xuất kho.
+- Nhân viên truy cập KPI không đủ quyền nhận 403 `FORBIDDEN` thay vì lỗi 500.
 
-Chi tiết, tác động và yêu cầu sửa được truy vết tại
-[ma trận yêu cầu](docs/ba/06-traceability.md). Các test đang pass là bằng chứng
-regression trong phạm vi đã phủ, không phủ nhận ba sai lệch trên.
+Các tình huống được kiểm thử bằng PostgreSQL Testcontainers trong
+`PostgresReservationExpiryIntegrationTest` và `PaymentStatePolicyTest`.
+Xem [ma trận yêu cầu](docs/ba/06-traceability.md).
 
 ## Quy ước trạng thái yêu cầu
 

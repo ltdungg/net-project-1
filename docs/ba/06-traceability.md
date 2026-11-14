@@ -31,8 +31,8 @@
 | UAT-INV-01 | 20 checkout tranh SKU cuối | Tối đa một reservation hợp lệ; reserved không vượt on_hand | Must |
 | UAT-INV-02 | Transfer kho | Hai movement đối ứng, operation/item/audit khớp | Must |
 | UAT-INV-03 | Repost cùng idempotency | Không lặp balance/movement | Must |
-| UAT-INV-04 | Online reservation hết hạn | Order và payment record cùng cancelled; tồn được release | Must — payment record đang fail bởi KD-INV-01 |
-| UAT-INV-05 | COD reservation quá 30 ngày | Reservation được release/cancel theo policy và reserved giảm đúng | Must — đang fail bởi KD-INV-02 |
+| UAT-INV-04 | Online reservation hết hạn | Order và payment record cùng cancelled; tồn được release | Fixed 14/11/2026 — integration kiểm tra order/payment cùng cancelled |
+| UAT-INV-05 | COD reservation quá 30 ngày | Reservation được release/cancel theo policy và reserved giảm đúng | Fixed 14/11/2026 — COD chưa xuất kho được nhả tồn |
 | UAT-FUL-01 | Đơn lấy hàng từ hai kho | Hai fulfillment, item và reservation map đúng | Must |
 | UAT-FUL-02 | Ship một kiện | Chỉ tồn/reservation của kiện đó bị consume | Must |
 | UAT-FUL-03 | Ship thiếu tracking | 422 TRACKING_REQUIRED, không thay đổi dữ liệu | Must |
@@ -46,7 +46,7 @@
 | UAT-SEC-01 | Staff đổi status khách | 403; chỉ Admin được phép | Must |
 | UAT-RET-01 | Chuyển kiện đã ship sang returned | Không thay đổi on_hand/reserved đã consumed | Must |
 | UAT-RET-02 | Hàng đạt kiểm định được nhập lại | Receipt tăng đúng on_hand; có operation/movement/audit và replay không tăng lặp | Must |
-| UAT-PAY-01 | payment.succeeded đến sau khi order cancelled | Không ghi paid/succeeded; event được reject hoặc chuyển đối soát | Must — đang fail bởi KD-PAY-01 |
+| UAT-PAY-01 | payment.succeeded đến sau khi order cancelled | Không ghi paid/succeeded; event được reject hoặc chuyển đối soát | Fixed 14/11/2026 — webhook muộn trả 409, trạng thái giữ nguyên |
 
 ## 3. Ma trận tài liệu dữ liệu
 
@@ -72,11 +72,11 @@
 5. Không đánh dấu requirement hoàn thành chỉ dựa trên UI; cần test API và
    transaction PostgreSQL tương ứng.
 
-## 5. Known defect đang mở
+## 5. Theo dõi lỗi đã biết
 
 | ID | Requirement bị ảnh hưởng | Bằng chứng | Trạng thái |
 |---|---|---|---|
 | KD-GUEST-01 | FR-GUEST-02/04, BR-GST-03/06, NFR-04 | Online payment đã chuyển sang `X-Guest-Order-Token`, không ghép token vào URL | Fixed 29/10/2026; kiểm thử contract frontend, HTTP PostgreSQL và browser checkout guest đã đạt |
-| KD-INV-01 | BR-INV-11, NFR-02 | InventoryService đổi customer_orders.payment_status nhưng không update payments.status | Open; release tồn đạt, payment aggregate không đồng bộ |
-| KD-INV-02 | FR-ORD-04, BR-INV-11, NFR-02/03 | COD tạo confirmed/cod_pending với TTL 30 ngày; expiry query chỉ chọn pending_payment + pending/failed | Open; COD reserved có thể giữ vô hạn |
-| KD-PAY-01 | BR-PAY-02/04, NFR-02/03 | Webhook policy không nhận order.status; late success sau cancel vẫn apply succeeded/paid | Open; order/payment aggregate có thể mâu thuẫn |
+| KD-INV-01 | BR-INV-11, NFR-02 | InventoryService đổi customer_orders.payment_status nhưng không update payments.status | Fixed 14/11/2026; expiry cập nhật cả payments trong transaction |
+| KD-INV-02 | FR-ORD-04, BR-INV-11, NFR-02/03 | COD tạo confirmed/cod_pending với TTL 30 ngày; expiry query chỉ chọn pending_payment + pending/failed | Fixed 14/11/2026; xử lý COD chưa xuất kho, bảo vệ đơn paid/đã xuất kho |
+| KD-PAY-01 | BR-PAY-02/04, NFR-02/03 | Webhook policy không nhận order.status; late success sau cancel vẫn apply succeeded/paid | Fixed 14/11/2026; policy nhận order.status, từ chối success/failure sau hủy |

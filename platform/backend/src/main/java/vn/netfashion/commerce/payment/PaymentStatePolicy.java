@@ -6,8 +6,13 @@ final class PaymentStatePolicy {
     static Decision forWebhook(
         String currentPaymentStatus,
         String currentOrderPaymentStatus,
-        String eventType
+        String eventType,
+        String currentOrderStatus
     ) {
+        if (("cancelled".equals(currentOrderStatus) || "cancelled".equals(currentOrderPaymentStatus)
+            || "cancelled".equals(currentPaymentStatus)) && !"payment.refunded".equals(eventType)) {
+            return Decision.reject("ORDER_ALREADY_CANCELLED");
+        }
         if ("refunded".equals(currentPaymentStatus)
             || "refunded".equals(currentOrderPaymentStatus)) {
             return Decision.ignore("PAYMENT_ALREADY_REFUNDED");

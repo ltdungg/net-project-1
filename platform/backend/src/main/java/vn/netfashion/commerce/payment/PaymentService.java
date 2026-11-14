@@ -159,7 +159,8 @@ public class PaymentService {
         PaymentStatePolicy.Decision decision = PaymentStatePolicy.forWebhook(
             payment.paymentStatus(),
             payment.orderPaymentStatus(),
-            event.type()
+            event.type(),
+            payment.orderStatus()
         );
         if (decision.rejected()) {
             throw invalidWebhookTransition(payment, event, decision.reason());

@@ -113,7 +113,7 @@ mvn clean test
 mvn clean package
 ```
 
-Baseline hiện tại có **117 kiểm thử backend**. Nhóm integration dùng PostgreSQL
+Baseline hiện tại có **125 kiểm thử backend**. Nhóm integration dùng PostgreSQL
 Testcontainers; nếu build image không truy cập Docker socket, các test này có
 thể bị skip theo điều kiện môi trường nên phải kiểm tra test summary, không chỉ
 nhìn exit code của bước compile/package.
@@ -183,13 +183,21 @@ Customer segment là read model từ dữ liệu paid, theo thứ tự ưu tiên
 nhất hai đơn paid và lần mua paid gần nhất trong 90 ngày, không nhất thiết cả hai
 đơn đều phát sinh trong 90 ngày.
 
+## Chính sách hết hạn và webhook
+
+Hết hạn giữ hàng hủy đồng bộ đơn, payment chưa thành công và fulfillment,
+đồng thời nhả toàn bộ reservation của đơn. Batch giới hạn theo 200 đơn để
+không bỏ sót reservation khi một đơn có nhiều dòng hàng.
+COD quá TTL 30 ngày chỉ tự hủy khi còn confirmed/processing/ready_to_ship,
+chưa có hàng xuất kho; đơn paid hoặc đã xuất kho không bị tác vụ này hủy.
+
+Webhook succeeded/failed đến sau khi đơn đã cancelled trả 409
+`INVALID_PAYMENT_TRANSITION`, không ghi payment event hay đổi số liệu.
+Refund của khoản đã thanh toán vẫn dùng policy refund hiện có.
+Method security trả 403 `FORBIDDEN` khi thiếu quyền, gồm staff đọc KPI.
+
 ## Giới hạn backend hiện tại
 
-- `KD-PAY-01`: webhook payment thành công đến muộn có thể cập nhật payment trong
-  khi order đã `cancelled`; chưa có bước reject/reconcile trạng thái terminal.
-- `KD-INV-01`: expiry job chưa đồng bộ `payments.status` khi hủy order do hết hạn.
-- `KD-INV-02`: expiry job chỉ chọn order `pending_payment`, nên reservation COD
-  của order `confirmed` không được giải phóng theo TTL hiện tại.
 - Payment online hỗ trợ mock confirm/webhook HMAC và SePay Sandbox API v2.
   SePay đối soát khi người dùng mở trang thanh toán; chưa có webhook/background
   reconciliation SePay, kết nối Live hoặc command refund đầy đủ.

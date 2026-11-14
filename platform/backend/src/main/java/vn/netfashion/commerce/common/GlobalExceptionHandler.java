@@ -75,6 +75,12 @@ public class GlobalExceptionHandler {
             .body(ApiEnvelope.fail("DATABASE_UNAVAILABLE", "Dịch vụ dữ liệu tạm thời không khả dụng.", null));
     }
 
+    @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
+    ResponseEntity<ApiEnvelope<Void>> forbidden(org.springframework.security.access.AccessDeniedException exception) {
+        return ResponseEntity.status(403)
+            .body(ApiEnvelope.fail("FORBIDDEN", "Bạn không có quyền thực hiện thao tác này.", null));
+    }
+
     @ExceptionHandler(Exception.class)
     ResponseEntity<ApiEnvelope<Void>> unexpected(Exception exception) {
         log.error("Unhandled API error", exception);

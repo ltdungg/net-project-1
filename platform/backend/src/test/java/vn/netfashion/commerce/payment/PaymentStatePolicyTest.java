@@ -6,11 +6,26 @@ import org.junit.jupiter.api.Test;
 
 class PaymentStatePolicyTest {
     @Test
+    void webhookCannotReviveCancelledOrderEvenIfLegacyPaymentIsPending() {
+        for (String event : new String[] {"payment.succeeded", "payment.failed"}) {
+            var decision = PaymentStatePolicy.forWebhook("pending", "pending", event, "cancelled");
+            assertThat(decision.rejected()).isTrue();
+            assertThat(decision.reason()).isEqualTo("ORDER_ALREADY_CANCELLED");
+            assertThat(PaymentStatePolicy.forWebhook("cancelled", "cancelled", event, "cancelled").rejected()).isTrue();
+        }
+    }
+
+    @Test
+    void cancelledPaidOrderCanStillBeRefunded() {
+        assertThat(PaymentStatePolicy.forWebhook("succeeded", "paid", "payment.refunded", "cancelled").applies()).isTrue();
+    }
+
+    @Test
     void lateFailureCannotDowngradeSucceededPayment() {
         PaymentStatePolicy.Decision decision = PaymentStatePolicy.forWebhook(
             "succeeded",
             "paid",
-            "payment.failed"
+            "payment.failed", "confirmed"
         );
 
         assertThat(decision.ignored()).isTrue();
@@ -22,18 +37,18 @@ class PaymentStatePolicyTest {
         assertThat(PaymentStatePolicy.forWebhook(
             "pending",
             "pending",
-            "payment.refunded"
+            "payment.refunded", "confirmed"
         ).rejected()).isTrue();
         assertThat(PaymentStatePolicy.forWebhook(
             "succeeded",
             "failed",
-            "payment.refunded"
+            "payment.refunded", "confirmed"
         ).rejected()).isTrue();
 
         PaymentStatePolicy.Decision valid = PaymentStatePolicy.forWebhook(
             "succeeded",
             "paid",
-            "payment.refunded"
+            "payment.refunded", "confirmed"
         );
         assertThat(valid.applies()).isTrue();
         assertThat(valid.targetPaymentStatus()).isEqualTo("refunded");
@@ -50,7 +65,7 @@ class PaymentStatePolicyTest {
             PaymentStatePolicy.Decision decision = PaymentStatePolicy.forWebhook(
                 "refunded",
                 "refunded",
-                event
+                event, "confirmed"
             );
             assertThat(decision.ignored()).as(event).isTrue();
             assertThat(decision.reason()).as(event).isEqualTo("PAYMENT_ALREADY_REFUNDED");
@@ -62,7 +77,7 @@ class PaymentStatePolicyTest {
         PaymentStatePolicy.Decision decision = PaymentStatePolicy.forWebhook(
             "failed",
             "failed",
-            "payment.succeeded"
+            "payment.succeeded", "confirmed"
         );
 
         assertThat(decision.applies()).isTrue();

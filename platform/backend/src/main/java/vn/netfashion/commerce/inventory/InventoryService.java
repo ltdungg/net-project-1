@@ -202,34 +202,52 @@ public class InventoryService {
     }
 
     private Map<String, Object> releaseExpiredBatch(String actorId, String correlationId, boolean auditEmptyBatch) {
-        List<Reservation> reservations = jdbc.sql("""
+        // Limit complete orders, never individual reservations: splitting an order at
+        // the batch boundary would strand its remaining holds after cancellation.
+        List<ExpiringOrder> expiringOrders = jdbc.sql("""
+            select o.id,o.status from customer_orders o
+            where ((o.status='pending_payment' and o.payment_status in ('pending','failed'))
+              or (o.status in ('confirmed','processing','ready_to_ship') and o.payment_status='cod_pending'))
+              and exists(select 1 from inventory_reservations r
+                where r.order_id=o.id and r.status='active' and r.expires_at<now())
+              and not exists(select 1 from inventory_reservations r
+                where r.order_id=o.id and r.status='consumed')
+              and not exists(select 1 from fulfillments f
+                where f.order_id=o.id and f.status in ('shipped','delivered','returned'))
+            order by o.id limit 200 for update of o skip locked
+            """).query((rs, rowNum) -> new ExpiringOrder(rs.getString("id"), rs.getString("status"))).list();
+        List<String> orders = expiringOrders.stream().map(ExpiringOrder::id).toList();
+        List<Reservation> reservations = orders.isEmpty() ? List.of() : jdbc.sql("""
             select r.id,r.inventory_item_id,r.order_id,r.quantity from inventory_reservations r
-            join customer_orders o on o.id=r.order_id
-            where r.status='active' and r.expires_at<now()
-              and o.status='pending_payment' and o.payment_status in ('pending','failed')
-            order by r.expires_at limit 200 for update of r,o skip locked
-            """).query((rs, rowNum) -> new Reservation(rs.getString("id"),rs.getString("inventory_item_id"),rs.getString("order_id"),rs.getInt("quantity"))).list();
+            where r.order_id in (:orders) and r.status='active'
+            order by r.inventory_item_id,r.id for update of r
+            """).param("orders", orders)
+            .query((rs, rowNum) -> new Reservation(rs.getString("id"),rs.getString("inventory_item_id"),rs.getString("order_id"),rs.getInt("quantity"))).list();
         for (Reservation reservation : reservations) {
             Item item = lock(reservation.itemId());
             int reserved = Math.max(0, item.reserved() - reservation.quantity());
             updateBalance(item.id(), item.onHand(), reserved);
             jdbc.sql("update inventory_reservations set status='expired',released_at=now() where id=:id").param("id", reservation.id()).update();
-            movement(item.id(), "release", 0, item.onHand(), reservation.orderId(), "Nhả tồn do hết hạn thanh toán", reservation.id() + ":release", actorId);
+            movement(item.id(), "release", 0, item.onHand(), reservation.orderId(), "Nhả tồn do hết hạn giữ hàng", reservation.id() + ":release", actorId);
         }
-        List<String> orders = reservations.stream().map(Reservation::orderId).distinct().toList();
         int cancelled = 0;
-        for (String orderId : orders) {
+        for (ExpiringOrder order : expiringOrders) {
+            String orderId = order.id();
             int updated = jdbc.sql("""
                 update customer_orders set status='cancelled',payment_status='cancelled',
                   fulfillment_status='cancelled',cancelled_at=now(),updated_at=now()
-                where id=:id and status='pending_payment' and payment_status in ('pending','failed')
-                """).param("id", orderId).update();
+                where id=:id and status=:previousStatus
+                """).param("id", orderId).param("previousStatus", order.status()).update();
             cancelled += updated;
             if (updated == 1) {
                 jdbc.sql("""
+                    update payments set status='cancelled',updated_at=now()
+                    where order_id=:orderId and status in ('pending','failed')
+                    """).param("orderId", orderId).update();
+                jdbc.sql("""
                     insert into order_status_history(id,order_id,from_status,to_status,reason,actor_user_id)
-                    values(:id,:orderId,'pending_payment','cancelled','Hết thời hạn thanh toán',:actor)
-                    """).params(Maps.of("id", UUID.randomUUID().toString(), "orderId", orderId, "actor", actorId)).update();
+                    values(:id,:orderId,:previousStatus,'cancelled','Hết thời hạn giữ hàng',:actor)
+                    """).params(Maps.of("id", UUID.randomUUID().toString(), "orderId", orderId, "previousStatus", order.status(), "actor", actorId)).update();
                 List<FulfillmentExpiry> expiredFulfillments = jdbc.sql("""
                     select id,status from fulfillments
                     where order_id=:orderId and status in ('pending','processing','ready_to_ship','failed')
@@ -245,7 +263,7 @@ public class InventoryService {
                         """).params(Map.of("id", fulfillment.id(), "status", fulfillment.status())).update();
                     jdbc.sql("""
                         insert into fulfillment_events(id,fulfillment_id,from_status,to_status,reason,actor_user_id,metadata_json)
-                        values(:id,:fulfillmentId,:fromStatus,'cancelled','Hết thời hạn thanh toán',:actor,cast(:metadata as jsonb))
+                        values(:id,:fulfillmentId,:fromStatus,'cancelled','Hết thời hạn giữ hàng',:actor,cast(:metadata as jsonb))
                         """).params(Maps.of(
                             "id", UUID.randomUUID().toString(),
                             "fulfillmentId", fulfillment.id(),
@@ -394,6 +412,7 @@ public class InventoryService {
 
     private record Item(String id,String warehouseId,String variantId,int onHand,int reserved,int safetyStock,int reorderPoint,int version) {}
     private record Reservation(String id,String itemId,String orderId,int quantity) {}
+    private record ExpiringOrder(String id, String status) {}
     private record FulfillmentExpiry(String id, String status) {}
     public record Receipt(String warehouseId,String inventoryItemId,int quantity,Long unitCostCents,String referenceNumber,String idempotencyKey,String reason,String notes) {}
     public record Transfer(String sourceInventoryItemId,String destinationWarehouseId,int quantity,String referenceNumber,String idempotencyKey,String reason,String notes) {}
